@@ -59,9 +59,9 @@ int main(){
 				
 			}
 			else if(option == '2'){
-				cout<<"No disponible"<<endl;
-				system("pause");
-				system("cls");
+				
+				CustomInRestaurant(name,PaymentType,amount,A,B,C); //se llama la funcion para agregar encargo a restaurante
+				
 			}
 			else if(option == '3'){
 				
@@ -146,6 +146,7 @@ void CustomInRestaurant(char name[10], char& PaymentType, float& amount,int&A,in
 	system("cls");
 	
 	FoodAmountPayment(PaymentType,amount,A,B,C); //se llama a la funcion donde se eligen los platos de comida, el monto y tipo de pago
+	OrderFileToRestaurant(name,PaymentType,amount,AmountPeople,A,B,C); //se llama a la funcion que crea el archivo donde se guardan los encargos de restaurante
 
 }
 
