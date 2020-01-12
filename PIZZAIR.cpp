@@ -244,5 +244,16 @@ int Drinks(){
 
 void HomeOrderFile(){
 	
+	//se crea el archivo para guardar las ordenes a domicilio
+	ofstream OrderFile("HomeOrder.txt",ios_base::app);
 	
+	if (OrderFile.is_open()){
+		
+		
+		
+		OrderFile.close();
+	}
+	else{
+		cout<<"NO HA LLEGADO NINGUNA ORDEN!"<<endl;
+	}
 }
