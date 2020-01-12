@@ -27,11 +27,9 @@ void HomeOrderFile(char name[10], char&,float&, string address, string phone,int
 int main(){
 	//DECLARACION DE VARIABLES 
 	//contrase?a para el menu principal
-	char password[]="delete", key[6], PaymentType, name[10];  
+	char password[]="delete", key[6], PaymentType, name[10], option;  
 	int k = 0, A = 0, B = 0, C = 0;
-	float amount = 0; 
-	
-	HomeOrders(name,PaymentType,amount,A,B,C);
+	float amount = 0; 	
 	
 	//pedimos la contrase?a para ingresar
 	cout<<"SOLO PERSONAL AUTORIZADO!\n"<<endl;
@@ -44,7 +42,35 @@ int main(){
 		if(strcmp(password,key) == 0){ //compara las dos palabras: password y key 
 			
 			system("cls"); 
-			PizzaMenu(); //se llama la funcion del menu principal si la contraseñña es correcta
+			option = PizzaMenu(); //se llama la funcion del menu principal si la contraseñña es correcta
+			system("cls");
+			
+			//condiciones segun lo que se seleccione en el menu principal
+			if(option == '1'){
+				
+				HomeOrders(name,PaymentType,amount,A,B,C); //se llama a la funcion para agregar un pedido a domicilio
+				
+			}
+			else if(option == '2'){
+				cout<<"No disponible"<<endl;
+				system("pause");
+				system("cls");
+			}
+			else if(option == '3'){
+				cout<<"No disponible"<<endl;
+				system("pause");
+				system("cls");
+			}
+			else if(option == '4'){
+				cout<<"No disponible"<<endl;
+				system("pause");
+				system("cls");
+			}
+			else if(option == '5'){
+				cout<<"No disponible"<<endl;
+				system("pause");
+				system("cls");
+			}						
 		
 		}
 		
