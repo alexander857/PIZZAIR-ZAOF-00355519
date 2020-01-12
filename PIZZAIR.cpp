@@ -9,11 +9,12 @@ using namespace std;
 
 //prototipos de las funciones
 char PizzaMenu();
-
+void FoodMenu();
 
 int main(){
-	//declaracion de variables
-	char password[]="delete", key[6]; //contrase?a para el menu principal 
+	//DECLARACION DE VARIABLES 
+	//contrase?a para el menu principal
+	char password[]="delete", key[6];  
 	int k = 0; 
 	
 	//pedimos la contrase?a para ingresar
@@ -47,7 +48,7 @@ int main(){
 //menu principal del sistema de despacho
 char PizzaMenu(){
 	//variables de la funcion
-	char opcion;
+	char option;
 	
 	//nosbre de la pizzaria
 	cout<<"PIZZAIR\n"<<endl;
@@ -56,10 +57,51 @@ char PizzaMenu(){
 	cout<<"1-Agregar 1 pedido a domicilio\n2-Agregar 1 encargo en restaurante\n3-Ver pedidos a domicilio\n4-Ver encargos en restaurante\n5-Ver total de ventas\n"<<endl;
 	
 	//se pide una opcion a seleccionar
-	cout<<"Opcion: ";cin>>opcion;
+	cout<<"Opcion: ";cin>>option;
 	
-	return opcion;
+	return option;
 }
 
-//funcion para los pedidos a domicilio
+//funcion de los menu de comida
+void FoodMenu(){
+	//variables declaradas
+	int k = 0;
+	char optionP, optionE, optionB;
+	
+	//while donde se muestra el menu de platos principales
+	while(k==0){
+		
+		//MENU DE PLATOS PRINCIPALES			
+		cout<<"PLATO PRINCIPAL:\n"<<endl;
+		cout<<"1-Pizza\n2-Ensalada\n3-Pasta\n"<<endl;
+		cout<<"Opcion: ";cin>>optionP;
+		system("cls");
+		
+		if(optionP == '1' || optionP == '2' || optionP == '3'){ //si es una de las opciones pasa al siquiente menu
+			
+			while(k==0){
+				
+				//ENTRADAS
+				cout<<"ENTRADAS:\n"<<endl;
+				cout<<"1-Palitos de Pizza\n2-Pan con ajo\n"<<endl;
+				cout<<"Opcion: ";cin>>optionE;
+				system("cls");
+				
+				if(optionE == '1' || optionE == '2'){ //si selecciona una de las opciones existentes pasa al siguiente menu y ultimo
+					
+					//BEBIDAS
+					cout<<"BEBIDAS:\n"<<endl;
+					cout<<"1-Gaseosa\n2-Te\n"<<endl;
+					cout<<"Opcion: ";cin>>optionB;
+					k=1;
+					
+				}
+				
+			}
+						
+		}		
+		
+	}
+		
+}
 
