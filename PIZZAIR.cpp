@@ -13,7 +13,7 @@ char PizzaMenu();
 
 int main(){
 	//declaracion de variables
-	char password[]="pizza", key[5]; //contrase?a para el menu principal 
+	char password[]="delete", key[6]; //contrase?a para el menu principal 
 	int k = 0; 
 	
 	//pedimos la contrase?a para ingresar
@@ -60,3 +60,6 @@ char PizzaMenu(){
 	
 	return opcion;
 }
+
+//funcion para los pedidos a domicilio
+
