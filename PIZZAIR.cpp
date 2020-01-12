@@ -12,36 +12,40 @@ using namespace std;
 
 int main(){
 	//declaracion de variables
-	char password[]="pizza", key[5]; //contraseña para el menu principal
-	int attempts = 3; 
+	string password="pizza", key; //contrase?a para el menu principal 
+	int k = 0; 
+	bool clave = false; //verificar si la contraseÃ±a es correcta
 	
-	//pedimos la contraseña para ingresar
+	//pedimos la contrase?a para ingresar
 	cout<<"SOLO PERSONAL AUTORIZADO!\n"<<endl;
 	cout<<"Ingrese la clave: ";cin>>key;
 	
-	//hay solo 3 intentos para ingresar la contraseña correcta
-	while(attempts > 0){
+	//hay solo 3 intentos para ingresar la contrase?a correcta
+	while(k==0){
 		
-		//se compara si la contraseña es correcta
-		if(key == password){
+		//se compara si la contrase?a es correcta
+		for(int i=0;i<key.length();i++){
 			
-			cout<<"correcto!"<<endl;
-			
-		}
-		else{
-			attempts--;
-			if(attempts==0){ //para que se cierre el programa al instante que los intentos se lleguen a 0
-				break;
+			if(key[i] == password[i]){
+				
+				clave = true;  //si cada letra de la clave es igual a la contraseÃ±a clave pasa a true
+				
 			}
+
 		}
-		system("cls");
-		cout<<"SOLO PERSONAL AUTORIZADO!\n"<<endl;
-		cout<<"Ingrese la clave: ";cin>>key;
 		
-	}
-	system("cls");
-	if(attempts == 0){
-		cout<<"ERROR DE ACCESO!!"<<endl;
+		if(clave == true){         //si al final del for clave es verdadera es porque toda la clave es igual a la contraseÃ±a, por lo tanto ingresa
+			cout<<"Correcto"<<endl;
+			k = 1; //variable pasa a 1 para que salga del while
+		}
+		else{     //si la clave no fue igual, clave se mantiene en false y le seguira pidiendo la clave hasta que ingrese la correcta
+			
+			system("cls");
+			cout<<"SOLO PERSONAL AUTORIZADO!\n"<<endl;
+			cout<<"Ingrese la clave: ";cin>>key;
+			
+		}	
+						
 	}
 	
 	return 0;
