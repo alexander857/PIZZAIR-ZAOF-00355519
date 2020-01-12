@@ -11,6 +11,9 @@ using namespace std;
 //funcion de menu principal
 char PizzaMenu();
 
+//funciones de pedidos
+void HomeOrders(char&,char name[10],float&); //pedidos a domicilio
+
 //funciones de menus de comidas
 int PrincipalFood();
 int FoodTickets();
@@ -19,9 +22,11 @@ int Drinks();
 int main(){
 	//DECLARACION DE VARIABLES 
 	//contrase?a para el menu principal
-	char password[]="delete", key[6], PaymentType, name;  
+	char password[]="delete", key[6], PaymentType, name[10];  
 	int k = 0;
 	float amount = 0; 
+	
+	HomeOrders(PaymentType,name,amount);
 	
 	//pedimos la contrase?a para ingresar
 	cout<<"SOLO PERSONAL AUTORIZADO!\n"<<endl;
@@ -71,9 +76,10 @@ char PizzaMenu(){
 //FUNCIONES PARA LOS PEDIDOS
 
 //funcion de pedidos a domicilio
-void HomeOrders(char& PaymentType, char& name, float amount){
+void HomeOrders(char& PaymentType, char name[10], float& amount){
 	//variables de la funcion
 	string address, phone;
+	int k = 0;
 	
 	//se pide la informacion del pedido
 	cout<<"Nombre del cliente: ";cin>>name;
@@ -81,6 +87,7 @@ void HomeOrders(char& PaymentType, char& name, float amount){
 	cout<<"Direccion: ";cin>>address;
 	
 	cout<<"Telefono: ";cin>>phone;
+	system("cls");
 	
 	//se llaman a las funciones donde se selecciona la comida y debidas
 	PrincipalFood();
@@ -88,11 +95,23 @@ void HomeOrders(char& PaymentType, char& name, float amount){
 	FoodTickets();
 	
 	Drinks();
+	system("cls");
 	
 	cout<<"Monto: ";cin>>amount;
+	system("cls");
 	
-	cout<<"Tipo de pago: \n\n1-Efectivo\n2-Tarjeta de Credito\n"<<endl;
-	cout<<"Opcion: ";cin>>PaymentType;
+	//un ciclo para el pequeño menu de seleccionar el tipo de pago
+	while(k==0){
+		
+		cout<<"Tipo de pago: \n\n1-Efectivo\n2-Tarjeta de Credito\n"<<endl;
+		cout<<"Opcion: ";cin>>PaymentType;
+		
+		if(PaymentType == '1' || PaymentType == '2'){
+			break;
+		}	
+		
+	}
+	system("cls");
 	
 }
 
