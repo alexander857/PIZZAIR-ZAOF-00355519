@@ -242,7 +242,13 @@ int Drinks(){
 
 //funcion de archivo pedidos a domicilio
 
-void HomeOrderFile(){
+void HomeOrderFile(char name[10], char& PaymentType, float amount){
+	
+	//se genera la fecha actual
+	time_t   t,x;
+	char *fecha;
+	x = time (&t);
+	fecha = ctime (&x);  
 	
 	//se crea el archivo para guardar las ordenes a domicilio
 	ofstream OrderFile("HomeOrder.txt",ios_base::app);
