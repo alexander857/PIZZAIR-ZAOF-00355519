@@ -24,6 +24,9 @@ int Drinks(int&);
 //funciones de archivos donde se guardan los pedidos
 void HomeOrderFile(char name[10], char&,float&, string address, string phone,int&,int&,int&); //archivo de pedidos a domicilio
 
+//funciones que leen los archivos de los pedidos a domicilio y restaurante
+void ReadHomeOrders();
+
 int main(){
 	//DECLARACION DE VARIABLES 
 	//contrase?a para el menu principal
@@ -57,9 +60,10 @@ int main(){
 				system("cls");
 			}
 			else if(option == '3'){
-				cout<<"No disponible"<<endl;
-				system("pause");
-				system("cls");
+				
+				ReadHomeOrders(); //se llama la funcion que lee el archivo de pedidos a domicilio
+				//system("pause");
+				
 			}
 			else if(option == '4'){
 				cout<<"No disponible"<<endl;
@@ -354,6 +358,9 @@ void ReadHomeOrders(){
 	}
 		miTXT.close();
 	}
-	else cout << "LAS ORDENES A DOMICILIO RECIBIDAS SE GUARDARAN AQUI!";
+	else{
+		cout << "LOS PEDIDOS A DOMICILIO RECIBIDOS SE GUARDARAN AQUI!\n"<<endl;
+		system("pause");
+	} 
 	
 }
