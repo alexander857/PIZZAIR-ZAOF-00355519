@@ -242,7 +242,18 @@ int Drinks(){
 
 //funcion de archivo pedidos a domicilio
 
-void HomeOrderFile(char name[10], char& PaymentType, float amount){
+void HomeOrderFile(char name[10], char& PaymentType, float amount, string address, string phone){
+	
+	//arreglo de strings donde esta las opciones de comidas
+	string COMIDAS[7] = {"Pizza", "Ensalada", "Pasta", "Palitos de Pizza", "Pan con ajo", "Gaseosa", "Te"};
+	int A, B, C;
+	
+	//resiviendo los valores retornados por las funciones de comida
+	A = PrincipalFood();
+	system("cls");
+    B = FoodTickets();
+    system("cls");
+	C = Drinks();
 	
 	//se genera la fecha actual
 	time_t   t,x;
@@ -254,6 +265,38 @@ void HomeOrderFile(char name[10], char& PaymentType, float amount){
 	ofstream OrderFile("HomeOrder.txt",ios_base::app);
 	
 	if (OrderFile.is_open()){
+		
+		//se escribe todo lo que guardara el archivo
+		OrderFile<<"Fecha en que se realizo la orden: "<<fecha<<endl;
+		OrderFile<<"\n"<<endl;
+		
+		//nombre de quien hizo el pedido
+		OrderFile<<"Cliente: "<<name<<endl;
+		
+		//direccion de la orden
+		OrderFile<<"Direccion: "<<address<<endl;
+		
+		//telefono del cliente
+		OrderFile<<"Telefono: "<<phone<<endl;
+		OrderFile<<"\n"<<endl;
+		
+		//platos y bebidas ordenadas
+		OrderFile<<"Orden: "<<endl;
+		OrderFile<<"Plato principal: "<<COMIDAS[A]<<endl;
+		OrderFile<<"Entrada: "<<COMIDAS[B]<<endl;
+		OrderFile<<"Bebida: "<<COMIDAS[C]<<endl;
+		OrderFile<<"\n"<<endl;
+		
+		//monto de la orden
+		OrderFile<<"Monto: "<<amount<<endl;
+		
+		//tipo de pago de la orden
+		if(PaymentType == '1'){
+			OrderFile<<"Tipo de pago: Efectivo"<<endl;
+		}
+		else{
+				OrderFile<<"Tipo de pago: Tarjeta de Cretido"<<endl;
+		}
 		
 		
 		
