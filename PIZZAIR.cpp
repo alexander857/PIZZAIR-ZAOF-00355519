@@ -353,7 +353,37 @@ void OrderFileToRestaurant(char name[10], char& PaymentType, float& amount, int&
 	
 	if(OrderFileR.is_open()){
 		
+		//se escribe todo lo que guardara el archivo
+		OrderFileR<<"Fecha en que se realizo la orden: "<<fecha<<endl;
+		OrderFileR<<endl;
 		
+		//nombre de quien hizo el pedido
+		OrderFileR<<"Cliente: "<<name<<endl;
+		
+		//numeros de personas por mesa
+		OrderFileR<<"Personas por mesa: "<<AmountPeople<<endl;
+		OrderFileR<<"\n"<<endl;
+		
+		//platos y bebidas ordenadas
+		OrderFileR<<"Orden: "<<endl;
+		OrderFileR<<"Plato principal: "<<COMIDAS[A]<<endl;
+		OrderFileR<<"Entrada: "<<COMIDAS[B]<<endl;
+		OrderFileR<<"Bebida: "<<COMIDAS[C]<<endl;
+		OrderFileR<<"\n"<<endl;
+		
+		//monto de la orden
+		OrderFileR<<"Monto: "<<amount<<endl;
+		
+		//tipo de pago de la orden
+		if(PaymentType == '1'){
+			OrderFileR<<"Tipo de pago: Efectivo"<<endl;
+		}
+		else{
+			OrderFileR<<"Tipo de pago: Tarjeta de Cretido"<<endl;
+		}	
+		
+		OrderFileR<<endl;
+		OrderFileR.close(); //se cierra el archivo
 		
 	}
 	else{
