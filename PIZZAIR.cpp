@@ -13,6 +13,7 @@ char PizzaMenu();
 
 //funciones de pedidos
 void HomeOrders(char name[10]); //pedidos a domicilio
+void FoodAmountPayment(char&,float&);
 
 //funciones de menus de comidas
 int PrincipalFood();
