@@ -330,3 +330,30 @@ void HomeOrderFile(char name[10], char& PaymentType, float& amount, string addre
 		cout<<"NO HA LLEGADO NINGUNA ORDEN!"<<endl;
 	}
 }
+
+//FUNCIONES QUE LEEN LOS ARCHIVOS CREADOS DE PEDIDOS A DOMICILIO Y A RESTAURANTE
+
+//funcion que lee archivo de pedidos a domicilio
+void ReadHomeOrders(){
+	
+	//se lee el archivo de ordenes a domicilio
+	string line;
+	ifstream miTXT ("HomeOrder.txt"); 
+	
+	if (miTXT.is_open()){	
+	while (getline (miTXT,line)){	
+		cout << line << '\n';
+	}
+	
+	system("pause");
+	system("cls");
+	
+	if(miTXT.eof()){	
+		cout<<"Se ha terminado de leer. Fin del archivo";
+		system("cls");
+	}
+		miTXT.close();
+	}
+	else cout << "LAS ORDENES A DOMICILIO RECIBIDAS SE GUARDARAN AQUI!";
+	
+}
