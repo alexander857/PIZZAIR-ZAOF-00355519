@@ -67,13 +67,12 @@ int main(){
 			else if(option == '3'){
 				
 				ReadHomeOrders(); //se llama la funcion que lee el archivo de pedidos a domicilio
-				//system("pause");
 				
 			}
 			else if(option == '4'){
-				cout<<"No disponible"<<endl;
-				system("pause");
-				system("cls");
+				
+				ReadOrderRestaurant(); //se llama la funcion que lee el archivo de encargos a restaurante
+				
 			}
 			else if(option == '5'){
 				cout<<"No disponible"<<endl;
