@@ -12,23 +12,26 @@ using namespace std;
 char PizzaMenu();
 
 //funciones de pedidos
-void HomeOrders(char name[10], char&, float&); //pedidos a domicilio
-void CustomInRestaurant( char name[10], char&, float&);//pedidos a restaurante
-void FoodAmountPayment(char&,float&); //se selecciona la comida, el tipo de pago y el monto
+void HomeOrders(char name[10], char&, float&,int&,int&,int&); //pedidos a domicilio
+void CustomInRestaurant( char name[10], char&, float&,int&,int&,int&);//pedidos a restaurante
+void FoodAmountPayment(char&,float&,int&,int&,int&); //se selecciona la comida, el tipo de pago y el monto
 
 //funciones de menus de comidas
-int PrincipalFood();
-int FoodTickets();
-int Drinks();
+int PrincipalFood(int&);
+int FoodTickets(int&);
+int Drinks(int&);
+
+//funciones de archivos donde se guardan los pedidos
+void HomeOrderFile(char name[10], char&,float&, string address, string phone,int&,int&,int&); //archivo de pedidos a domicilio
 
 int main(){
 	//DECLARACION DE VARIABLES 
 	//contrase?a para el menu principal
 	char password[]="delete", key[6], PaymentType, name[10];  
-	int k = 0;
+	int k = 0, A = 0, B = 0, C = 0;
 	float amount = 0; 
 	
-	HomeOrders(name,PaymentType,amount);
+	HomeOrders(name,PaymentType,amount,A,B,C);
 	
 	//pedimos la contrase?a para ingresar
 	cout<<"SOLO PERSONAL AUTORIZADO!\n"<<endl;
@@ -78,7 +81,7 @@ char PizzaMenu(){
 //FUNCIONES PARA LOS PEDIDOS
 
 //funcion de pedidos a domicilio
-void HomeOrders(char name[10], char& PaymentType, float& amount){
+void HomeOrders(char name[10], char& PaymentType, float& amount,int&A,int&B,int&C){
 	//variables de la funcion
 	string address, phone;
 	
@@ -90,12 +93,14 @@ void HomeOrders(char name[10], char& PaymentType, float& amount){
 	cout<<"Telefono: ";cin>>phone;
 	system("cls");
 	
-	FoodAmountPayment(PaymentType,amount);
+	FoodAmountPayment(PaymentType,amount,A,B,C);
+	HomeOrderFile(name,PaymentType,amount,address,phone,A,B,C);
+	
 	
 }
 
 //funcion de pedidos a restaurante
-void CustomInRestaurant(char name[10], char& PaymentType, float& amount){
+void CustomInRestaurant(char name[10], char& PaymentType, float& amount,int&A,int&B,int&C){
 	//variables de la funcion
 	int AmountPeople;
 	
@@ -106,21 +111,21 @@ void CustomInRestaurant(char name[10], char& PaymentType, float& amount){
 	cout<<"Personas por mesa: ";cin>>AmountPeople;
 	system("cls");
 	
-	FoodAmountPayment(PaymentType,amount);
+	FoodAmountPayment(PaymentType,amount,A,B,C);
 
 }
 
 //funcion donde se ingresa la comida, el monto y tipo de pago
-void FoodAmountPayment(char& PaymentType, float& amount){
+void FoodAmountPayment(char& PaymentType, float& amount, int&A,int&B, int&C){
 	//varianles de la funcion
 	int k = 0;
 	
 	//se llaman a las funciones donde se selecciona la comida y debidas
-	PrincipalFood();
+	PrincipalFood(A);
 	
-	FoodTickets();
+	FoodTickets(B);
 	
-	Drinks();
+	Drinks(C);
 	system("cls");
 	
 	cout<<"Monto: ";cin>>amount;
@@ -144,9 +149,9 @@ void FoodAmountPayment(char& PaymentType, float& amount){
 //FUNCIONES DE LOS MENUS DE COMIDA
 
 //funcion de platos principales
-int PrincipalFood(){
+int PrincipalFood(int& A){
 	//variables declaradas
-	int k = 0, A;
+	int k = 0;
 	char option;
 	
 	//while donde se muestra el menu de platos principales
@@ -179,9 +184,9 @@ int PrincipalFood(){
 }
 
 //funcion de menu de entradas
-int FoodTickets(){
+int FoodTickets(int& B){
 	//variables de la funcion
-	int k = 0, B;
+	int k = 0;
 	char option;
 	
 	while(k==0){
@@ -209,9 +214,9 @@ int FoodTickets(){
 }
 
 //funcion de menu de bebidas
-int Drinks(){
+int Drinks(int& C){
 	//variables de la funcion
-	int k = 0, C;
+	int k = 0;
 	char option;
 	
 	while(k==0){
@@ -242,18 +247,10 @@ int Drinks(){
 
 //funcion de archivo pedidos a domicilio
 
-void HomeOrderFile(char name[10], char& PaymentType, float amount, string address, string phone){
+void HomeOrderFile(char name[10], char& PaymentType, float& amount, string address, string phone, int&A, int&B, int&C){
 	
 	//arreglo de strings donde esta las opciones de comidas
 	string COMIDAS[7] = {"Pizza", "Ensalada", "Pasta", "Palitos de Pizza", "Pan con ajo", "Gaseosa", "Te"};
-	int A, B, C;
-	
-	//resiviendo los valores retornados por las funciones de comida
-	A = PrincipalFood();
-	system("cls");
-    B = FoodTickets();
-    system("cls");
-	C = Drinks();
 	
 	//se genera la fecha actual
 	time_t   t,x;
@@ -268,7 +265,7 @@ void HomeOrderFile(char name[10], char& PaymentType, float amount, string addres
 		
 		//se escribe todo lo que guardara el archivo
 		OrderFile<<"Fecha en que se realizo la orden: "<<fecha<<endl;
-		OrderFile<<"\n"<<endl;
+		OrderFile<<endl;
 		
 		//nombre de quien hizo el pedido
 		OrderFile<<"Cliente: "<<name<<endl;
@@ -298,6 +295,7 @@ void HomeOrderFile(char name[10], char& PaymentType, float amount, string addres
 			OrderFile<<"Tipo de pago: Tarjeta de Cretido"<<endl;
 		}	
 		
+		OrderFile<<endl;
 		OrderFile.close();
 	}
 	else{
