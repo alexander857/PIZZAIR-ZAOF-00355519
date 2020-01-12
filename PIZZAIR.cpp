@@ -295,10 +295,8 @@ void HomeOrderFile(char name[10], char& PaymentType, float amount, string addres
 			OrderFile<<"Tipo de pago: Efectivo"<<endl;
 		}
 		else{
-				OrderFile<<"Tipo de pago: Tarjeta de Cretido"<<endl;
-		}
-		
-		
+			OrderFile<<"Tipo de pago: Tarjeta de Cretido"<<endl;
+		}	
 		
 		OrderFile.close();
 	}
