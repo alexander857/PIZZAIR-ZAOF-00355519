@@ -93,8 +93,8 @@ void HomeOrders(char name[10], char& PaymentType, float& amount,int&A,int&B,int&
 	cout<<"Telefono: ";cin>>phone;
 	system("cls");
 	
-	FoodAmountPayment(PaymentType,amount,A,B,C);
-	HomeOrderFile(name,PaymentType,amount,address,phone,A,B,C);
+	FoodAmountPayment(PaymentType,amount,A,B,C);  //se llama a la funcion donde se eligen los platos de comida, el monto y tipo de pago
+	HomeOrderFile(name,PaymentType,amount,address,phone,A,B,C); //se llama a la funcion que crea el archivo donde se guardan todos los datos de la orden a domicilio
 	
 	
 }
@@ -111,7 +111,7 @@ void CustomInRestaurant(char name[10], char& PaymentType, float& amount,int&A,in
 	cout<<"Personas por mesa: ";cin>>AmountPeople;
 	system("cls");
 	
-	FoodAmountPayment(PaymentType,amount,A,B,C);
+	FoodAmountPayment(PaymentType,amount,A,B,C); //se llama a la funcion donde se eligen los platos de comida, el monto y tipo de pago
 
 }
 
@@ -128,12 +128,14 @@ void FoodAmountPayment(char& PaymentType, float& amount, int&A,int&B, int&C){
 	Drinks(C);
 	system("cls");
 	
+	//se ingresa el monto de la orden
 	cout<<"Monto: ";cin>>amount;
 	system("cls");
 	
 	//un ciclo para el pequeño menu de seleccionar el tipo de pago
 	while(k==0){
 		
+		//menu para seleccionar el tipo de pago que hara el cliente
 		cout<<"Tipo de pago: \n\n1-Efectivo\n2-Tarjeta de Credito\n"<<endl;
 		cout<<"Opcion: ";cin>>PaymentType;
 		
@@ -296,7 +298,7 @@ void HomeOrderFile(char name[10], char& PaymentType, float& amount, string addre
 		}	
 		
 		OrderFile<<endl;
-		OrderFile.close();
+		OrderFile.close(); //se cierra el archivo
 	}
 	else{
 		cout<<"NO HA LLEGADO NINGUNA ORDEN!"<<endl;
