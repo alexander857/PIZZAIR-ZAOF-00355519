@@ -14,7 +14,7 @@ char PizzaMenu();
 //funciones de pedidos
 void HomeOrders(char name[10], char&, float&); //pedidos a domicilio
 void CustomInRestaurant( char name[10], char&, float&);//pedidos a restaurante
-void FoodAmountPayment(char&,float&);
+void FoodAmountPayment(char&,float&); //se selecciona la comida, el tipo de pago y el monto
 
 //funciones de menus de comidas
 int PrincipalFood();
@@ -135,7 +135,7 @@ void FoodAmountPayment(char& PaymentType, float& amount){
 		if(PaymentType == '1' || PaymentType == '2'){
 			break;
 		}	
-		
+		system("cls");
 	}
 	system("cls");
 	
@@ -236,4 +236,13 @@ int Drinks(){
 		system("cls");
 	}
 	return C;
+}
+
+//FUNCIONES DE LOS ARCHIVOS DONDE SE GUARDAN LOS PEDIDOS
+
+//funcion de archivo pedidos a domicilio
+
+void HomeOrderFile(){
+	
+	
 }
