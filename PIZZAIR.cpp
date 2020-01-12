@@ -12,7 +12,8 @@ using namespace std;
 char PizzaMenu();
 
 //funciones de pedidos
-void HomeOrders(char name[10]); //pedidos a domicilio
+void HomeOrders(char name[10], char&, float&); //pedidos a domicilio
+void CustomInRestaurant( char name[10], char&, float&);//pedidos a restaurante
 void FoodAmountPayment(char&,float&);
 
 //funciones de menus de comidas
@@ -27,7 +28,7 @@ int main(){
 	int k = 0;
 	float amount = 0; 
 	
-	HomeOrders(name);
+	HomeOrders(name,PaymentType,amount);
 	
 	//pedimos la contrase?a para ingresar
 	cout<<"SOLO PERSONAL AUTORIZADO!\n"<<endl;
@@ -77,7 +78,7 @@ char PizzaMenu(){
 //FUNCIONES PARA LOS PEDIDOS
 
 //funcion de pedidos a domicilio
-void HomeOrders(char name[10]){
+void HomeOrders(char name[10], char& PaymentType, float& amount){
 	//variables de la funcion
 	string address, phone;
 	
@@ -89,10 +90,12 @@ void HomeOrders(char name[10]){
 	cout<<"Telefono: ";cin>>phone;
 	system("cls");
 	
+	FoodAmountPayment(PaymentType,amount);
+	
 }
 
 //funcion de pedidos a restaurante
-void CustomInRestaurant( char name[10]){
+void CustomInRestaurant(char name[10], char& PaymentType, float& amount){
 	//variables de la funcion
 	int AmountPeople;
 	
@@ -103,6 +106,7 @@ void CustomInRestaurant( char name[10]){
 	cout<<"Personas por mesa: ";cin>>AmountPeople;
 	system("cls");
 	
+	FoodAmountPayment(PaymentType,amount);
 
 }
 
