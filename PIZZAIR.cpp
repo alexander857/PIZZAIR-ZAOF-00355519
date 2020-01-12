@@ -7,9 +7,14 @@
 
 using namespace std;
 
-//prototipos de las funciones
+//PROTOTIPOS DE LAS FUNCIONES
+//funcion de menu principal
 char PizzaMenu();
-void FoodMenu();
+
+//funciones de menus de comidas
+int PrincipalFood();
+int FoodTickets();
+int Drinks();
 
 int main(){
 	//DECLARACION DE VARIABLES 
@@ -62,11 +67,13 @@ char PizzaMenu(){
 	return option;
 }
 
-//funcion de los menu de comida
-void FoodMenu(){
+//FUNCIONES DE LOS MENUS DE COMIDA
+
+//funcion de platos principales
+int PrincipalFood(){
 	//variables declaradas
-	int k = 0;
-	char optionP, optionE, optionB;
+	int k = 0, A;
+	char option;
 	
 	//while donde se muestra el menu de platos principales
 	while(k==0){
@@ -74,34 +81,85 @@ void FoodMenu(){
 		//MENU DE PLATOS PRINCIPALES			
 		cout<<"PLATO PRINCIPAL:\n"<<endl;
 		cout<<"1-Pizza\n2-Ensalada\n3-Pasta\n"<<endl;
-		cout<<"Opcion: ";cin>>optionP;
-		system("cls");
+		cout<<"Opcion: ";cin>>option;
 		
-		if(optionP == '1' || optionP == '2' || optionP == '3'){ //si es una de las opciones pasa al siquiente menu
+		if(option == '1' || option == '2' || option == '3'){ //si la opcion se encuentra en el menu entra al if
 			
-			while(k==0){
-				
-				//ENTRADAS
-				cout<<"ENTRADAS:\n"<<endl;
-				cout<<"1-Palitos de Pizza\n2-Pan con ajo\n"<<endl;
-				cout<<"Opcion: ";cin>>optionE;
-				system("cls");
-				
-				if(optionE == '1' || optionE == '2'){ //si selecciona una de las opciones existentes pasa al siguiente menu y ultimo
-					
-					//BEBIDAS
-					cout<<"BEBIDAS:\n"<<endl;
-					cout<<"1-Gaseosa\n2-Te\n"<<endl;
-					cout<<"Opcion: ";cin>>optionB;
-					k=1;
-					
-				}
-				
+			if(option == '1'){ //si la opcion fue 1 la funcion retorna 0
+				A = 0;
+				k = 1; //para salirse del ciclo se modifica el valor de k
 			}
-						
-		}		
-		
+			else if(option == '2'){ //si fue 2 retorna 1
+				A = 1;
+				k = 1;
+			}
+			else{
+				A = 2; //si fue 3 retorna 2
+				k = 1;
+			}
+			
+		}
+		system("cls");	
 	}
-		
+	return A;		
 }
 
+//funcion de menu de entradas
+int FoodTickets(){
+	//variables de la funcion
+	int k = 0, B;
+	char option;
+	
+	while(k==0){
+				
+		//MENU DE ENTRADAS
+		cout<<"ENTRADAS:\n"<<endl;
+		cout<<"1-Palitos de Pizza\n2-Pan con ajo\n"<<endl;
+		cout<<"Opcion: ";cin>>option;
+		
+		if(option == '1' || option == '2'){ //si la opcion esta en el menu entra al if
+			
+			if(option == '1'){ //si la opcion fue 1 la funcion retorna 3
+				B = 3;
+				k = 1; //para salirse del ciclo se modifica el valor de k
+			}
+			else{
+				B = 4; //si fue 2 retorna el 4
+				k = 1; 
+			}
+			
+		}
+		system("cls");		
+	}
+	return B;
+}
+
+//funcion de menu de bebidas
+int Drinks(){
+	//variables de la funcion
+	int k = 0, C;
+	char option;
+	
+	while(k==0){
+		
+		//MENU DE BEBIDAS
+		cout<<"BEBIDAS:\n"<<endl;
+		cout<<"1-Gaseosa\n2-Te\n"<<endl;
+		cout<<"Opcion: ";cin>>option;
+		
+		if(option == '1' || option == '2'){ //si es una de las opciones existentes entra al if
+			
+			if(option == '1'){ //si fue 1 se retornara el numero 5
+				C = 5;
+				k = 1; //para salirse del ciclo se modifica el valor de k
+			}
+			else{    //si opcion fue 2 se returnara el 6
+				C = 6;
+				k = 1;
+			}
+			
+		}			
+		system("cls");
+	}
+	return C;
+}
