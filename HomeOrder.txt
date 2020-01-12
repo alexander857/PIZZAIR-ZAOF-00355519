@@ -1,0 +1,17 @@
+Fecha en que se realizo la orden: Sun Jan 12 17:08:05 2020
+
+
+Cliente: alex
+Direccion: tecla
+Telefono: 77889944
+
+
+Orden: 
+Plato principal: Pizza
+Entrada: Palitos de Pizza
+Bebida: Gaseosa
+
+
+Monto: 20.3
+Tipo de pago: Efectivo
+

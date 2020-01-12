@@ -27,6 +27,9 @@ void HomeOrderFile(char name[10], char&,float&, string address, string phone,int
 //funciones que leen los archivos de los pedidos a domicilio y restaurante
 void ReadHomeOrders();
 
+//otras funciones 
+string DateFunction();
+
 int main(){
 	//DECLARACION DE VARIABLES 
 	//contrase?a para el menu principal
@@ -283,12 +286,10 @@ void HomeOrderFile(char name[10], char& PaymentType, float& amount, string addre
 	
 	//arreglo de strings donde esta las opciones de comidas
 	string COMIDAS[7] = {"Pizza", "Ensalada", "Pasta", "Palitos de Pizza", "Pan con ajo", "Gaseosa", "Te"};
+	string fecha;
 	
-	//se genera la fecha actual
-	time_t   t,x;
-	char *fecha;
-	x = time (&t);
-	fecha = ctime (&x);  
+	fecha = DateFunction(); //se llama la funcion que genera la fecha
+ 	
 	
 	//se crea el archivo para guardar las ordenes a domicilio
 	ofstream OrderFile("HomeOrder.txt",ios_base::app);
@@ -335,6 +336,10 @@ void HomeOrderFile(char name[10], char& PaymentType, float& amount, string addre
 	}
 }
 
+//funcion de archivo encargos a restaurante
+
+
+
 //FUNCIONES QUE LEEN LOS ARCHIVOS CREADOS DE PEDIDOS A DOMICILIO Y A RESTAURANTE
 
 //funcion que lee archivo de pedidos a domicilio
@@ -363,4 +368,17 @@ void ReadHomeOrders(){
 		system("pause");
 	} 
 	
+}
+
+//OTRAS FUNCIONES
+//funcion que genera la fecha actual
+string DateFunction(){
+	
+	//se genera la fecha actual
+	time_t   t,x;
+	char *fecha;
+	x = time (&t);
+	fecha = ctime (&x); 
+	
+	return fecha;
 }
