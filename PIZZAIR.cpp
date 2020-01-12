@@ -19,8 +19,9 @@ int Drinks();
 int main(){
 	//DECLARACION DE VARIABLES 
 	//contrase?a para el menu principal
-	char password[]="delete", key[6];  
-	int k = 0; 
+	char password[]="delete", key[6], PaymentType, name;  
+	int k = 0;
+	float amount = 0; 
 	
 	//pedimos la contrase?a para ingresar
 	cout<<"SOLO PERSONAL AUTORIZADO!\n"<<endl;
@@ -65,6 +66,34 @@ char PizzaMenu(){
 	cout<<"Opcion: ";cin>>option;
 	
 	return option;
+}
+
+//FUNCIONES PARA LOS PEDIDOS
+
+//funcion de pedidos a domicilio
+void HomeOrders(char& PaymentType, char& name, float amount){
+	//variables de la funcion
+	string address, phone;
+	
+	//se pide la informacion del pedido
+	cout<<"Nombre del cliente: ";cin>>name;
+	
+	cout<<"Direccion: ";cin>>address;
+	
+	cout<<"Telefono: ";cin>>phone;
+	
+	//se llaman a las funciones donde se selecciona la comida y debidas
+	PrincipalFood();
+	
+	FoodTickets();
+	
+	Drinks();
+	
+	cout<<"Monto: ";cin>>amount;
+	
+	cout<<"Tipo de pago: \n\n1-Efectivo\n2-Tarjeta de Credito\n"<<endl;
+	cout<<"Opcion: ";cin>>PaymentType;
+	
 }
 
 //FUNCIONES DE LOS MENUS DE COMIDA
