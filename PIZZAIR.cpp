@@ -23,6 +23,7 @@ int Drinks(int&);
 
 //funciones de archivos donde se guardan los pedidos
 void HomeOrderFile(char name[10], char&,float&, string address, string phone,int&,int&,int&); //archivo de pedidos a domicilio
+void OrderFileToRestaurant(char name[10], char&, float& ,int&,int&,int&,int&); //archivo de encargos a restaurante
 
 //funciones que leen los archivos de los pedidos a domicilio y restaurante
 void ReadHomeOrders();
@@ -338,7 +339,28 @@ void HomeOrderFile(char name[10], char& PaymentType, float& amount, string addre
 
 //funcion de archivo encargos a restaurante
 
-
+void OrderFileToRestaurant(char name[10], char& PaymentType, float& amount, int& AmountPeople, int&A, int&B, int&C){
+	
+	//arreglo de strings donde esta las opciones de comidas
+	string COMIDAS[7] = {"Pizza", "Ensalada", "Pasta", "Palitos de Pizza", "Pan con ajo", "Gaseosa", "Te"};
+	string fecha;
+	
+	fecha = DateFunction(); //se llama la funcion que genera la fecha
+ 	
+	
+	//se crea el archivo para guardar las ordenes a restaurante
+	ofstream OrderFileR("OrderToRestaurant.txt",ios_base::app);
+	
+	if(OrderFileR.is_open()){
+		
+		
+		
+	}
+	else{
+		cout<<"NO HA LLEGADO NINGUN ENCARGO!"<<endl;
+	}
+	
+}
 
 //FUNCIONES QUE LEEN LOS ARCHIVOS CREADOS DE PEDIDOS A DOMICILIO Y A RESTAURANTE
 
