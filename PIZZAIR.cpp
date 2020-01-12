@@ -26,7 +26,8 @@ void HomeOrderFile(char name[10], char&,float&, string address, string phone,int
 void OrderFileToRestaurant(char name[10], char&, float& ,int&,int&,int&,int&); //archivo de encargos a restaurante
 
 //funciones que leen los archivos de los pedidos a domicilio y restaurante
-void ReadHomeOrders();
+void ReadHomeOrders(); //lee archivos de pedidos a domicilio
+void ReadOrderRestaurant(); //lee los archivos de encargos a restaurante
 
 //otras funciones 
 string DateFunction();
@@ -400,7 +401,8 @@ void ReadHomeOrders(){
 	
 	//se lee el archivo de ordenes a domicilio
 	string line;
-	ifstream miTXT ("HomeOrder.txt"); 
+	
+	ifstream miTXT ("HomeOrder.txt");
 	
 	if (miTXT.is_open()){	
 	while (getline (miTXT,line)){	
@@ -418,6 +420,35 @@ void ReadHomeOrders(){
 	}
 	else{
 		cout << "LOS PEDIDOS A DOMICILIO RECIBIDOS SE GUARDARAN AQUI!\n"<<endl;
+		system("pause");
+	} 
+	
+}
+
+//funcion que lee el archivo de los encargos a restaurante
+void ReadOrderRestaurant(){
+	
+	//se lee el archivo de ordenes a domicilio
+	string line;
+	
+	ifstream miTXT ("OrderToRestaurant.txt");
+	
+	if (miTXT.is_open()){	
+	while (getline (miTXT,line)){	
+		cout << line << '\n';
+	}
+	
+	system("pause");
+	system("cls");
+	
+	if(miTXT.eof()){	
+		cout<<"Se ha terminado de leer. Fin del archivo";
+		system("cls");
+	}
+		miTXT.close();
+	}
+	else{
+		cout << "LOS ENCARGOS A RESTAURANTE RECIBIDOS SE GUARDARAN AQUI!\n"<<endl;
 		system("pause");
 	} 
 	
