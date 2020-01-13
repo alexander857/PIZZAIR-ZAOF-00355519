@@ -110,7 +110,8 @@ char PizzaMenu(){
 	cout<<"PIZZAIR\n"<<endl;
 	
 	//menu de opciones
-	cout<<"1-Agregar 1 pedido a domicilio\n2-Agregar 1 encargo en restaurante\n3-Ver pedidos a domicilio\n4-Ver encargos en restaurante\n5-Ver total de ventas\n6-Salir\n"<<endl;
+	cout<<"1-Agregar 1 pedido a domicilio\n2-Agregar 1 encargo en restaurante\n3-Ver pedidos a domicilio\n"
+	"4-Ver encargos en restaurante\n5-Ver total de ventas\n6-Salir\n"<<endl;
 	
 	//se pide una opcion a seleccionar
 	cout<<"Opcion: ";cin>>option;
