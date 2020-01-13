@@ -17,9 +17,9 @@ void CustomInRestaurant( char name[10], char&,float&,int&,int&,int&,float&);//pe
 float FoodAmountPayment(char&,float&,int&,int&,int&); //se selecciona la comida, el tipo de pago y el monto
 
 //funciones de menus de comidas
-int PrincipalFood(int&);
-int FoodTickets(int&);
-int Drinks(int&);
+int PrincipalFood(int&);  //platos principales
+int FoodTickets(int&);   //entradas
+int Drinks(int&);    //bebidas
 
 //funciones de archivos donde se guardan los pedidos
 void HomeOrderFile(char name[10], char&,float&, string address, string phone,int&,int&,int&); //archivo de pedidos a domicilio
