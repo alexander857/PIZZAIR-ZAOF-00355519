@@ -30,7 +30,8 @@ void ReadHomeOrders(); //lee archivos de pedidos a domicilio
 void ReadOrderRestaurant(); //lee los archivos de encargos a restaurante
 
 //otras funciones 
-string DateFunction();
+string DateFunction(); //genera la fecha actual
+void TotalSales(float&); //calcula el total de ventas
 
 int main(){
 	//DECLARACION DE VARIABLES 
@@ -75,9 +76,9 @@ int main(){
 				
 			}
 			else if(option == '5'){
-				cout<<"No disponible"<<endl;
-				system("pause");
-				system("cls");
+				
+				TotalSales(amount); //se llama la funcion que muestra las ventas totales
+				
 			}						
 		
 		}
@@ -467,8 +468,12 @@ string DateFunction(){
 }
 
 //funcion que calcula el total de ventas a domilicio y a restaurante
-void TotalSales(){
+void TotalSales(float& amount){
+	float Total = 0;
 	
+	Total += amount; //se van acumulanto los montos de cada pedido
 	
-	
+	cout<<"Ventas totales: $"<<Total<<"\n"<<endl; //se muestra en pantalla ventas totales
+	system("pause");
+
 }
