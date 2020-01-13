@@ -329,7 +329,7 @@ void HomeOrderFile(char name[10], char& PaymentType, float& amount, string addre
 		//monto de la orden
 		OrderFile<<"Monto: "<<amount<<endl;
 		
-		//tipo de pago de la orden
+		//tipo de pago de la orden segun la opcion que se haya seleccionado donde en la funcion donde se selecciona el tipo de pago
 		if(PaymentType == '1'){
 			OrderFile<<"Tipo de pago: Efectivo"<<endl;
 		}
@@ -382,7 +382,7 @@ void OrderFileToRestaurant(char name[10], char& PaymentType, float& amount, int&
 		//monto de la orden
 		OrderFileR<<"Monto: "<<amount<<endl;
 		
-		//tipo de pago de la orden
+		//tipo de pago de la orden segun la opcion que se haya seleccionado donde en la funcion donde se selecciona el tipo de pago
 		if(PaymentType == '1'){
 			OrderFileR<<"Tipo de pago: Efectivo"<<endl;
 		}
@@ -470,14 +470,14 @@ string DateFunction(){
 	x = time (&t);
 	fecha = ctime (&x); 
 	
-	return fecha;
+	return fecha; //se retorna la fecha para las funciones donde se crean los archivos de las ordenes
 }
 
-//funcion que calcula el total de ventas a domilicio y a restaurante
+//funcion que suma el monto de ordenes a domicilio con el monto de ordenes a restaurante
 void TotalSales(float& p, float& n){
 	float Total = 0;
 	
-	Total =p + n; //el valor que resiven las variables p y n de los montos ingresados en los pedidos, se suman y hacen el total del monto
+	Total = p + n; //el valor que resiven las variables p y n de los montos ingresados en los pedidos, se suman y hacen el total del monto
 	
 	cout<<"Ventas totales: $"<<Total<<"\n"<<endl; //se muestra en pantalla ventas totales
 	system("pause");
