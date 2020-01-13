@@ -465,3 +465,10 @@ string DateFunction(){
 	
 	return fecha;
 }
+
+//funcion que calcula el total de ventas a domilicio y a restaurante
+void TotalSales(){
+	
+	
+	
+}
