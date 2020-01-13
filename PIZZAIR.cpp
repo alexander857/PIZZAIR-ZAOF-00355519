@@ -12,9 +12,9 @@ using namespace std;
 char PizzaMenu();
 
 //funciones de pedidos
-void HomeOrders(char name[10], char&, float&,int&,int&,int&); //pedidos a domicilio
-void CustomInRestaurant( char name[10], char&, float&,int&,int&,int&);//pedidos a restaurante
-void FoodAmountPayment(char&,float&,int&,int&,int&); //se selecciona la comida, el tipo de pago y el monto
+void HomeOrders(char name[10], char&, float&,float&,int&,int&,int&); //pedidos a domicilio
+void CustomInRestaurant( char name[10], char&,float&, float&,int&,int&,int&);//pedidos a restaurante
+void FoodAmountPayment(char&,float&,float&,int&,int&,int&); //se selecciona la comida, el tipo de pago y el monto
 
 //funciones de menus de comidas
 int PrincipalFood(int&);
@@ -31,14 +31,14 @@ void ReadOrderRestaurant(); //lee los archivos de encargos a restaurante
 
 //otras funciones 
 string DateFunction(); //genera la fecha actual
-void TotalSales(float&); //calcula el total de ventas
+void TotalSales(float&,float&); //calcula el total de ventas
 
 int main(){
 	//DECLARACION DE VARIABLES 
 	//contrase?a para el menu principal
 	char password[]="delete", key[6], PaymentType, name[10], option;  
 	int k = 0, A = 0, B = 0, C = 0;
-	float amount = 0; 	
+	float amount = 0, amount1 = 0; 	
 	
 	//pedimos la contrase?a para ingresar
 	cout<<"SOLO PERSONAL AUTORIZADO!\n"<<endl;
@@ -57,12 +57,12 @@ int main(){
 			//condiciones segun lo que se seleccione en el menu principal
 			if(option == '1'){
 				
-				HomeOrders(name,PaymentType,amount,A,B,C); //se llama a la funcion para agregar un pedido a domicilio
+				HomeOrders(name,PaymentType,amount,amount1,A,B,C); //se llama a la funcion para agregar un pedido a domicilio
 				
 			}
 			else if(option == '2'){
 				
-				CustomInRestaurant(name,PaymentType,amount,A,B,C); //se llama la funcion para agregar encargo a restaurante
+				CustomInRestaurant(name,PaymentType,amount,amount1,A,B,C); //se llama la funcion para agregar encargo a restaurante
 				
 			}
 			else if(option == '3'){
@@ -77,9 +77,14 @@ int main(){
 			}
 			else if(option == '5'){
 				
-				TotalSales(amount); //se llama la funcion que muestra las ventas totales
+				TotalSales(amount,amount1); //se llama la funcion que muestra las ventas totales
 				
-			}						
+			}
+			else if(option == '6'){
+				
+				break;
+				
+			}					
 		
 		}
 		
@@ -105,7 +110,7 @@ char PizzaMenu(){
 	cout<<"PIZZAIR\n"<<endl;
 	
 	//menu de opciones
-	cout<<"1-Agregar 1 pedido a domicilio\n2-Agregar 1 encargo en restaurante\n3-Ver pedidos a domicilio\n4-Ver encargos en restaurante\n5-Ver total de ventas\n"<<endl;
+	cout<<"1-Agregar 1 pedido a domicilio\n2-Agregar 1 encargo en restaurante\n3-Ver pedidos a domicilio\n4-Ver encargos en restaurante\n5-Ver total de ventas\n6-Salir\n"<<endl;
 	
 	//se pide una opcion a seleccionar
 	cout<<"Opcion: ";cin>>option;
@@ -116,7 +121,7 @@ char PizzaMenu(){
 //FUNCIONES PARA LOS PEDIDOS
 
 //funcion de pedidos a domicilio
-void HomeOrders(char name[10], char& PaymentType, float& amount,int&A,int&B,int&C){
+void HomeOrders(char name[10], char& PaymentType, float& amount,float&amount1,int&A,int&B,int&C){
 	//variables de la funcion
 	string address, phone;
 	
@@ -128,14 +133,14 @@ void HomeOrders(char name[10], char& PaymentType, float& amount,int&A,int&B,int&
 	cout<<"Telefono: ";cin>>phone;
 	system("cls");
 	
-	FoodAmountPayment(PaymentType,amount,A,B,C);  //se llama a la funcion donde se eligen los platos de comida, el monto y tipo de pago
+	FoodAmountPayment(PaymentType,amount,amount1,A,B,C);  //se llama a la funcion donde se eligen los platos de comida, el monto y tipo de pago
 	HomeOrderFile(name,PaymentType,amount,address,phone,A,B,C); //se llama a la funcion que crea el archivo donde se guardan todos los datos de la orden a domicilio
 	
 	
 }
 
 //funcion de pedidos a restaurante
-void CustomInRestaurant(char name[10], char& PaymentType, float& amount,int&A,int&B,int&C){
+void CustomInRestaurant(char name[10], char& PaymentType, float& amount,float& amount1,int&A,int&B,int&C){
 	//variables de la funcion
 	int AmountPeople;
 	
@@ -146,13 +151,13 @@ void CustomInRestaurant(char name[10], char& PaymentType, float& amount,int&A,in
 	cout<<"Personas por mesa: ";cin>>AmountPeople;
 	system("cls");
 	
-	FoodAmountPayment(PaymentType,amount,A,B,C); //se llama a la funcion donde se eligen los platos de comida, el monto y tipo de pago
-	OrderFileToRestaurant(name,PaymentType,amount,AmountPeople,A,B,C); //se llama a la funcion que crea el archivo donde se guardan los encargos de restaurante
+	FoodAmountPayment(PaymentType,amount,amount1,A,B,C); //se llama a la funcion donde se eligen los platos de comida, el monto y tipo de pago
+	OrderFileToRestaurant(name,PaymentType,amount1,AmountPeople,A,B,C); //se llama a la funcion que crea el archivo donde se guardan los encargos de restaurante
 
 }
 
 //funcion donde se ingresa la comida, el monto y tipo de pago
-void FoodAmountPayment(char& PaymentType, float& amount, int&A,int&B, int&C){
+void FoodAmountPayment(char& PaymentType, float& amount, float& amount1, int&A,int&B, int&C){
 	//varianles de la funcion
 	int k = 0;
 	
@@ -341,7 +346,7 @@ void HomeOrderFile(char name[10], char& PaymentType, float& amount, string addre
 
 //funcion de archivo encargos a restaurante
 
-void OrderFileToRestaurant(char name[10], char& PaymentType, float& amount, int& AmountPeople, int&A, int&B, int&C){
+void OrderFileToRestaurant(char name[10], char& PaymentType, float& amount1, int& AmountPeople, int&A, int&B, int&C){
 	
 	//arreglo de strings donde esta las opciones de comidas
 	string COMIDAS[7] = {"Pizza", "Ensalada", "Pasta", "Palitos de Pizza", "Pan con ajo", "Gaseosa", "Te"};
@@ -374,7 +379,7 @@ void OrderFileToRestaurant(char name[10], char& PaymentType, float& amount, int&
 		OrderFileR<<"\n"<<endl;
 		
 		//monto de la orden
-		OrderFileR<<"Monto: "<<amount<<endl;
+		OrderFileR<<"Monto: "<<amount1<<endl;
 		
 		//tipo de pago de la orden
 		if(PaymentType == '1'){
@@ -468,10 +473,10 @@ string DateFunction(){
 }
 
 //funcion que calcula el total de ventas a domilicio y a restaurante
-void TotalSales(float& amount){
+void TotalSales(float& amount, float& amount1){
 	float Total = 0;
 	
-	Total += amount; //se van acumulanto los montos de cada pedido
+	Total = amount + amount1; //se van acumulanto los montos de cada pedido
 	
 	cout<<"Ventas totales: $"<<Total<<"\n"<<endl; //se muestra en pantalla ventas totales
 	system("pause");
