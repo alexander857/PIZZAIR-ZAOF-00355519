@@ -55,9 +55,8 @@ char PizzaMenu();
 int main(){
 	//DECLARACION DE VARIABLES 
 	//contrase?a para el menu principal
-	char password[]="delete", key[6], PaymentType, name[10], option;  
-	int k = 0, A = 0, B = 0, C = 0;
-	float amount = 0, p = 0, n = 0; 	
+	char password[]="delete", key[6];  
+	int k = 0;	
 	
 	//pedimos la contrase?a para ingresar
 	cout<<"SOLO PERSONAL AUTORIZADO!\n"<<endl;
