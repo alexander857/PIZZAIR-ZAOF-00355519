@@ -48,43 +48,16 @@ int NumberOfOrders = 0;
 //PROTOTIPOS DE LAS FUNCIONES
 
 void PizzaMenu(), OrderHomeDelivery(), OrderRestaurant();
+int LogIn();
 
 int main(){
 	//DECLARACION DE VARIABLES 
-	//contrase?a para el menu principal
-	char password[]="delete", key[6];  
-	int k = 0, option = 0;	
+	int k = 0, option = 0, N = 0;
 	
-	//menu para elegir como se ingresara al sistema
-	cout<<"SOLO PERSONAL AUTORIZADO!\n"<<endl;
-	cout << "\n1.Iniciar sesion como Administrador\n";
-	cout << "2.Iniciar sesion como Empleado\n";
-	cout << "\nOpcion: "; cin >> option;
-	
-	if(option == 1){
-		
-		cout<<"Ingrese la clave: ";cin>>key;
-		
-	}
-	
-	while(k==0){
-		
-		//se compara si la contrase?a es correcta o si se inicio sesion como empleado
-		if(strcmp(password,key) == 0 || option == 2){ //compara las dos palabras: password y key 
-			
-			system("cls"); 
-			PizzaMenu(); //se llama la funcion del menu principal si la contrase��a es correcta
-		
-		}
-		
-		else{     //si no son iguaes las palabras, le sigue pidiendo que ingrese la clave hasta que ingrese la correcta
-			
-			system("cls");
-			cout<<"Ingrese la clave: ";cin>>key;
-			
-		}	
-						
-	}
+	N = LogIn();		
+					
+	system("cls"); 
+	PizzaMenu(); //se llama la funcion del menu principal
 	
 	return 0;
 }
@@ -164,4 +137,36 @@ void OrderHomeDelivery(){
     }
     else cout << "Error, maximo de pedidos!\n";
          
+}
+
+//funcion de inicio de sesion
+int LogIn(){
+	//declaracion de variables
+	char password[]="delete", key[6];
+	int option = 0, k = 0;
+	
+	while(k == 0){
+		
+		//menu para elegir como se ingresara al sistema
+		cout << "SOLO PERSONAL AUTORIZADO!\n" << endl;
+		cout << "\n1.Iniciar sesion como Administrador\n";
+		cout << "2.Iniciar sesion como Empleado\n";
+		cout << "\nOpcion: "; cin >> option;
+		
+		if(option == 1){
+			
+			while(k == 0){
+				cout << "Ingrese la clave: "; cin >> key;
+				
+				if(strcmp(password,key) == 0){
+					return 0;
+				}
+			}	
+		}
+		else if(option == 2){
+			
+			return 1;
+			
+		}
+	}	
 }
