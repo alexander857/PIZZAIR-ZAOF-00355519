@@ -62,7 +62,6 @@ int main(){
 	cout<<"SOLO PERSONAL AUTORIZADO!\n"<<endl;
 	cout<<"Ingrese la clave: ";cin>>key;
 	
-	//hay solo 3 intentos para ingresar la contrase?a correcta
 	while(k==0){
 		
 		//se compara si la contrase?a es correcta
@@ -71,38 +70,6 @@ int main(){
 			system("cls"); 
 			option = PizzaMenu(); //se llama la funcion del menu principal si la contrase��a es correcta
 			system("cls");
-			
-			//condiciones segun lo que se seleccione en el menu principal
-			if(option == '1'){
-				
-			
-				
-			}
-			else if(option == '2'){
-				
-				
-				
-			}
-			else if(option == '3'){
-				
-				
-				
-			}
-			else if(option == '4'){
-				
-				
-				
-			}
-			else if(option == '5'){
-				
-			
-
-			}
-			else if(option == '6'){
-				
-				break;  //al seleccionar la opcion salir se cierra el programa
-				
-			}					
 		
 		}
 		
