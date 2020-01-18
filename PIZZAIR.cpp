@@ -52,11 +52,6 @@ struct CustomInRestaurant{
 //funcion de menu principal
 char PizzaMenu();
 
-
-//otras funciones 
-string DateFunction(); //genera la fecha actual
-void TotalSales(float&,float&); //calcula el total de ventas
-
 int main(){
 	//DECLARACION DE VARIABLES 
 	//contrase?a para el menu principal
@@ -101,7 +96,7 @@ int main(){
 			}
 			else if(option == '5'){
 				
-				TotalSales(p,n); //se llama la funcion que muestra las ventas totales
+			
 
 			}
 			else if(option == '6'){
@@ -141,88 +136,4 @@ char PizzaMenu(){
 	cout<<"Opcion: ";cin>>option;
 	
 	return option;
-}
-
-//FUNCIONES QUE LEEN LOS ARCHIVOS CREADOS DE PEDIDOS A DOMICILIO Y A RESTAURANTE
-
-//funcion que lee archivo de pedidos a domicilio
-void ReadHomeOrders(){
-	
-	//se lee el archivo de ordenes a domicilio
-	string line;
-	
-	ifstream miTXT ("HomeOrder.txt");
-	
-	if (miTXT.is_open()){	
-	while (getline (miTXT,line)){	
-		cout << line << '\n';
-	}
-	
-	system("pause");
-	system("cls");
-	
-	if(miTXT.eof()){	
-		cout<<"Se ha terminado de leer. Fin del archivo";
-		system("cls");
-	}
-		miTXT.close();
-	}
-	else{
-		cout << "LOS PEDIDOS A DOMICILIO RECIBIDOS SE GUARDARAN AQUI!\n"<<endl;
-		system("pause");
-	} 
-	
-}
-
-//funcion que lee el archivo de los encargos a restaurante
-void ReadOrderRestaurant(){
-	
-	//se lee el archivo de ordenes a domicilio
-	string line;
-	
-	ifstream miTXT ("OrderToRestaurant.txt");
-	
-	if (miTXT.is_open()){	
-	while (getline (miTXT,line)){	
-		cout << line << '\n';
-	}
-	
-	system("pause");
-	system("cls");
-	
-	if(miTXT.eof()){	
-		cout<<"Se ha terminado de leer. Fin del archivo";
-		system("cls");
-	}
-		miTXT.close();
-	}
-	else{
-		cout << "LOS ENCARGOS A RESTAURANTE RECIBIDOS SE GUARDARAN AQUI!\n"<<endl;
-		system("pause");
-	} 
-	
-}
-
-//OTRAS FUNCIONES
-//funcion que genera la fecha actual
-string DateFunction(){
-	
-	//se genera la fecha actual
-	time_t   t,x;
-	char *fecha;
-	x = time (&t);
-	fecha = ctime (&x); 
-	
-	return fecha; //se retorna la fecha para las funciones donde se crean los archivos de las ordenes
-}
-
-//funcion que suma el monto de ordenes a domicilio con el monto de ordenes a restaurante
-void TotalSales(float& p, float& n){
-	float Total = 0;
-	
-	Total = p + n; //el valor que resiven las variables p y n de los montos ingresados en los pedidos, se suman y hacen el total del monto
-	
-	cout<<"Ventas totales: $"<<Total<<"\n"<<endl; //se muestra en pantalla ventas totales
-	system("pause");
-
 }
