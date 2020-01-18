@@ -7,6 +7,16 @@
 
 using namespace std;
 
+//registros
+struct CustomerAddress{
+
+	int HouseNumber;
+	string Suburb;
+	string Municipality;
+	string State;
+
+};
+
 //PROTOTIPOS DE LAS FUNCIONES
 //funcion de menu principal
 char PizzaMenu();
@@ -51,7 +61,7 @@ int main(){
 		if(strcmp(password,key) == 0){ //compara las dos palabras: password y key 
 			
 			system("cls"); 
-			option = PizzaMenu(); //se llama la funcion del menu principal si la contraseñña es correcta
+			option = PizzaMenu(); //se llama la funcion del menu principal si la contraseï¿½ï¿½a es correcta
 			system("cls");
 			
 			//condiciones segun lo que se seleccione en el menu principal
@@ -174,7 +184,7 @@ float FoodAmountPayment(char& PaymentType, float& amount,int&A,int&B, int&C){
 	cout<<"Monto: ";cin>>amount;
 	system("cls");
 	
-	//un ciclo para el pequeño menu de seleccionar el tipo de pago
+	//un ciclo para el pequeï¿½o menu de seleccionar el tipo de pago
 	while(k==0){
 		
 		//menu para seleccionar el tipo de pago que hara el cliente
