@@ -122,17 +122,22 @@ int main(){
 //menu principal del sistema de despacho
 char PizzaMenu(){
 	//variables de la funcion
-	char option;
+	int option;
+	bool follow = true;
 	
-	//nosbre de la pizzaria
-	cout<<"PIZZAIR\n"<<endl;
-	
-	//menu de opciones
-	cout<<"1-Agregar 1 pedido a domicilio\n2-Agregar 1 encargo en restaurante\n3-Ver pedidos a domicilio\n"
-	"4-Ver encargos en restaurante\n5-Ver total de ventas\n6-Salir\n"<<endl;
-	
-	//se pide una opcion a seleccionar
-	cout<<"Opcion: ";cin>>option;
-	
-	return option;
+	do{
+		
+		//nosbre de la pizzaria
+		cout<<"PIZZAIR\n"<<endl;
+		
+		//menu de opciones
+		cout<<"\n1-Agregar 1 pedido a domicilio\n";
+		cout << "2-Agregar 1 encargo en restaurante\n";
+		cout << "3-Ver pedidos a domicilio\n";
+		cout << "4-Ver encargos en restaurante\n";
+		cout << "5-Ver total de ventas\n";
+		cout << "6-Salir\n";
+		cout << "\nOpcion: "; cin >> option;	
+		
+	}while(follow);
 }
