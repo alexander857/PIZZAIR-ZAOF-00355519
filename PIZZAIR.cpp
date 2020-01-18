@@ -103,7 +103,8 @@ char PizzaMenu(){
 		cout << "3-Ver pedidos a domicilio\n";
 		cout << "4-Ver encargos en restaurante\n";
 		cout << "5-Ver total de ventas\n";
-		cout << "6-Salir\n";
+		cout << "6-Cambiar de Usuario\n";
+		cout << "7-Salir\n";
 		cout << "\nOpcion: "; cin >> option;	
 		
 	}while(follow);
