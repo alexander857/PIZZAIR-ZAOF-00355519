@@ -49,8 +49,8 @@ struct CustomInRestaurant{
 
 
 //PROTOTIPOS DE LAS FUNCIONES
-//funcion de menu principal
-char PizzaMenu();
+
+char PizzaMenu(), OrderHomeDelivery(), OrderRestaurant();
 
 int main(){
 	//DECLARACION DE VARIABLES 
