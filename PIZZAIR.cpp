@@ -72,7 +72,7 @@ int main(){
 	
 	while(k==0){
 		
-		//se compara si la contrase?a es correcta
+		//se compara si la contrase?a es correcta o si se inicio sesion como empleado
 		if(strcmp(password,key) == 0 || option == 2){ //compara las dos palabras: password y key 
 			
 			system("cls"); 
@@ -84,7 +84,6 @@ int main(){
 		else{     //si no son iguaes las palabras, le sigue pidiendo que ingrese la clave hasta que ingrese la correcta
 			
 			system("cls");
-			cout<<"SOLO PERSONAL AUTORIZADO!\n"<<endl;
 			cout<<"Ingrese la clave: ";cin>>key;
 			
 		}	
