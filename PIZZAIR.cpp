@@ -56,16 +56,24 @@ int main(){
 	//DECLARACION DE VARIABLES 
 	//contrase?a para el menu principal
 	char password[]="delete", key[6];  
-	int k = 0;	
+	int k = 0, option = 0;	
 	
-	//pedimos la contrase?a para ingresar
+	//menu para elegir como se ingresara al sistema
 	cout<<"SOLO PERSONAL AUTORIZADO!\n"<<endl;
-	cout<<"Ingrese la clave: ";cin>>key;
+	cout << "\n1.Iniciar sesion como Administrador\n";
+	cout << "2.Iniciar sesion como Empleado\n";
+	cout << "\nOpcion: "; cin >> option;
+	
+	if(option == 1){
+		
+		cout<<"Ingrese la clave: ";cin>>key;
+		
+	}
 	
 	while(k==0){
 		
 		//se compara si la contrase?a es correcta
-		if(strcmp(password,key) == 0){ //compara las dos palabras: password y key 
+		if(strcmp(password,key) == 0 || option == 2){ //compara las dos palabras: password y key 
 			
 			system("cls"); 
 			option = PizzaMenu(); //se llama la funcion del menu principal si la contrase��a es correcta
