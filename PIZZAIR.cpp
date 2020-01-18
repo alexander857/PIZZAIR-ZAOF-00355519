@@ -134,18 +134,20 @@ char PizzaMenu(){
 void OrderHomeDelivery(){
 	
     if(NumberOfOrders < 5){
-        // Solicitar datos al usuario
+
+       // Solicitar datos al usuario
         cout << "Nombre del Cliente: ";
         getline(cin, OrderList[NumberOfOrders].name);
         cout << "Direccion: \n";
+        cout << "\tNo. Casa: ";
         cin >> OrderList[NumberOfOrders].Address.HouseNumber;
-        cout << "Colonia: ";
-        cin >> OrderList[NumberOfOrders].Address.Suburb;
-        cout << "Municipio: ";
-        cin >> OrderList[NumberOfOrders].Address.Municipality;
-        cout << "Departamento: ";
-        cin >> OrderList[NumberOfOrders].Address.State;
-        cout << "\nTelefono: ";
+        cout << "\tColonia: ";
+        getline(cin, OrderList[NumberOfOrders].Address.Suburb);
+        cout << "\tMunicipio: ";
+        getline(cin, OrderList[NumberOfOrders].Address.Municipality);
+        cout << "\tDepartamento: ";
+        getline(cin, OrderList[NumberOfOrders].Address.State);
+        cout << "Telefono: ";
         cin >> OrderList[NumberOfOrders].phone;
         cout << "Plato principal: ";
         cin >> OrderList[NumberOfOrders].MainDish;
