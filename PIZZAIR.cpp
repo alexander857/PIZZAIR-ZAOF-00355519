@@ -52,7 +52,7 @@ int LogIn();
 
 int main(){
 	//DECLARACION DE VARIABLES 
-	int k = 0, option = 0, N = 0;
+	int N = 0;
 	
 	N = LogIn();		
 					
