@@ -8,6 +8,8 @@
 using namespace std;
 
 //registros
+
+//direccion del cliente
 struct CustomerAddress{
 
 	int HouseNumber;
@@ -16,6 +18,35 @@ struct CustomerAddress{
 	string State;
 
 };
+
+//ordenes a domicilio
+struct HomeOrders{
+	
+	string name;
+	HouseNumber Address;
+	int phone;
+	string MainDish;
+	string StarterPlate;
+	string drink;
+	double amount;
+	string PaymentType;
+	
+};
+
+//pedidos a restaurante
+struct CustomInRestaurant{
+	
+	string name;
+	int PeoplePerTable;
+	string MainDish;
+	string StarterPlate;
+	string drink;
+	double amount;
+	string PaymentType;
+	
+};
+
+
 
 //PROTOTIPOS DE LAS FUNCIONES
 //funcion de menu principal
