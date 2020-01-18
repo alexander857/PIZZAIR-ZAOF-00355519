@@ -46,7 +46,8 @@ struct CustomInRestaurant{
 	
 };
 
-
+HomeOrders OrderList[5];
+int NumberOfOrders = 0;
 
 //PROTOTIPOS DE LAS FUNCIONES
 
@@ -138,17 +139,9 @@ void OrderHomeDelivery(){
        // Solicitar datos al usuario
         cout << "Nombre del Cliente: ";
         getline(cin, OrderList[NumberOfOrders].name);
-        cout << "Direccion: \n";
-        cout << "\tNo. Casa: ";
-        cin >> OrderList[NumberOfOrders].Address.HouseNumber;
-        cout << "\tColonia: ";
-        getline(cin, OrderList[NumberOfOrders].Address.Suburb);
-        cout << "\tMunicipio: ";
-        getline(cin, OrderList[NumberOfOrders].Address.Municipality);
-        cout << "\tDepartamento: ";
-        getline(cin, OrderList[NumberOfOrders].Address.State);
         cout << "Telefono: ";
         cin >> OrderList[NumberOfOrders].phone;
+        cin.ignore();
         cout << "Plato principal: ";
         cin >> OrderList[NumberOfOrders].MainDish;
         cout << "Entrada: ";
@@ -159,7 +152,17 @@ void OrderHomeDelivery(){
         cin >> OrderList[NumberOfOrders].amount;
         cout << "Tipo de pago: ";
         cin >> OrderList[NumberOfOrders].PaymentType;
-        
+        cout << "Direccion: \n";
+        cout << "\tNo. Casa: ";
+        cin >> OrderList[NumberOfOrders].Address.HouseNumber;
+        cout << "\tColonia: ";
+        getline(cin, OrderList[NumberOfOrders].Address.Suburb);
+        cin.ignore();
+        cout << "\tMunicipio: ";
+        getline(cin, OrderList[NumberOfOrders].Address.Municipality);
+        cin.ignore();
+        cout << "\tDepartamento: ";
+        getline(cin, OrderList[NumberOfOrders].Address.State);
         cin.ignore();
         
         // Aumentar contador de cantidad de libros
