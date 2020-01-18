@@ -112,7 +112,20 @@ char PizzaMenu(){
 		cout << "5-Ver total de ventas\n";
 		cout << "6-Cambiar de Usuario\n";
 		cout << "7-Salir\n";
-		cout << "\nOpcion: "; cin >> option;	
+		cout << "\nOpcion: "; cin >> option;
+		cin.ignore();
+
+		switch(option){
+			
+			case 1: OrderHomeDelivery(); break;
+			case 2: cout << "No disponible" << endl;
+			case 3: cout << "No disponible" << endl;
+			case 4: cout << "No disponible" << endl;
+			case 5: cout << "No disponible" << endl;
+			case 6: cout << "No disponible" << endl;
+			case 7: follow = false;
+			
+		}		
 		
 	}while(follow);
 }
