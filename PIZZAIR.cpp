@@ -52,9 +52,6 @@ struct CustomInRestaurant{
 //funcion de menu principal
 char PizzaMenu();
 
-//funciones de pedidos
-float FoodAmountPayment(char&,float&,int&,int&,int&); //se selecciona la comida, el tipo de pago y el monto
-
 
 //otras funciones 
 string DateFunction(); //genera la fecha actual
@@ -84,22 +81,22 @@ int main(){
 			//condiciones segun lo que se seleccione en el menu principal
 			if(option == '1'){
 				
-				HomeOrders(name,PaymentType,amount,A,B,C,n); //se llama a la funcion para agregar un pedido a domicilio
+			
 				
 			}
 			else if(option == '2'){
 				
-				CustomInRestaurant(name,PaymentType,amount,A,B,C,p); //se llama la funcion para agregar encargo a restaurante
+				
 				
 			}
 			else if(option == '3'){
 				
-				ReadHomeOrders(); //se llama la funcion que lee el archivo de pedidos a domicilio
+				
 				
 			}
 			else if(option == '4'){
 				
-				ReadOrderRestaurant(); //se llama la funcion que lee el archivo de encargos a restaurante
+				
 				
 			}
 			else if(option == '5'){
