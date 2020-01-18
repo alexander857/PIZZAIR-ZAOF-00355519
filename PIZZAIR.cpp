@@ -23,7 +23,7 @@ struct CustomerAddress{
 struct HomeOrders{
 	
 	string name;
-	HouseNumber Address;
+	CustomerAddress Address;
 	int phone;
 	string MainDish;
 	string StarterPlate;
@@ -51,7 +51,7 @@ int NumberOfOrders = 0;
 
 //PROTOTIPOS DE LAS FUNCIONES
 
-char PizzaMenu(), OrderHomeDelivery(), OrderRestaurant();
+void PizzaMenu(), OrderHomeDelivery(), OrderRestaurant();
 
 int main(){
 	//DECLARACION DE VARIABLES 
@@ -77,8 +77,7 @@ int main(){
 		if(strcmp(password,key) == 0 || option == 2){ //compara las dos palabras: password y key 
 			
 			system("cls"); 
-			option = PizzaMenu(); //se llama la funcion del menu principal si la contrase��a es correcta
-			system("cls");
+			PizzaMenu(); //se llama la funcion del menu principal si la contrase��a es correcta
 		
 		}
 		
@@ -95,13 +94,13 @@ int main(){
 }
 
 //menu principal del sistema de despacho
-char PizzaMenu(){
+void PizzaMenu(){
 	//variables de la funcion
-	int option;
+	
 	bool follow = true;
 	
 	do{
-		
+		int option = 0;
 		//nosbre de la pizzaria
 		cout<<"PIZZAIR\n"<<endl;
 		
