@@ -57,8 +57,6 @@ int main(){
 	
 	N = LogIn();		
 	
-					
-	system("cls"); 
 	PizzaMenu(); //se llama la funcion del menu principal
 	
 	return 0;
@@ -103,8 +101,6 @@ void PizzaMenu(){
 
 //funcion donde se piden las ordenes a domicilio
 void OrderHomeDelivery(){
-	
-	system("cls");
 	
    if(NumberOfOrders < 5){
         // Solicitar datos al usuario
