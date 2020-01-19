@@ -48,23 +48,33 @@ int NumberOfOrders = 0;
 
 //PROTOTIPOS DE LAS FUNCIONES
 
-void PizzaMenu(), OrderHomeDelivery(), OrderRestaurant();
-int LogIn();
+void OrderHomeDelivery(), OrderRestaurant();
+int LogIn(), PizzaMenu();
 
 int main(){
 	//DECLARACION DE VARIABLES 
-	int N = 0;
+	int N = 0, k = 0, P = 0;
 	
 	N = LogIn();		
-					
-	system("cls"); 
-	PizzaMenu(); //se llama la funcion del menu principal
+	
+	while(k == 0){
+		
+		system("cls"); 
+		P = PizzaMenu(); //se llama la funcion del menu principal
+		
+		//si se selecciona cambiar de usuario en el menu pizza, se muestra la funcion LogIn de nuevo
+		if(P == 1){
+			
+			N = LogIn();
+			
+		}
+	}		
 	
 	return 0;
 }
 
 //menu principal del sistema de despacho
-void PizzaMenu(){
+int PizzaMenu(){
 	//variables de la funcion
 	
 	bool follow = true;
@@ -92,7 +102,7 @@ void PizzaMenu(){
 			case 3: cout << "No disponible" << endl;
 			case 4: cout << "No disponible" << endl;
 			case 5: cout << "No disponible" << endl;
-			case 6: cout << "No disponible" << endl;
+			case 6: return 1;
 			case 7: follow = false;
 			
 		}		
