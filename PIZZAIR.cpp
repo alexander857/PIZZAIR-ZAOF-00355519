@@ -146,8 +146,6 @@ void OrderHomeDelivery(){
 //funcion donde se piden las encargos a restaurante
 void OrderRestaurant(){
 	
-	system("cls");
-	
   if(NumberOfOrders < 5){
         // Solicitar datos al usuario
         cout << "Nombre del Cliente: ";
@@ -192,15 +190,11 @@ int LogIn(){
 			while(k == 0){
 				cout << "Ingrese la clave: "; cin >> key;
 				
-				if(strcmp(password,key) == 0){
-					return 0;
-				}
+				if(strcmp(password,key) == 0) return 0;
+					
 			}	
 		}
-		else if(option == 2){
-			
-			return 1;
-			
-		}
+		else if(option == 2) return 1;		
+		
 	}	
 }
