@@ -14,7 +14,6 @@ struct CustomerAddress{
 	string State;
 
 };
-
 //ordenes a domicilio
 struct HomeOrders{
 	
@@ -48,40 +47,31 @@ int NumberOfOrders = 0;
 
 //PROTOTIPOS DE LAS FUNCIONES
 
-void OrderHomeDelivery(), OrderRestaurant();
-int LogIn(), PizzaMenu();
+void PizzaMenu(), OrderHomeDelivery(), OrderRestaurant();
+int LogIn();
+
 
 int main(){
 	//DECLARACION DE VARIABLES 
-	int N = 0, k = 0, P = 0;
+	int N = 0, k = 0;
 	
 	N = LogIn();		
 	
-	while(k == 0){
-		
-		system("cls"); 
-		P = PizzaMenu(); //se llama la funcion del menu principal
-		
-		//si se selecciona cambiar de usuario en el menu pizza, se muestra la funcion LogIn de nuevo
-		if(P == 1){
-			
-			N = LogIn();
-			
-		}
-	}		
+					
+	system("cls"); 
+	PizzaMenu(); //se llama la funcion del menu principal
 	
 	return 0;
 }
 
 //menu principal del sistema de despacho
-int PizzaMenu(){
+void PizzaMenu(){
 	//variables de la funcion
-	
 	bool follow = true;
 	
 	do{
 		int option = 0;
-		//nombre de la pizzaria
+		//nosbre de la pizzaria
 		cout<<"PIZZAIR\n"<<endl;
 		
 		//menu de opciones
@@ -90,32 +80,34 @@ int PizzaMenu(){
 		cout << "3-Ver pedidos a domicilio\n";
 		cout << "4-Ver encargos en restaurante\n";
 		cout << "5-Ver total de ventas\n";
-		cout << "6-Cambiar de Usuario\n";
+		cout << "6-Cambiar de usuario\n";
 		cout << "7-Salir\n";
 		cout << "\nOpcion: "; cin >> option;
 		cin.ignore();
-
+		
 		switch(option){
 			
 			case 1: OrderHomeDelivery(); break;
 			case 2: OrderRestaurant(); break;
-			case 3: cout << "No disponible" << endl;
-			case 4: cout << "No disponible" << endl;
-			case 5: cout << "No disponible" << endl;
-			case 6: return 1;
+			case 3: cout << "No disponible\n"; break;
+			case 4: cout << "No disponible\n"; break;
+			case 5: cout << "No disponible\n"; break;
+			case 6: LogIn(); break;
 			case 7: follow = false;
 			
-		}		
+		}	
 		
 	}while(follow);
+	
 }
 
 //funcion donde se piden las ordenes a domicilio
 void OrderHomeDelivery(){
 	
-    if(NumberOfOrders < 5){
-
-       // Solicitar datos al usuario
+	system("cls");
+	
+   if(NumberOfOrders < 5){
+        // Solicitar datos al usuario
         cout << "Nombre del Cliente: ";
         getline(cin, OrderList[NumberOfOrders].name);
         cout << "Direccion: \n";
@@ -139,15 +131,15 @@ void OrderHomeDelivery(){
         getline(cin, OrderList[NumberOfOrders].drink);
         cout << "Monto: $";
         cin >> OrderList[NumberOfOrders].amount;
-		cin.ignore();
+        cin.ignore();
         cout << "Tipo de pago: ";
         getline(cin, OrderList[NumberOfOrders].PaymentType);
-    //    cin.ignore();
+        system("cls");
         
         // Aumentar contador de cantidad de libros
-        NumberOfOrders++;
-    }
-    else cout << "Error, maximo de pedidos!\n";
+       NumberOfOrders++;
+   }
+   else cout << "Error, maximo de pedidos!\n";
          
 }
 
@@ -156,9 +148,8 @@ void OrderRestaurant(){
 	
 	system("cls");
 	
-	if(NumberOfOrders < 5){
-		
-         // Solicitar datos al usuario
+  if(NumberOfOrders < 5){
+        // Solicitar datos al usuario
         cout << "Nombre del Cliente: ";
         getline(cin, RestaurantList[NumberOfOrders].name);
         cout << "Personas por mesa: ";
@@ -168,17 +159,17 @@ void OrderRestaurant(){
         cout << "Entrada: ";
         getline(cin, RestaurantList[NumberOfOrders].StarterPlate);
         cout << "Bebida: ";
-        getline(cin, RestaurantList[NumberOfOrders].drink); 
+        getline(cin, RestaurantList[NumberOfOrders].drink);
         cout << "Monto: $";
         cin >> RestaurantList[NumberOfOrders].amount;
         cin.ignore();
         cout << "Tipo de pago: ";
         getline(cin, RestaurantList[NumberOfOrders].PaymentType);
-		
-		NumberOfOrders++;
-	}
-	
-	else cout << "Error, maximo de pedidos!\n";	
+        
+        // Aumentar contador de cantidad de libros
+       NumberOfOrders++;
+   }
+   else cout << "Error, maximo de pedidos!\n";
 	
 }
 
