@@ -140,6 +140,38 @@ void OrderHomeDelivery(){
          
 }
 
+//funcion donde se piden las encargos a restaurante
+void OrderRestaurant(){
+	
+	system("cls");
+	
+	if(NumberOfOrders < 5){
+		
+		//se solicitan los datos
+		cout << "\nNombre del Cliente: ";
+		getline(cin, RestaurantList[NumberOfOrders].name);
+		cout << "Personas por mesa: ";
+		cin >> RestaurantList[NumberOfOrders].PeoplePerTable;
+        cout << "Plato principal: ";
+        getline(cin, RestaurantList[NumberOfOrders].MainDish);
+        cout << "Entrada: ";
+        getline(cin, RestaurantList[NumberOfOrders].StarterPlate);
+        cout << "Bebida: ";
+        getline(cin, RestaurantList[NumberOfOrders].drink);
+        cout << "Monto: $";
+        cin >> RestaurantList[NumberOfOrders].amount;
+        cin.ignore();
+        cout << "Tipo de pago: ";
+        getline(cin, RestaurantList[NumberOfOrders].PaymentType);
+        system("cls");
+		
+		NumberOfOrders++;
+	}
+	
+	else cout << "Error, maximo de pedidos!\n";	
+	
+}
+
 //funcion de inicio de sesion
 int LogIn(){
 	//declaracion de variables
