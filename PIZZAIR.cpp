@@ -147,23 +147,22 @@ void OrderRestaurant(){
 	
 	if(NumberOfOrders < 5){
 		
-		//se solicitan los datos
-		cout << "\nNombre del Cliente: ";
-		getline(cin, RestaurantList[NumberOfOrders].name);
-		cout << "Personas por mesa: ";
-		cin >> RestaurantList[NumberOfOrders].PeoplePerTable;
+      // Solicitar datos al usuario
+        cout << "Nombre del Cliente: ";
+        getline(cin, RestaurantList[NumberOfOrders].name);
         cout << "Plato principal: ";
-        getline(cin, RestaurantList[NumberOfOrders].MainDish);
+        getline(cin, RestaurantList[NumberOfOrders].MainDish);      
         cout << "Entrada: ";
         getline(cin, RestaurantList[NumberOfOrders].StarterPlate);
         cout << "Bebida: ";
         getline(cin, RestaurantList[NumberOfOrders].drink);
+ 		cout << "Personas por mesa: ";
+        cin >> RestaurantList[NumberOfOrders].PeoplePerTable;
         cout << "Monto: $";
         cin >> RestaurantList[NumberOfOrders].amount;
         cin.ignore();
         cout << "Tipo de pago: ";
         getline(cin, RestaurantList[NumberOfOrders].PaymentType);
-        system("cls");
 		
 		NumberOfOrders++;
 	}
