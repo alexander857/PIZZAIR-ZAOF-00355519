@@ -47,7 +47,7 @@ int NumberOfOrders = 0;
 
 //PROTOTIPOS DE LAS FUNCIONES
 
-void PizzaMenu(), OrderHomeDelivery(), OrderRestaurant(), SearchOrder();
+void PizzaMenu(), OrderHomeDelivery(), OrderRestaurant(), LookForHomeDelivery();
 int LogIn();
 
 
@@ -196,7 +196,7 @@ int LogIn(){
 }
 
 //funcion para buscar ordenes a domicilio
-void SearchOrder(){
+void LookForHomeDelivery(){
 	//declaracion de variables
 	string client;
 	
