@@ -47,7 +47,7 @@ int NumberOfOrders = 0;
 
 //PROTOTIPOS DE LAS FUNCIONES
 
-void PizzaMenu(), OrderHomeDelivery(), OrderRestaurant();
+void PizzaMenu(), OrderHomeDelivery(), OrderRestaurant(), SearchOrder();
 int LogIn();
 
 
@@ -193,4 +193,37 @@ int LogIn(){
 		else if(option == 2) return 1;		
 		
 	}	
+}
+
+//funcion para buscar ordenes a domicilio
+void SearchOrder(){
+	//declaracion de variables
+	string client;
+	
+	cout << "Ingrese el nombre del cliente: ";
+	getline(cin, client);
+	
+	//buscando la orden del cliente ingresado
+	for(int i = 0; i < NumberOfOrders; i++){
+		
+		if(client.compare(OrderList[i].name) == 0){
+			
+			cout << "Orden dle cliente ingresado:\n";
+			cout << "Nombre: " << OrderList[i].name << '\n';
+			cout << "Direccion:\n";
+			cout << "\tNo. Casa: " << OrderList[i].Address.HouseNumber << '\n';
+			cout << "\tColonia: " << OrderList[i].Address.Suburb << '\n';
+			cout << "\tMunicipio: " << OrderList[i].Address.Municipality << '\n';
+			cout << "\tDepartamento: " << OrderList[i].Address.State << '\n';
+			cout << "Telefono: " << OrderList[i].phone << '\n';
+			cout << "Plato Principal: " << OrderList[i].MainDish << '\n';
+			cout << "Entrada: " << OrderList[i].StarterPlate << '\n';
+			cout << "Bebida: " << OrderList[i].drink << '\n';
+			cout << "Monto: " << OrderList[i].amount << '\n';
+			cout << "Tipo de pago: " << OrderList[i].PaymentType << '\n';
+			
+		}
+		
+	}
+	
 }
