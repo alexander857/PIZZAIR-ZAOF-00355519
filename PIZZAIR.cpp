@@ -87,8 +87,8 @@ void PizzaMenu(){
 			
 			case 1: OrderHomeDelivery(); break;
 			case 2: OrderRestaurant(); break;
-			case 3: cout << "No disponible\n"; break;
-			case 4: cout << "No disponible\n"; break;
+			case 3: LookForHomeDelivery(); break;
+			case 4: SearchRestaurantOrders(); break;
 			case 5: cout << "No disponible\n"; break;
 			case 6: LogIn(); break;
 			case 7: follow = false;
@@ -219,7 +219,7 @@ void LookForHomeDelivery(){
 			cout << "Plato Principal: " << OrderList[i].MainDish << '\n';
 			cout << "Entrada: " << OrderList[i].StarterPlate << '\n';
 			cout << "Bebida: " << OrderList[i].drink << '\n';
-			cout << "Monto: " << OrderList[i].amount << '\n';
+			cout << "Monto: $" << OrderList[i].amount << '\n';
 			cout << "Tipo de pago: " << OrderList[i].PaymentType << '\n';
 			cout << "\n";
 			return;
@@ -248,7 +248,7 @@ void SearchRestaurantOrders(){
 			cout << "Plato Principal: " << RestaurantList[i].MainDish << '\n';
 			cout << "Entrada: " << RestaurantList[i].StarterPlate << '\n';
 			cout << "Bebida: " << RestaurantList[i].drink << '\n';
-			cout << "Monto: " << RestaurantList[i].amount << '\n';
+			cout << "Monto: $" << RestaurantList[i].amount << '\n';
 			cout << "Tipo de pago: " << RestaurantList[i].PaymentType << '\n';
 			cout << "\n";
 			return;
