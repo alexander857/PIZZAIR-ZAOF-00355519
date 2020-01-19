@@ -43,6 +43,7 @@ struct CustomInRestaurant{
 };
 
 HomeOrders OrderList[5];
+CustomInRestaurant RestaurantList[5];
 int NumberOfOrders = 0;
 
 //PROTOTIPOS DE LAS FUNCIONES
@@ -87,7 +88,7 @@ void PizzaMenu(){
 		switch(option){
 			
 			case 1: OrderHomeDelivery(); break;
-			case 2: cout << "No disponible" << endl;
+			case 2: OrderRestaurant(); break;
 			case 3: cout << "No disponible" << endl;
 			case 4: cout << "No disponible" << endl;
 			case 5: cout << "No disponible" << endl;
@@ -157,8 +158,7 @@ void OrderRestaurant(){
         cout << "Entrada: ";
         getline(cin, RestaurantList[NumberOfOrders].StarterPlate);
         cout << "Bebida: ";
-        getline(cin, RestaurantList[NumberOfOrders].drink);
- 
+        getline(cin, RestaurantList[NumberOfOrders].drink); 
         cout << "Monto: $";
         cin >> RestaurantList[NumberOfOrders].amount;
         cin.ignore();
