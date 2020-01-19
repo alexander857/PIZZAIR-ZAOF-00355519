@@ -47,7 +47,7 @@ int NumberOfOrders = 0;
 
 //PROTOTIPOS DE LAS FUNCIONES
 
-void PizzaMenu(), OrderHomeDelivery(), OrderRestaurant(), LookForHomeDelivery();
+void PizzaMenu(), OrderHomeDelivery(), OrderRestaurant(), LookForHomeDelivery(), SearchRestaurantOrders();
 int LogIn();
 
 
@@ -221,10 +221,41 @@ void LookForHomeDelivery(){
 			cout << "Bebida: " << OrderList[i].drink << '\n';
 			cout << "Monto: " << OrderList[i].amount << '\n';
 			cout << "Tipo de pago: " << OrderList[i].PaymentType << '\n';
-			
+			cout << "\n";
 			return;
 		}
 		
 	}
 	cout << "Orden no encontrada :( Quiza el nombre no esta registrado!" << endl;
+}
+
+//funcion de buscar las ordenes a restaurante
+void SearchRestaurantOrders(){
+	//declaracion de variables
+	string client;
+	
+	cout << "Ingrese el nombre del cliente: ";
+	getline(cin, client);
+	
+	//buscando la orden del cliente ingresado
+	for(int i = 0; i < NumberOfOrders; i++){
+		
+		if(client.compare(OrderList[i].name) == 0){
+			
+			cout << "\nOrden del cliente ingresado:\n";
+			cout << "Nombre: " << RestaurantList[i].name << '\n';
+			cout << "Personas por mesa: " << RestaurantList[i].PeoplePerTable << '\n';
+			cout << "Plato Principal: " << RestaurantList[i].MainDish << '\n';
+			cout << "Entrada: " << RestaurantList[i].StarterPlate << '\n';
+			cout << "Bebida: " << RestaurantList[i].drink << '\n';
+			cout << "Monto: " << RestaurantList[i].amount << '\n';
+			cout << "Tipo de pago: " << RestaurantList[i].PaymentType << '\n';
+			cout << "\n";
+			return;
+		}
+		
+	}
+	cout << "Orden no encontrada :( Quiza el nombre no esta registrado!" << endl;
+	
+	
 }
