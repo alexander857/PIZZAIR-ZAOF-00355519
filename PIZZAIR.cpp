@@ -222,8 +222,9 @@ void LookForHomeDelivery(){
 			cout << "Monto: " << OrderList[i].amount << '\n';
 			cout << "Tipo de pago: " << OrderList[i].PaymentType << '\n';
 			
+			return;
 		}
 		
 	}
-	
+	cout << "Orden no encontrada :( Quiza el nombre no esta registrado!" << endl;
 }
