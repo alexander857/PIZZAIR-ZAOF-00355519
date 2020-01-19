@@ -49,7 +49,7 @@ int NumberOfOrders = 0;
 
 //PROTOTIPOS DE LAS FUNCIONES
 
-void PizzaMenu(), OrderHomeDelivery(), OrderRestaurant(), LookForHomeDelivery(), SearchRestaurantOrders();
+void PizzaMenu(), OrderHomeDelivery(), OrderRestaurant(), LookForHomeDelivery(), SearchRestaurantOrders(), TotalSales();
 int LogIn();
 
 
@@ -91,7 +91,7 @@ void PizzaMenu(){
 			case 2: OrderRestaurant(); break;
 			case 3: LookForHomeDelivery(); break;
 			case 4: SearchRestaurantOrders(); break;
-			case 5: cout << "No disponible\n"; break;
+			case 5: TotalSales(); break;
 			case 6: LogIn(); break;
 			case 7: follow = false;
 			
@@ -265,5 +265,21 @@ void SearchRestaurantOrders(){
 	}
 	cout << "Orden no encontrada :( Quiza el nombre no esta registrado!" << endl;
 	
+	
+}
+
+//funcion que calcula el total de ventas
+void TotalSales(){
+	//declaracion de variables
+	double Total = 0;
+	
+	for(int i = 0; i < NumberOfOrders; i++){
+		
+		Total += OrderList[i].amount;
+		Total += RestaurantList[i].amount;
+		
+	}
+	
+	cout << "Ventas Totales: $" << Total << endl; 
 	
 }
