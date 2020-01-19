@@ -33,7 +33,7 @@ struct HomeOrders{
 struct CustomInRestaurant{
 	
 	string name;
-	int PeoplePerTable;
+	string PeoplePerTable;
 	string MainDish;
 	string StarterPlate;
 	string drink;
@@ -147,17 +147,18 @@ void OrderRestaurant(){
 	
 	if(NumberOfOrders < 5){
 		
-      // Solicitar datos al usuario
+         // Solicitar datos al usuario
         cout << "Nombre del Cliente: ";
         getline(cin, RestaurantList[NumberOfOrders].name);
+        cout << "Personas por mesa: ";
+        getline(cin, RestaurantList[NumberOfOrders].PeoplePerTable);
         cout << "Plato principal: ";
         getline(cin, RestaurantList[NumberOfOrders].MainDish);      
         cout << "Entrada: ";
         getline(cin, RestaurantList[NumberOfOrders].StarterPlate);
         cout << "Bebida: ";
         getline(cin, RestaurantList[NumberOfOrders].drink);
- 		cout << "Personas por mesa: ";
-        cin >> RestaurantList[NumberOfOrders].PeoplePerTable;
+ 
         cout << "Monto: $";
         cin >> RestaurantList[NumberOfOrders].amount;
         cin.ignore();
