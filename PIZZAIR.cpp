@@ -70,7 +70,7 @@ void PizzaMenu(){
 	
 	do{
 		int option = 0;
-		//nosbre de la pizzaria
+		//nombre de la pizzaria
 		cout<<"PIZZAIR\n"<<endl;
 		
 		//menu de opciones
@@ -128,9 +128,10 @@ void OrderHomeDelivery(){
         getline(cin, OrderList[NumberOfOrders].drink);
         cout << "Monto: $";
         cin >> OrderList[NumberOfOrders].amount;
+		cin.ignore();
         cout << "Tipo de pago: ";
         getline(cin, OrderList[NumberOfOrders].PaymentType);
-        cin.ignore();
+    //    cin.ignore();
         
         // Aumentar contador de cantidad de libros
         NumberOfOrders++;
