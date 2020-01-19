@@ -25,6 +25,7 @@ struct HomeOrders{
 	string drink;
 	double amount;
 	string PaymentType;
+	int CorrelativeNumber;
 	
 };
 
@@ -38,6 +39,7 @@ struct CustomInRestaurant{
 	string drink;
 	double amount;
 	string PaymentType;
+	int CorrelativeNumber;
 	
 };
 
@@ -130,6 +132,8 @@ void OrderHomeDelivery(){
         cin.ignore();
         cout << "Tipo de pago: ";
         getline(cin, OrderList[NumberOfOrders].PaymentType);
+        cout << "Numero de la Orden: ";
+        cin >> OrderList[NumberOfOrders].CorrelativeNumber;
         system("cls");
         
         // Aumentar contador de cantidad de libros
@@ -159,6 +163,8 @@ void OrderRestaurant(){
         cin.ignore();
         cout << "Tipo de pago: ";
         getline(cin, RestaurantList[NumberOfOrders].PaymentType);
+		cout << "Numero de la Orden: ";
+        cin >> RestaurantList[NumberOfOrders].CorrelativeNumber;
         
         // Aumentar contador de cantidad de libros
        NumberOfOrders++;
@@ -221,6 +227,7 @@ void LookForHomeDelivery(){
 			cout << "Bebida: " << OrderList[i].drink << '\n';
 			cout << "Monto: $" << OrderList[i].amount << '\n';
 			cout << "Tipo de pago: " << OrderList[i].PaymentType << '\n';
+			cout << "Numero de la Orden: " << OrderList[i].CorrelativeNumber << '\n';
 			cout << "\n";
 			return;
 		}
@@ -250,6 +257,7 @@ void SearchRestaurantOrders(){
 			cout << "Bebida: " << RestaurantList[i].drink << '\n';
 			cout << "Monto: $" << RestaurantList[i].amount << '\n';
 			cout << "Tipo de pago: " << RestaurantList[i].PaymentType << '\n';
+			cout << "Numero de la Orden: " << RestaurantList[i].CorrelativeNumber << '\n';
 			cout << "\n";
 			return;
 		}
