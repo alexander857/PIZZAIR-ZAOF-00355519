@@ -46,6 +46,7 @@ struct CustomInRestaurant{
 HomeOrders OrderList[5];
 CustomInRestaurant RestaurantList[5];
 int NumberOfOrders = 0;
+int NumberOrdersRestaurant = 0;
 
 //PROTOTIPOS DE LAS FUNCIONES
 
@@ -146,28 +147,28 @@ void OrderHomeDelivery(){
 //funcion donde se piden las encargos a restaurante
 void OrderRestaurant(){
 	
-  if(NumberOfOrders < 5){
+  if(NumberOrdersRestaurant < 5){
         // Solicitar datos al usuario
         cout << "Nombre del Cliente: ";
-        getline(cin, RestaurantList[NumberOfOrders].name);
+        getline(cin, RestaurantList[NumberOrdersRestaurant].name);
         cout << "Personas por mesa: ";
-        getline(cin, RestaurantList[NumberOfOrders].PeoplePerTable);
+        getline(cin, RestaurantList[NumberOrdersRestaurant].PeoplePerTable);
         cout << "Plato principal: ";
-        getline(cin, RestaurantList[NumberOfOrders].MainDish);      
+        getline(cin, RestaurantList[NumberOrdersRestaurant].MainDish);      
         cout << "Entrada: ";
-        getline(cin, RestaurantList[NumberOfOrders].StarterPlate);
+        getline(cin, RestaurantList[NumberOrdersRestaurant].StarterPlate);
         cout << "Bebida: ";
-        getline(cin, RestaurantList[NumberOfOrders].drink);
+        getline(cin, RestaurantList[NumberOrdersRestaurant].drink);
         cout << "Monto: $";
-        cin >> RestaurantList[NumberOfOrders].amount;
+        cin >> RestaurantList[NumberOrdersRestaurant].amount;
         cin.ignore();
         cout << "Tipo de pago: ";
-        getline(cin, RestaurantList[NumberOfOrders].PaymentType);
+        getline(cin, RestaurantList[NumberOrdersRestaurant].PaymentType);
 		cout << "Numero de la Orden: ";
-        cin >> RestaurantList[NumberOfOrders].CorrelativeNumber;
+        cin >> RestaurantList[NumberOrdersRestaurant].CorrelativeNumber;
         
         // Aumentar contador de cantidad de libros
-       NumberOfOrders++;
+       NumberOrdersRestaurant++;
    }
    else cout << "Error, maximo de pedidos!\n";
 	
@@ -245,7 +246,7 @@ void SearchRestaurantOrders(){
 	getline(cin, client);
 	
 	//buscando la orden del cliente ingresado
-	for(int i = 0; i < NumberOfOrders; i++){
+	for(int i = 0; i < NumberOrdersRestaurant; i++){
 		
 		if(client.compare(OrderList[i].name) == 0){
 			
