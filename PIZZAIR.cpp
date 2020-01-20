@@ -1,5 +1,6 @@
 #include<iostream>
 #include<string.h>
+#include <stdlib.h>
 
 using namespace std;
 
@@ -56,7 +57,7 @@ int main(){
 	int N = 0, k = 0;
 	
 	N = LogIn();		
-	
+
 	PizzaMenu(); //se llama la funcion del menu principal
 	
 	return 0;
@@ -70,9 +71,7 @@ void PizzaMenu(){
 	int size = 0, size2 = 0, N = 0;
 	
 	HomeOrders *OrderList;
-	CustomInRestaurant *RestaurantList;
-	
-	N = LogIn();		
+	CustomInRestaurant *RestaurantList;		
 	
 	//se pide el numero de ordenes que se ingresaran
 	cout << "Cantidad de ordenes a domicilio a recibir: "; cin >> size;
@@ -278,7 +277,7 @@ void SearchRestaurantOrders(CustomInRestaurant* Restaurant, int size2){
 }
 
 //funcion que calcula el total de ventas
-vvoid TotalSales(HomeOrders* Order, int size, CustomInRestaurant* Restaurant, int size2){
+void TotalSales(HomeOrders* Order, int size, CustomInRestaurant* Restaurant, int size2){
 	//declaracion de variables
 	double TotalH = 0, TotalR = 0, VTotal = 0;
 	
