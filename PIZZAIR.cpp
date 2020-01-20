@@ -43,14 +43,10 @@ struct CustomInRestaurant{
 	
 };
 
-HomeOrders OrderList[5];
-CustomInRestaurant RestaurantList[5];
-int NumberOfOrders = 0;
-int NumberOrdersRestaurant = 0;
-
 //PROTOTIPOS DE LAS FUNCIONES
 
-void PizzaMenu(), OrderHomeDelivery(), OrderRestaurant(), LookForHomeDelivery(), SearchRestaurantOrders(), TotalSales();
+void PizzaMenu(), OrderHomeDelivery(HomeOrders* Order, int size), OrderRestaurant(CustomInRestaurant* Restaurant, int size2);
+void SearchRestaurantOrders(), TotalSales(), LookForHomeDelivery();
 int LogIn();
 
 
@@ -70,6 +66,21 @@ void PizzaMenu(){
 	//variables de la funcion
 	bool follow = true;
 	
+	int size = 0, size2 = 0, N = 0;
+	
+	HomeOrders *OrderList;
+	CustomInRestaurant *RestaurantList;
+	
+	N = LogIn();		
+	
+	//se pide el numero de ordenes que se ingresaran
+	cout << "Cantidad de ordenes a domicilio a recibir: "; cin >> size;
+	cout << "Cantidad de encargos a restaurante por recibir: "; cin >> size2;
+	
+	//reservando memoria
+	OrderList = new HomeOrders[size];
+	RestaurantList = new CustomInRestaurant[size2];
+	
 	do{
 		int option = 0;
 		//nosbre de la pizzaria
@@ -88,11 +99,11 @@ void PizzaMenu(){
 		
 		switch(option){
 			
-			case 1: OrderHomeDelivery(); break;
-			case 2: OrderRestaurant(); break;
-			case 3: LookForHomeDelivery(); break;
-			case 4: SearchRestaurantOrders(); break;
-			case 5: TotalSales(); break;
+			case 1: OrderHomeDelivery(OrderList, size); break;
+			case 2: OrderRestaurant(RestaurantList, size2); break;
+			case 3: //LookForHomeDelivery(); break;
+			case 4: //SearchRestaurantOrders(); break;
+			case 5: //TotalSales(); break;
 			case 6: LogIn(); break;
 			case 7: follow = false;
 			
@@ -103,74 +114,71 @@ void PizzaMenu(){
 }
 
 //funcion donde se piden las ordenes a domicilio
-void OrderHomeDelivery(){
+void OrderHomeDelivery(HomeOrders* Order, int size){
 	
-   if(NumberOfOrders < 5){
+     for(int i = 0; i < size; i++){
         // Solicitar datos al usuario
         cout << "Nombre del Cliente: ";
-        getline(cin, OrderList[NumberOfOrders].name);
+        getline(cin, Order[i].name);
         cout << "Direccion: \n";
         cout << "\tNo. Casa: ";
-        cin >> OrderList[NumberOfOrders].Address.HouseNumber;
+        cin >> Order[i].Address.HouseNumber;
         cin.ignore();
         cout << "\tColonia: ";
-        getline(cin, OrderList[NumberOfOrders].Address.Suburb);
+        getline(cin, Order[i].Address.Suburb);
         cout << "\tMunicipio: ";
-        getline(cin, OrderList[NumberOfOrders].Address.Municipality);
+        getline(cin, Order[i].Address.Municipality);
         cout << "\tDepartamento: ";
-        getline(cin, OrderList[NumberOfOrders].Address.State);
+        getline(cin, Order[i].Address.State);
         cout << "Telefono: ";
-        cin >> OrderList[NumberOfOrders].phone;
+        cin >> Order[i].phone;
         cin.ignore();
         cout << "Plato principal: ";
-        getline(cin, OrderList[NumberOfOrders].MainDish);
+        getline(cin, Order[i].MainDish);
         cout << "Entrada: ";
-        getline(cin, OrderList[NumberOfOrders].StarterPlate);
+        getline(cin, Order[i].StarterPlate);
         cout << "Bebida: ";
-        getline(cin, OrderList[NumberOfOrders].drink);
+        getline(cin, Order[i].drink);
         cout << "Monto: $";
-        cin >> OrderList[NumberOfOrders].amount;
+        cin >> Order[i].amount;
         cin.ignore();
         cout << "Tipo de pago: ";
-        getline(cin, OrderList[NumberOfOrders].PaymentType);
+        getline(cin, Order[i].PaymentType);
         cout << "Numero de la Orden: ";
-        cin >> OrderList[NumberOfOrders].CorrelativeNumber;
-        system("cls");
-        
-        // Aumentar contador de cantidad de libros
-       NumberOfOrders++;
+        cin >> Order[i].CorrelativeNumber;
+        cin.ignore();
+        cout << "\n";
+
    }
-   else cout << "Error, maximo de pedidos!\n";
          
 }
 
 //funcion donde se piden las encargos a restaurante
-void OrderRestaurant(){
+void OrderRestaurant(CustomInRestaurant* Restaurant, int size2){
 	
-  if(NumberOrdersRestaurant < 5){
+  for(int i = 0; i < size2; i++){
         // Solicitar datos al usuario
         cout << "Nombre del Cliente: ";
-        getline(cin, RestaurantList[NumberOrdersRestaurant].name);
+        getline(cin, Restaurant[i].name);
         cout << "Personas por mesa: ";
-        getline(cin, RestaurantList[NumberOrdersRestaurant].PeoplePerTable);
+        getline(cin, Restaurant[i].PeoplePerTable);
         cout << "Plato principal: ";
-        getline(cin, RestaurantList[NumberOrdersRestaurant].MainDish);      
+        getline(cin, Restaurant[i].MainDish);      
         cout << "Entrada: ";
-        getline(cin, RestaurantList[NumberOrdersRestaurant].StarterPlate);
+        getline(cin, Restaurant[i].StarterPlate);
         cout << "Bebida: ";
-        getline(cin, RestaurantList[NumberOrdersRestaurant].drink);
+        getline(cin, Restaurant[i].drink);
         cout << "Monto: $";
-        cin >> RestaurantList[NumberOrdersRestaurant].amount;
+        cin >> Restaurant[i].amount;
         cin.ignore();
         cout << "Tipo de pago: ";
-        getline(cin, RestaurantList[NumberOrdersRestaurant].PaymentType);
-		cout << "Numero de la Orden: ";
-        cin >> RestaurantList[NumberOrdersRestaurant].CorrelativeNumber;
-        
-        // Aumentar contador de cantidad de libros
-       NumberOrdersRestaurant++;
+        getline(cin, Restaurant[i].PaymentType);
+        cout << "Numero de la Orden: ";
+        cin >> Restaurant[i].CorrelativeNumber;
+        cin.ignore();
+        cout << "\n";
+
    }
-   else cout << "Error, maximo de pedidos!\n";
 	
 }
 
