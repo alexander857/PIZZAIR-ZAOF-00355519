@@ -44,13 +44,16 @@ struct CustomInRestaurant{
 };
 
 //PROTOTIPOS DE LAS FUNCIONES
-
+//funciones para pedir las ordenes
 void OrderHomeDelivery(HomeOrders* Order, int size), OrderRestaurant(CustomInRestaurant* Restaurant, int size2);
+//funciones para buscar las ordenes
 void SearchRestaurantOrders(CustomInRestaurant* Restaurant, int size2), LookForHomeDelivery(HomeOrders* Order, int size);
+//funcion que calcula las ventas totales
 void TotalSales(HomeOrders* Order, int size, CustomInRestaurant* Restaurant, int size2);
+//funciones para eliminar ordenes
 void DeleteHomeOrders(HomeOrders* Order, int size, int &N), DeleteOrdersRestaurant(CustomInRestaurant* Restaurant, int size2, int &N);
-bool PizzaMenu(int &N);
-int LogIn();
+bool PizzaMenu(int &N); //menu principal
+int LogIn(); //funcion de inicio de sesion
 
 
 int main(){
