@@ -221,11 +221,8 @@ int LogIn(){
 		if(option == 1){
 			
 			while(k == 0){
-
 				
-				cout << "Ingrese la clave: "; cin >> key;
-				
-				
+				cout << "Ingrese la clave: "; cin >> key;				
 				
 				if(key.compare(password) == 0) return 0;
 					
