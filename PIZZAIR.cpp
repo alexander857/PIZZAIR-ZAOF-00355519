@@ -52,6 +52,8 @@ void SearchRestaurantOrders(CustomInRestaurant* Restaurant, int size2), LookForH
 void TotalSales(HomeOrders* Order, int size, CustomInRestaurant* Restaurant, int size2);
 //funciones para eliminar ordenes
 void DeleteHomeOrders(HomeOrders* Order, int size, int &N), DeleteOrdersRestaurant(CustomInRestaurant* Restaurant, int size2, int &N);
+//funciones para ver ordenes
+void SeeHomeOrders(HomeOrders* Order, int size);
 bool PizzaMenu(int &N); //menu principal
 int LogIn(); //funcion de inicio de sesion
 
@@ -106,12 +108,13 @@ bool PizzaMenu(int &N){
 		cout<<"\n1-Agregar 1 pedido a domicilio\n";
 		cout << "2-Agregar 1 encargo en restaurante\n";
 		cout << "3-Ver pedidos a domicilio\n";
-		cout << "4-Ver encargos en restaurante\n";
-		cout << "5-Ver total de ventas\n";
-		cout << "6-Eliminar una orden a domicilio\n";
-		cout << "7-Eliminar un encargo a restaurante\n";
-		cout << "8-Cambiar de usuario\n";
-		cout << "9-Salir\n";
+		cout << "4-Buscar un pedido a domicilio\n";
+		cout << "5-Buscar un encargo en restaurante\n";
+		cout << "6-Ver total de ventas\n";
+		cout << "7-Eliminar una orden a domicilio\n";
+		cout << "8-Eliminar un encargo a restaurante\n";
+		cout << "9-Cambiar de usuario\n";
+		cout << "10-Salir\n";
 		cout << "\nOpcion: "; cin >> option;
 		cin.ignore();
 		
@@ -119,13 +122,14 @@ bool PizzaMenu(int &N){
 			
 			case 1: OrderHomeDelivery(OrderList, size); break;
 			case 2: OrderRestaurant(RestaurantList, size2); break;
-			case 3: LookForHomeDelivery(OrderList, size); break;
-			case 4: SearchRestaurantOrders(RestaurantList, size2); break;
-			case 5: TotalSales(OrderList, size, RestaurantList, size2); break;
-			case 6: DeleteHomeOrders(OrderList, size, N); break;
-			case 7: DeleteOrdersRestaurant(RestaurantList, size2, N); break;
-			case 8: Login = true;
-			case 9: follow = false;
+			case 3: SeeHomeOrders(OrderList, size); break;
+			case 4: LookForHomeDelivery(OrderList, size); break;
+			case 5: SearchRestaurantOrders(RestaurantList, size2); break;
+			case 6: TotalSales(OrderList, size, RestaurantList, size2); break;
+			case 7: DeleteHomeOrders(OrderList, size, N); break;
+			case 8: DeleteOrdersRestaurant(RestaurantList, size2, N); break;
+			case 9: Login = true;
+			case 10: follow = false;
 			
 		}	
 		
@@ -384,6 +388,40 @@ void DeleteOrdersRestaurant(CustomInRestaurant* Restaurant, int size2, int &N){
 		}
 		cout << "Orden no encontrada :( Quiza el nombre no esta registrado!" << endl;
 		
+	}
+		
+}
+
+//funcion para ver pedidos a domicilio
+void SeeHomeOrders(HomeOrders* Order, int size){
+		
+	//mostrando las ordenes a domicilio
+	for(int i = 0; i < size; i++){
+		
+		if(Order[i].CorrelativeNumber != 0){
+			
+			cout << "\nPEDIDO "<< i + 1 <<":\n";
+			cout << "Nombre: " << Order[i].name << '\n';
+			cout << "Direccion:\n";
+			cout << "\tNo. Casa: " << Order[i].Address.HouseNumber << '\n';
+			cout << "\tColonia: " << Order[i].Address.Suburb << '\n';
+			cout << "\tMunicipio: " << Order[i].Address.Municipality << '\n';
+			cout << "\tDepartamento: " << Order[i].Address.State << '\n';
+			cout << "Telefono: " << Order[i].phone << '\n';
+			cout << "Plato Principal: " << Order[i].MainDish << '\n';
+			cout << "Entrada: " << Order[i].StarterPlate << '\n';
+			cout << "Bebida: " << Order[i].drink << '\n';
+			cout << "Monto: $" << Order[i].amount << '\n';
+			cout << "Tipo de pago: " << Order[i].PaymentType << '\n';
+			cout << "Numero de la Orden: " << Order[i].CorrelativeNumber << '\n';
+			cout << "\n";
+			system("pause");
+			
+		}
+		else{
+			cout << "Aun no se ha ingresado ninguna orden!" << endl;
+			return;
+		}					
 	}
 		
 }
