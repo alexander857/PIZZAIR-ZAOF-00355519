@@ -48,6 +48,7 @@ struct CustomInRestaurant{
 void OrderHomeDelivery(HomeOrders* Order, int size), OrderRestaurant(CustomInRestaurant* Restaurant, int size2);
 void SearchRestaurantOrders(CustomInRestaurant* Restaurant, int size2), LookForHomeDelivery(HomeOrders* Order, int size);
 void TotalSales(HomeOrders* Order, int size, CustomInRestaurant* Restaurant, int size2);
+void DeleteHomeOrders(HomeOrders* Order, int size);
 bool PizzaMenu();
 int LogIn();
 
@@ -116,8 +117,9 @@ bool PizzaMenu(){
 			case 3: LookForHomeDelivery(OrderList, size); break;
 			case 4: SearchRestaurantOrders(RestaurantList, size2); break;
 			case 5: TotalSales(OrderList, size, RestaurantList, size2); break;
-			case 6: Login = true;
-			case 7: follow = false;
+			case 6: DeleteHomeOrders(OrderList, size); break;
+			case 7: Login = true;
+			case 8: follow = false;
 			
 		}	
 		
@@ -317,5 +319,39 @@ void TotalSales(HomeOrders* Order, int size, CustomInRestaurant* Restaurant, int
 	VTotal = TotalH + TotalR;
 	
 	cout << "Ventas Totales: $" << VTotal << endl; 
+	
+}
+
+//funcion para borrar ordenes
+void DeleteHomeOrders(HomeOrders* Order, int size){
+	
+	//declaracion de variables
+	string client;
+	
+	cout << "Ingrese el nombre del cliente que realizo la orden a eliminar: ";
+	getline(cin, client);
+	
+	//buscando la orden del cliente ingresado
+	for(int i = 0; i < size; i++){
+		
+		if(client.compare(Order[i].name) == 0){
+			
+			Order[i].name = " ";
+			Order[i].Address.HouseNumber = 0;
+			Order[i].Address.Suburb = " ";
+			Order[i].Address.Municipality = " ";
+			Order[i].Address.State = " ";
+			Order[i].phone << '\n';
+			Order[i].MainDish = " ";
+			Order[i].StarterPlate = " ";
+			Order[i].drink = " ";
+			Order[i].amount = 0;
+			Order[i].PaymentType = " ";
+			Order[i].CorrelativeNumber = 0;
+			return;
+		}
+		
+	}
+	cout << "Orden no encontrada :( Quiza el nombre no esta registrado!" << endl;
 	
 }
