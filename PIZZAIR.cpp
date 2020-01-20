@@ -45,27 +45,40 @@ struct CustomInRestaurant{
 
 //PROTOTIPOS DE LAS FUNCIONES
 
-void PizzaMenu(), OrderHomeDelivery(HomeOrders* Order, int size), OrderRestaurant(CustomInRestaurant* Restaurant, int size2);
+void OrderHomeDelivery(HomeOrders* Order, int size), OrderRestaurant(CustomInRestaurant* Restaurant, int size2);
 void SearchRestaurantOrders(CustomInRestaurant* Restaurant, int size2), LookForHomeDelivery(HomeOrders* Order, int size);
 void TotalSales(HomeOrders* Order, int size, CustomInRestaurant* Restaurant, int size2);
+bool PizzaMenu();
 int LogIn();
 
 
 int main(){
 	//DECLARACION DE VARIABLES 
 	int N = 0, k = 0;
+	bool A;	
+		
 	
-	N = LogIn();		
-
-	PizzaMenu(); //se llama la funcion del menu principal
+	while(k == 0){
+		
+		N = LogIn();
+		
+		system("cls"); 
+		A = PizzaMenu(); //se llama la funcion del menu principal
+		
+		//si A es false significa que el usuario en la funcion Pizza eligio salir, por lo tanto saldra del bucle while y termina el programa
+		if(A == false){
+			break;
+		}
+		//Caso contrario, A sea true significa que el usuario le dio cambiar de usuario y se mostrara nuevamente la funcion LogIn en el bucle while
+	}			
 	
 	return 0;
 }
 
 //menu principal del sistema de despacho
-void PizzaMenu(){
+bool PizzaMenu(){
 	//variables de la funcion
-	bool follow = true;
+	bool follow = true, Login = false;
 	
 	int size = 0, size2 = 0, N = 0;
 	
@@ -103,13 +116,14 @@ void PizzaMenu(){
 			case 3: LookForHomeDelivery(OrderList, size); break;
 			case 4: SearchRestaurantOrders(RestaurantList, size2); break;
 			case 5: TotalSales(OrderList, size, RestaurantList, size2); break;
-			case 6: LogIn(); break;
+			case 6: Login = true;
 			case 7: follow = false;
 			
 		}	
 		
-	}while(follow);
+	}while(follow || !Login);
 	
+	return follow || Login; //retorna true o false
 }
 
 //funcion donde se piden las ordenes a domicilio
