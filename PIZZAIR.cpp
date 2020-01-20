@@ -75,7 +75,7 @@ int main(){
 		if(A == false){
 			break;
 		}
-		//Caso contrario, A sea true significa que el usuario le dio cambiar de usuario y se mostrara nuevamente la funcion LogIn en el bucle while
+		
 	}			
 	
 	return 0;
@@ -112,7 +112,7 @@ bool PizzaMenu(int &N){
 		cout << "5-Buscar un pedido a domicilio\n";
 		cout << "6-Buscar un encargo en restaurante\n";
 		cout << "7-Ver total de ventas\n";
-		cout << "8-Eliminar una orden a domicilio\n";
+		cout << "8-Eliminar una pedido a domicilio\n";
 		cout << "9-Eliminar un encargo a restaurante\n";
 		cout << "U-Cambiar de usuario\n";
 		cout << "X-Salir\n";
@@ -130,14 +130,14 @@ bool PizzaMenu(int &N){
 			case '7': TotalSales(OrderList, size, RestaurantList, size2); break;
 			case '8': DeleteHomeOrders(OrderList, size, N); break;
 			case '9': DeleteOrdersRestaurant(RestaurantList, size2, N); break;
-			case 'u': Login = true;
+			case 'u': N = LogIn(); break;
 			case 'x': follow = false;
 			
 		}	
 		
 	}while(follow);
 	
-	return follow || Login; //retorna true o false
+	return follow; //retorna true o false
 }
 
 //funcion donde se piden las ordenes a domicilio
