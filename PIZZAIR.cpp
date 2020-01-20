@@ -332,23 +332,13 @@ void DeleteHomeOrders(HomeOrders* Order, int size){
 	cout << "Ingrese el nombre del cliente que realizo la orden a eliminar: ";
 	getline(cin, client);
 	
-	//buscando la orden del cliente ingresado
+	//eliminando orden del cliente ingresado
 	for(int i = 0; i < size; i++){
 		
 		if(client.compare(Order[i].name) == 0){
 			
 			Order[i].name = " ";
-			Order[i].Address.HouseNumber = 0;
-			Order[i].Address.Suburb = " ";
-			Order[i].Address.Municipality = " ";
-			Order[i].Address.State = " ";
-			Order[i].phone << '\n';
-			Order[i].MainDish = " ";
-			Order[i].StarterPlate = " ";
-			Order[i].drink = " ";
-			Order[i].amount = 0;
-			Order[i].PaymentType = " ";
-			Order[i].CorrelativeNumber = 0;
+
 			return;
 		}
 		
@@ -365,19 +355,12 @@ void DeleteOrdersRestaurant(CustomInRestaurant* Restaurant, int size2){
 	cout << "Ingrese el nombre del cliente que realizo la orden a eliminar: ";
 	getline(cin, client);
 	
-	//buscando la orden del cliente ingresado
+	//eliminando orden del cliente ingresado
 	for(int i = 0; i < size2; i++){
 		
 		if(client.compare(Restaurant[i].name) == 0){
 			
 			Restaurant[i].name = " ";
-			Restaurant[i].PeoplePerTable = " ";
-			Restaurant[i].MainDish = " ";
-			Restaurant[i].StarterPlate = " ";
-			Restaurant[i].drink = " ";
-			Restaurant[i].amount = 0;
-			Restaurant[i].PaymentType = " ";
-			Restaurant[i].CorrelativeNumber = 0;
 
 			return;
 		}
