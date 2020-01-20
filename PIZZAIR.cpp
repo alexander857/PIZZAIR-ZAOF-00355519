@@ -46,7 +46,7 @@ struct CustomInRestaurant{
 //PROTOTIPOS DE LAS FUNCIONES
 
 void PizzaMenu(), OrderHomeDelivery(HomeOrders* Order, int size), OrderRestaurant(CustomInRestaurant* Restaurant, int size2);
-void SearchRestaurantOrders(), TotalSales(), LookForHomeDelivery(HomeOrders* Order, int size);
+void SearchRestaurantOrders(CustomInRestaurant* Restaurant, int size2), TotalSales(), LookForHomeDelivery(HomeOrders* Order, int size);
 int LogIn();
 
 
@@ -102,7 +102,7 @@ void PizzaMenu(){
 			case 1: OrderHomeDelivery(OrderList, size); break;
 			case 2: OrderRestaurant(RestaurantList, size2); break;
 			case 3: LookForHomeDelivery(OrderList, size); break;
-			case 4: //SearchRestaurantOrders(); break;
+			case 4: SearchRestaurantOrders(RestaurantList, size2); break;
 			case 5: //TotalSales(); break;
 			case 6: LogIn(); break;
 			case 7: follow = false;
@@ -245,7 +245,7 @@ void LookForHomeDelivery(HomeOrders* Order, int size){
 }
 
 //funcion de buscar las ordenes a restaurante
-void SearchRestaurantOrders(){
+void SearchRestaurantOrders(CustomInRestaurant* Restaurant, int size2){
 	//declaracion de variables
 	string client;
 	
@@ -253,19 +253,19 @@ void SearchRestaurantOrders(){
 	getline(cin, client);
 	
 	//buscando la orden del cliente ingresado
-	for(int i = 0; i < NumberOrdersRestaurant; i++){
+	for(int i = 0; i < size2; i++){
 		
-		if(client.compare(OrderList[i].name) == 0){
+		if(client.compare(Restaurant[i].name) == 0){
 			
 			cout << "\nOrden del cliente ingresado:\n";
-			cout << "Nombre: " << RestaurantList[i].name << '\n';
-			cout << "Personas por mesa: " << RestaurantList[i].PeoplePerTable << '\n';
-			cout << "Plato Principal: " << RestaurantList[i].MainDish << '\n';
-			cout << "Entrada: " << RestaurantList[i].StarterPlate << '\n';
-			cout << "Bebida: " << RestaurantList[i].drink << '\n';
-			cout << "Monto: $" << RestaurantList[i].amount << '\n';
-			cout << "Tipo de pago: " << RestaurantList[i].PaymentType << '\n';
-			cout << "Numero de la Orden: " << RestaurantList[i].CorrelativeNumber << '\n';
+			cout << "Nombre: " << Restaurant[i].name << '\n';
+			cout << "Personas por mesa: " << Restaurant[i].PeoplePerTable << '\n';
+			cout << "Plato Principal: " << Restaurant[i].MainDish << '\n';
+			cout << "Entrada: " << Restaurant[i].StarterPlate << '\n';
+			cout << "Bebida: " << Restaurant[i].drink << '\n';
+			cout << "Monto: $" << Restaurant[i].amount << '\n';
+			cout << "Tipo de pago: " << Restaurant[i].PaymentType << '\n';
+			cout << "Numero de la Orden: " << Restaurant[i].CorrelativeNumber << '\n';
 			cout << "\n";
 			return;
 		}
