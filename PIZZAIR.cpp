@@ -121,15 +121,15 @@ bool PizzaMenu(int &N){
 		
 		switch(option){
 			
-			case 1: OrderHomeDelivery(OrderList, size); break;
-			case 2: OrderRestaurant(RestaurantList, size2); break;
-			case 3: SeeHomeOrders(OrderList, size); break;
-			case 4: SeeRestaurantOrders(RestaurantList, size2); break;
-			case 5: LookForHomeDelivery(OrderList, size); break;
-			case 6: SearchRestaurantOrders(RestaurantList, size2); break;
-			case 7: TotalSales(OrderList, size, RestaurantList, size2); break;
-			case 8: DeleteHomeOrders(OrderList, size, N); break;
-			case 9: DeleteOrdersRestaurant(RestaurantList, size2, N); break;
+			case '1': OrderHomeDelivery(OrderList, size); break;
+			case '2': OrderRestaurant(RestaurantList, size2); break;
+			case '3': SeeHomeOrders(OrderList, size); break;
+			case '4': SeeRestaurantOrders(RestaurantList, size2); break;
+			case '5': LookForHomeDelivery(OrderList, size); break;
+			case '6': SearchRestaurantOrders(RestaurantList, size2); break;
+			case '7': TotalSales(OrderList, size, RestaurantList, size2); break;
+			case '8': DeleteHomeOrders(OrderList, size, N); break;
+			case '9': DeleteOrdersRestaurant(RestaurantList, size2, N); break;
 			case 'u': Login = true;
 			case 'x': follow = false;
 			
