@@ -184,7 +184,8 @@ void OrderRestaurant(CustomInRestaurant* Restaurant, int size2){
 //funcion de inicio de sesion
 int LogIn(){
 	//declaracion de variables
-	char password[]="delete", key[6];
+	string password = "delete";
+	string key;
 	int option = 0, k = 0;
 	
 	while(k == 0){
@@ -198,14 +199,17 @@ int LogIn(){
 		if(option == 1){
 			
 			while(k == 0){
+
+				
 				cout << "Ingrese la clave: "; cin >> key;
 				
-				if(strcmp(password,key) == 0) return 0;
+				
+				
+				if(key.compare(password) == 0) return 0;
 					
 			}	
-		}
-		else if(option == 2) return 1;		
-		
+		}		
+		else if(option == 2) return 1;
 	}	
 }
 
