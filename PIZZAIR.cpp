@@ -49,7 +49,7 @@ void OrderHomeDelivery(HomeOrders* Order, int size), OrderRestaurant(CustomInRes
 void SearchRestaurantOrders(CustomInRestaurant* Restaurant, int size2), LookForHomeDelivery(HomeOrders* Order, int size);
 void TotalSales(HomeOrders* Order, int size, CustomInRestaurant* Restaurant, int size2);
 void DeleteHomeOrders(HomeOrders* Order, int size, int &N), DeleteOrdersRestaurant(CustomInRestaurant* Restaurant, int size2, int &N);
-bool PizzaMenu();
+bool PizzaMenu(int &N);
 int LogIn();
 
 
@@ -105,8 +105,10 @@ bool PizzaMenu(int &N){
 		cout << "3-Ver pedidos a domicilio\n";
 		cout << "4-Ver encargos en restaurante\n";
 		cout << "5-Ver total de ventas\n";
-		cout << "6-Cambiar de usuario\n";
-		cout << "7-Salir\n";
+		cout << "6-Eliminar una orden a domicilio\n";
+		cout << "7-Eliminar un encargo a restaurante\n";
+		cout << "8-Cambiar de usuario\n";
+		cout << "9-Salir\n";
 		cout << "\nOpcion: "; cin >> option;
 		cin.ignore();
 		
@@ -124,7 +126,7 @@ bool PizzaMenu(int &N){
 			
 		}	
 		
-	}while(follow || !Login);
+	}while(follow);
 	
 	return follow || Login; //retorna true o false
 }
