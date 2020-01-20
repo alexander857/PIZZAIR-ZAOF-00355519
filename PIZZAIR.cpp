@@ -48,7 +48,7 @@ struct CustomInRestaurant{
 void OrderHomeDelivery(HomeOrders* Order, int size), OrderRestaurant(CustomInRestaurant* Restaurant, int size2);
 void SearchRestaurantOrders(CustomInRestaurant* Restaurant, int size2), LookForHomeDelivery(HomeOrders* Order, int size);
 void TotalSales(HomeOrders* Order, int size, CustomInRestaurant* Restaurant, int size2);
-void DeleteHomeOrders(HomeOrders* Order, int size, int &N), DeleteOrdersRestaurant(CustomInRestaurant* Restaurant, int size2);
+void DeleteHomeOrders(HomeOrders* Order, int size, int &N), DeleteOrdersRestaurant(CustomInRestaurant* Restaurant, int size2, int &N);
 bool PizzaMenu();
 int LogIn();
 
@@ -118,7 +118,7 @@ bool PizzaMenu(int &N){
 			case 4: SearchRestaurantOrders(RestaurantList, size2); break;
 			case 5: TotalSales(OrderList, size, RestaurantList, size2); break;
 			case 6: DeleteHomeOrders(OrderList, size, N); break;
-			case 7: DeleteOrdersRestaurant(RestaurantList, size2); break;
+			case 7: DeleteOrdersRestaurant(RestaurantList, size2, N); break;
 			case 8: Login = true;
 			case 9: follow = false;
 			
@@ -356,24 +356,32 @@ void DeleteHomeOrders(HomeOrders* Order, int size, int &N){
 }
 
 //funcion de eliminar encargos a restaurante
-void DeleteOrdersRestaurant(CustomInRestaurant* Restaurant, int size2){
+void DeleteOrdersRestaurant(CustomInRestaurant* Restaurant, int size2, int &N){
 	//declaracion de variables
 	string client;
 	
-	cout << "Ingrese el nombre del cliente que realizo la orden a eliminar: ";
-	getline(cin, client);
-	
-	//eliminando orden del cliente ingresado
-	for(int i = 0; i < size2; i++){
+	if(N == 1){
+		cout << "\nSOLO EL ADMINISTRADOR PUEDE HACER CAMBIOS EN LAS ORDENES!\n" << endl;
+		return;
+	}
+	else{
 		
-		if(client.compare(Restaurant[i].name) == 0){
+		cout << "Ingrese el nombre del cliente que realizo la orden a eliminar: ";
+		getline(cin, client);
+		
+		//eliminando la orden del cliente ingresado
+		for(int i = 0; i < size2; i++){
 			
-			Restaurant[i].name = " ";
-
-			return;
+			if(client.compare(Restaurant[i].name) == 0){
+				
+				Restaurant[i].name = " ";
+	
+				return;
+			}
+			
 		}
+		cout << "Orden no encontrada :( Quiza el nombre no esta registrado!" << endl;
 		
 	}
-	cout << "Orden no encontrada :( Quiza el nombre no esta registrado!" << endl;
 		
 }
