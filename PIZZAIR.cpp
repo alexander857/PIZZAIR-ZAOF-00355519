@@ -100,7 +100,7 @@ bool PizzaMenu(int &N){
 	RestaurantList = new CustomInRestaurant[size2];
 	
 	do{
-		int option = 0;
+		char option;
 		//nosbre de la pizzaria
 		cout<<"\nPIZZAIR"<<endl;
 		
@@ -114,8 +114,8 @@ bool PizzaMenu(int &N){
 		cout << "7-Ver total de ventas\n";
 		cout << "8-Eliminar una orden a domicilio\n";
 		cout << "9-Eliminar un encargo a restaurante\n";
-		cout << "10-Cambiar de usuario\n";
-		cout << "11-Salir\n";
+		cout << "U-Cambiar de usuario\n";
+		cout << "X-Salir\n";
 		cout << "\nOpcion: "; cin >> option;
 		cin.ignore();
 		
@@ -130,8 +130,8 @@ bool PizzaMenu(int &N){
 			case 7: TotalSales(OrderList, size, RestaurantList, size2); break;
 			case 8: DeleteHomeOrders(OrderList, size, N); break;
 			case 9: DeleteOrdersRestaurant(RestaurantList, size2, N); break;
-			case 10: Login = true;
-			case 11: follow = false;
+			case 'u': Login = true;
+			case 'x': follow = false;
 			
 		}	
 		
