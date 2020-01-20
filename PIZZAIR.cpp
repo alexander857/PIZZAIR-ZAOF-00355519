@@ -46,7 +46,8 @@ struct CustomInRestaurant{
 //PROTOTIPOS DE LAS FUNCIONES
 
 void PizzaMenu(), OrderHomeDelivery(HomeOrders* Order, int size), OrderRestaurant(CustomInRestaurant* Restaurant, int size2);
-void SearchRestaurantOrders(CustomInRestaurant* Restaurant, int size2), TotalSales(), LookForHomeDelivery(HomeOrders* Order, int size);
+void SearchRestaurantOrders(CustomInRestaurant* Restaurant, int size2), LookForHomeDelivery(HomeOrders* Order, int size);
+void TotalSales(HomeOrders* Order, int size, CustomInRestaurant* Restaurant, int size2);
 int LogIn();
 
 
@@ -103,7 +104,7 @@ void PizzaMenu(){
 			case 2: OrderRestaurant(RestaurantList, size2); break;
 			case 3: LookForHomeDelivery(OrderList, size); break;
 			case 4: SearchRestaurantOrders(RestaurantList, size2); break;
-			case 5: //TotalSales(); break;
+			case 5: TotalSales(OrderList, size, RestaurantList, size2); break;
 			case 6: LogIn(); break;
 			case 7: follow = false;
 			
@@ -277,17 +278,26 @@ void SearchRestaurantOrders(CustomInRestaurant* Restaurant, int size2){
 }
 
 //funcion que calcula el total de ventas
-void TotalSales(){
+vvoid TotalSales(HomeOrders* Order, int size, CustomInRestaurant* Restaurant, int size2){
 	//declaracion de variables
-	double Total = 0;
+	double TotalH = 0, TotalR = 0, VTotal = 0;
 	
-	for(int i = 0; i < NumberOfOrders; i++){
+	//sumando las ventas a domicilio
+	for(int i = 0; i < size; i++){
 		
-		Total += OrderList[i].amount;
-		Total += RestaurantList[i].amount;
+		TotalH += Order[i].amount;
+		
+	}
+	//sumando las ventas a restaurante
+	for(int i = 0; i< size2; i++){
+		
+		TotalR += Restaurant[i].amount;
 		
 	}
 	
-	cout << "Ventas Totales: $" << Total << endl; 
+	//sumando las ventas a domicilio y las ventas a restaurante y tenemos el total
+	VTotal = TotalH + TotalR;
+	
+	cout << "Ventas Totales: $" << VTotal << endl; 
 	
 }
