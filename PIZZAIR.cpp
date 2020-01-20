@@ -48,7 +48,7 @@ struct CustomInRestaurant{
 void OrderHomeDelivery(HomeOrders* Order, int size), OrderRestaurant(CustomInRestaurant* Restaurant, int size2);
 void SearchRestaurantOrders(CustomInRestaurant* Restaurant, int size2), LookForHomeDelivery(HomeOrders* Order, int size);
 void TotalSales(HomeOrders* Order, int size, CustomInRestaurant* Restaurant, int size2);
-void DeleteHomeOrders(HomeOrders* Order, int size);
+void DeleteHomeOrders(HomeOrders* Order, int size), DeleteOrdersRestaurant(CustomInRestaurant* Restaurant, int size2);
 bool PizzaMenu();
 int LogIn();
 
@@ -118,8 +118,9 @@ bool PizzaMenu(){
 			case 4: SearchRestaurantOrders(RestaurantList, size2); break;
 			case 5: TotalSales(OrderList, size, RestaurantList, size2); break;
 			case 6: DeleteHomeOrders(OrderList, size); break;
-			case 7: Login = true;
-			case 8: follow = false;
+			case 7: DeleteOrdersRestaurant(RestaurantList, size2); break;
+			case 8: Login = true;
+			case 9: follow = false;
 			
 		}	
 		
@@ -354,4 +355,34 @@ void DeleteHomeOrders(HomeOrders* Order, int size){
 	}
 	cout << "Orden no encontrada :( Quiza el nombre no esta registrado!" << endl;
 	
+}
+
+//funcion de eliminar encargos a restaurante
+void DeleteOrdersRestaurant(CustomInRestaurant* Restaurant, int size2){
+	//declaracion de variables
+	string client;
+	
+	cout << "Ingrese el nombre del cliente que realizo la orden a eliminar: ";
+	getline(cin, client);
+	
+	//buscando la orden del cliente ingresado
+	for(int i = 0; i < size2; i++){
+		
+		if(client.compare(Restaurant[i].name) == 0){
+			
+			Restaurant[i].name = " ";
+			Restaurant[i].PeoplePerTable = " ";
+			Restaurant[i].MainDish = " ";
+			Restaurant[i].StarterPlate = " ";
+			Restaurant[i].drink = " ";
+			Restaurant[i].amount = 0;
+			Restaurant[i].PaymentType = " ";
+			Restaurant[i].CorrelativeNumber = 0;
+
+			return;
+		}
+		
+	}
+	cout << "Orden no encontrada :( Quiza el nombre no esta registrado!" << endl;
+		
 }
