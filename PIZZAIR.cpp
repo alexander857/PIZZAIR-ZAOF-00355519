@@ -46,7 +46,7 @@ struct CustomInRestaurant{
 //PROTOTIPOS DE LAS FUNCIONES
 
 void PizzaMenu(), OrderHomeDelivery(HomeOrders* Order, int size), OrderRestaurant(CustomInRestaurant* Restaurant, int size2);
-void SearchRestaurantOrders(), TotalSales(), LookForHomeDelivery();
+void SearchRestaurantOrders(), TotalSales(), LookForHomeDelivery(HomeOrders* Order, int size);
 int LogIn();
 
 
@@ -101,7 +101,7 @@ void PizzaMenu(){
 			
 			case 1: OrderHomeDelivery(OrderList, size); break;
 			case 2: OrderRestaurant(RestaurantList, size2); break;
-			case 3: //LookForHomeDelivery(); break;
+			case 3: LookForHomeDelivery(OrderList, size); break;
 			case 4: //SearchRestaurantOrders(); break;
 			case 5: //TotalSales(); break;
 			case 6: LogIn(); break;
@@ -211,7 +211,7 @@ int LogIn(){
 }
 
 //funcion para buscar ordenes a domicilio
-void LookForHomeDelivery(){
+void LookForHomeDelivery(HomeOrders* Order, int size){
 	//declaracion de variables
 	string client;
 	
@@ -219,28 +219,27 @@ void LookForHomeDelivery(){
 	getline(cin, client);
 	
 	//buscando la orden del cliente ingresado
-	for(int i = 0; i < NumberOfOrders; i++){
+	for(int i = 0; i < size; i++){
 		
-		if(client.compare(OrderList[i].name) == 0){
+		if(client.compare(Order[i].name) == 0){
 			
-			cout << "Orden dle cliente ingresado:\n";
-			cout << "Nombre: " << OrderList[i].name << '\n';
+			cout << "\nOrden del cliente ingresado:\n";
+			cout << "Nombre: " << Order[i].name << '\n';
 			cout << "Direccion:\n";
-			cout << "\tNo. Casa: " << OrderList[i].Address.HouseNumber << '\n';
-			cout << "\tColonia: " << OrderList[i].Address.Suburb << '\n';
-			cout << "\tMunicipio: " << OrderList[i].Address.Municipality << '\n';
-			cout << "\tDepartamento: " << OrderList[i].Address.State << '\n';
-			cout << "Telefono: " << OrderList[i].phone << '\n';
-			cout << "Plato Principal: " << OrderList[i].MainDish << '\n';
-			cout << "Entrada: " << OrderList[i].StarterPlate << '\n';
-			cout << "Bebida: " << OrderList[i].drink << '\n';
-			cout << "Monto: $" << OrderList[i].amount << '\n';
-			cout << "Tipo de pago: " << OrderList[i].PaymentType << '\n';
-			cout << "Numero de la Orden: " << OrderList[i].CorrelativeNumber << '\n';
+			cout << "\tNo. Casa: " << Order[i].Address.HouseNumber << '\n';
+			cout << "\tColonia: " << Order[i].Address.Suburb << '\n';
+			cout << "\tMunicipio: " << Order[i].Address.Municipality << '\n';
+			cout << "\tDepartamento: " << Order[i].Address.State << '\n';
+			cout << "Telefono: " << Order[i].phone << '\n';
+			cout << "Plato Principal: " << Order[i].MainDish << '\n';
+			cout << "Entrada: " << Order[i].StarterPlate << '\n';
+			cout << "Bebida: " << Order[i].drink << '\n';
+			cout << "Monto: $" << Order[i].amount << '\n';
+			cout << "Tipo de pago: " << Order[i].PaymentType << '\n';
+			cout << "Numero de la Orden: " << Order[i].CorrelativeNumber << '\n';
 			cout << "\n";
 			return;
 		}
-		
 	}
 	cout << "Orden no encontrada :( Quiza el nombre no esta registrado!" << endl;
 }
