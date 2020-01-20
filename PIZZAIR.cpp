@@ -73,8 +73,8 @@ void PizzaMenu(){
 	CustomInRestaurant *RestaurantList;		
 	
 	//se pide el numero de ordenes que se ingresaran
-	cout << "Cantidad de ordenes a domicilio a recibir: "; cin >> size;
-	cout << "Cantidad de encargos a restaurante por recibir: "; cin >> size2;
+	cout << "\nCantidad de ordenes a domicilio a recibir: "; cin >> size;
+	cout << "\nCantidad de encargos a restaurante por recibir: "; cin >> size2;
 	
 	//reservando memoria
 	OrderList = new HomeOrders[size];
@@ -83,7 +83,7 @@ void PizzaMenu(){
 	do{
 		int option = 0;
 		//nosbre de la pizzaria
-		cout<<"PIZZAIR\n"<<endl;
+		cout<<"\nPIZZAIR"<<endl;
 		
 		//menu de opciones
 		cout<<"\n1-Agregar 1 pedido a domicilio\n";
@@ -117,7 +117,7 @@ void OrderHomeDelivery(HomeOrders* Order, int size){
 	
      for(int i = 0; i < size; i++){
         // Solicitar datos al usuario
-        cout << "Nombre del Cliente: ";
+        cout << "\nNombre del Cliente: ";
         getline(cin, Order[i].name);
         cout << "Direccion: \n";
         cout << "\tNo. Casa: ";
@@ -157,7 +157,7 @@ void OrderRestaurant(CustomInRestaurant* Restaurant, int size2){
 	
   for(int i = 0; i < size2; i++){
         // Solicitar datos al usuario
-        cout << "Nombre del Cliente: ";
+        cout << "\nNombre del Cliente: ";
         getline(cin, Restaurant[i].name);
         cout << "Personas por mesa: ";
         getline(cin, Restaurant[i].PeoplePerTable);
@@ -210,7 +210,9 @@ int LogIn(){
 			}	
 		}		
 		else if(option == 2) return 1;
+		
 	}	
+	
 }
 
 //funcion para buscar ordenes a domicilio
@@ -244,7 +246,7 @@ void LookForHomeDelivery(HomeOrders* Order, int size){
 			return;
 		}
 	}
-	cout << "Orden no encontrada :( Quiza el nombre no esta registrado!" << endl;
+	cout << "\nOrden no encontrada :( Quiza el nombre no esta registrado!" << endl;
 }
 
 //funcion de buscar las ordenes a restaurante
