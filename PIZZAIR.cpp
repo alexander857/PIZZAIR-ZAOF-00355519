@@ -48,7 +48,7 @@ struct CustomInRestaurant{
 void OrderHomeDelivery(HomeOrders* Order, int size), OrderRestaurant(CustomInRestaurant* Restaurant, int size2);
 void SearchRestaurantOrders(CustomInRestaurant* Restaurant, int size2), LookForHomeDelivery(HomeOrders* Order, int size);
 void TotalSales(HomeOrders* Order, int size, CustomInRestaurant* Restaurant, int size2);
-void DeleteHomeOrders(HomeOrders* Order, int size), DeleteOrdersRestaurant(CustomInRestaurant* Restaurant, int size2);
+void DeleteHomeOrders(HomeOrders* Order, int size, int &N), DeleteOrdersRestaurant(CustomInRestaurant* Restaurant, int size2);
 bool PizzaMenu();
 int LogIn();
 
@@ -64,7 +64,7 @@ int main(){
 		N = LogIn();
 		
 		system("cls"); 
-		A = PizzaMenu(); //se llama la funcion del menu principal
+		A = PizzaMenu(N); //se llama la funcion del menu principal
 		
 		//si A es false significa que el usuario en la funcion Pizza eligio salir, por lo tanto saldra del bucle while y termina el programa
 		if(A == false){
@@ -77,11 +77,11 @@ int main(){
 }
 
 //menu principal del sistema de despacho
-bool PizzaMenu(){
+bool PizzaMenu(int &N){
 	//variables de la funcion
 	bool follow = true, Login = false;
 	
-	int size = 0, size2 = 0, N = 0;
+	int size = 0, size2 = 0;
 	
 	HomeOrders *OrderList;
 	CustomInRestaurant *RestaurantList;		
@@ -117,7 +117,7 @@ bool PizzaMenu(){
 			case 3: LookForHomeDelivery(OrderList, size); break;
 			case 4: SearchRestaurantOrders(RestaurantList, size2); break;
 			case 5: TotalSales(OrderList, size, RestaurantList, size2); break;
-			case 6: DeleteHomeOrders(OrderList, size); break;
+			case 6: DeleteHomeOrders(OrderList, size, N); break;
 			case 7: DeleteOrdersRestaurant(RestaurantList, size2); break;
 			case 8: Login = true;
 			case 9: follow = false;
@@ -324,26 +324,34 @@ void TotalSales(HomeOrders* Order, int size, CustomInRestaurant* Restaurant, int
 }
 
 //funcion para borrar ordenes
-void DeleteHomeOrders(HomeOrders* Order, int size){
+void DeleteHomeOrders(HomeOrders* Order, int size, int &N){
 	
 	//declaracion de variables
 	string client;
 	
-	cout << "Ingrese el nombre del cliente que realizo la orden a eliminar: ";
-	getline(cin, client);
-	
-	//eliminando orden del cliente ingresado
-	for(int i = 0; i < size; i++){
+	if(N == 1){
+		cout << "\nSOLO EL ADMINISTRADOR PUEDE HACER CAMBIOS EN LAS ORDENES!\n" << endl;
+		return;
+	}
+	else{
 		
-		if(client.compare(Order[i].name) == 0){
+		cout << "Ingrese el nombre del cliente que realizo la orden a eliminar: ";
+		getline(cin, client);
+		
+		//eliminando la orden del cliente ingresado
+		for(int i = 0; i < size; i++){
 			
-			Order[i].name = " ";
-
-			return;
+			if(client.compare(Order[i].name) == 0){
+				
+				Order[i].name = " ";
+	
+				return;
+			}
+			
 		}
+		cout << "Orden no encontrada :( Quiza el nombre no esta registrado!" << endl;	
 		
 	}
-	cout << "Orden no encontrada :( Quiza el nombre no esta registrado!" << endl;
 	
 }
 
