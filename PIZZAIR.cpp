@@ -418,7 +418,7 @@ void SeeHomeOrders(HomeOrders* Order, int size){
 			
 		}
 		else{
-			cout << "\nAun no se ha ingresado ninguna orden!" << endl;
+			cout << "\nAun no se ha ingresado ningun pedido a domicilio!" << endl;
 			return;
 		}					
 	}		
@@ -445,7 +445,7 @@ void SeeRestaurantOrders(CustomInRestaurant* Restaurant, int size2){
 					
 		}
 		else{
-			cout << "\nAun no se ha ingresado ninguna orden!" << endl;
+			cout << "\nAun no se ha ingresado ningun encargo a restaurante!" << endl;
 			return;
 		}					
 	}		
