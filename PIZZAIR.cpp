@@ -66,9 +66,9 @@ int main(){
 	
 	while(k == 0){
 		
-		N = LogIn();
+		N = LogIn(); //se llama funcion de inicio de sesion
 		
-		system("cls"); 
+		 
 		A = PizzaMenu(N); //se llama la funcion del menu principal
 		
 		//si A es false significa que el usuario en la funcion Pizza eligio salir, por lo tanto saldra del bucle while y termina el programa
@@ -93,7 +93,7 @@ bool PizzaMenu(int &N){
 	
 	//se pide el numero de ordenes que se ingresaran
 	cout << "\nCantidad de ordenes a domicilio a recibir: "; cin >> size;
-	cout << "\nCantidad de encargos a restaurante por recibir: "; cin >> size2;
+	cout << "Cantidad de encargos a restaurante por recibir: "; cin >> size2;
 	
 	//reservando memoria
 	OrderList = new HomeOrders[size];
@@ -120,7 +120,7 @@ bool PizzaMenu(int &N){
 		cin.ignore();
 		
 		switch(option){
-			
+			//funciones llamadas al menu
 			case '1': OrderHomeDelivery(OrderList, size); break;
 			case '2': OrderRestaurant(RestaurantList, size2); break;
 			case '3': SeeHomeOrders(OrderList, size); break;
@@ -219,7 +219,7 @@ int LogIn(){
 	while(k == 0){
 		
 		//menu para elegir como se ingresara al sistema
-		cout << "SOLO PERSONAL AUTORIZADO!\n" << endl;
+		cout << "\nSOLO PERSONAL AUTORIZADO!\n" << endl;
 		cout << "\n1.Iniciar sesion como Administrador\n";
 		cout << "2.Iniciar sesion como Empleado\n";
 		cout << "\nOpcion: "; cin >> option;
@@ -227,7 +227,7 @@ int LogIn(){
 		if(option == 1){
 			
 			while(k == 0){
-				
+				//se pide la contraseña
 				cout << "Ingrese la clave: "; cin >> key;				
 				
 				if(key.compare(password) == 0) return 0;
@@ -245,7 +245,7 @@ void LookForHomeDelivery(HomeOrders* Order, int size){
 	//declaracion de variables
 	string client;
 	
-	cout << "Ingrese el nombre del cliente: ";
+	cout << "\nIngrese el nombre del cliente: ";
 	getline(cin, client);
 	
 	//buscando la orden del cliente ingresado
@@ -279,7 +279,7 @@ void SearchRestaurantOrders(CustomInRestaurant* Restaurant, int size2){
 	//declaracion de variables
 	string client;
 	
-	cout << "Ingrese el nombre del cliente: ";
+	cout << "\nIngrese el nombre del cliente: ";
 	getline(cin, client);
 	
 	//buscando la orden del cliente ingresado
@@ -301,7 +301,7 @@ void SearchRestaurantOrders(CustomInRestaurant* Restaurant, int size2){
 		}
 		
 	}
-	cout << "Orden no encontrada :( Quiza el nombre no esta registrado!" << endl;
+	cout << "\nOrden no encontrada :( Quiza el nombre no esta registrado!" << endl;
 	
 	
 }
@@ -327,11 +327,11 @@ void TotalSales(HomeOrders* Order, int size, CustomInRestaurant* Restaurant, int
 	//sumando las ventas a domicilio y las ventas a restaurante y tenemos el total
 	VTotal = TotalH + TotalR;
 	
-	cout << "Ventas Totales: $" << VTotal << endl; 
+	cout << "\nVentas Totales: $" << VTotal << endl; 
 	
 }
 
-//funcion para borrar ordenes
+//funcion para borrar ordenes a domicilio
 void DeleteHomeOrders(HomeOrders* Order, int size, int &N){
 	
 	//declaracion de variables
@@ -343,7 +343,7 @@ void DeleteHomeOrders(HomeOrders* Order, int size, int &N){
 	}
 	else{
 		
-		cout << "Ingrese el nombre del cliente que realizo la orden a eliminar: ";
+		cout << "\nIngrese el nombre del cliente que realizo la orden a eliminar: ";
 		getline(cin, client);
 		
 		//eliminando la orden del cliente ingresado
@@ -351,13 +351,13 @@ void DeleteHomeOrders(HomeOrders* Order, int size, int &N){
 			
 			if(client.compare(Order[i].name) == 0){
 				
-				Order[i].name = " ";
-	
+				Order[i].name = "Esta orden ya no esta disponible, ha sido eliminada!";
+				cout << "\nORDEN ELIMINADA!\n";
 				return;
 			}
 			
 		}
-		cout << "Orden no encontrada :( Quiza el nombre no esta registrado!" << endl;	
+		cout << "\nOrden no encontrada :( Quiza el nombre no esta registrado!" << endl;	
 		
 	}
 	
@@ -374,7 +374,7 @@ void DeleteOrdersRestaurant(CustomInRestaurant* Restaurant, int size2, int &N){
 	}
 	else{
 		
-		cout << "Ingrese el nombre del cliente que realizo la orden a eliminar: ";
+		cout << "\nIngrese el nombre del cliente que realizo la orden a eliminar: ";
 		getline(cin, client);
 		
 		//eliminando la orden del cliente ingresado
@@ -382,16 +382,15 @@ void DeleteOrdersRestaurant(CustomInRestaurant* Restaurant, int size2, int &N){
 			
 			if(client.compare(Restaurant[i].name) == 0){
 				
-				Restaurant[i].name = " ";
-	
+				Restaurant[i].name = "Esta orden ya no esta disponible, ha sido eliminada!";
+				cout << "\nORDEN ELIMINADA!\n";
 				return;
 			}
 			
 		}
-		cout << "Orden no encontrada :( Quiza el nombre no esta registrado!" << endl;
+		cout << "\nOrden no encontrada :( Quiza el nombre no esta registrado!" << endl;
 		
-	}
-		
+	}		
 }
 
 //funcion para ver pedidos a domicilio
@@ -417,11 +416,10 @@ void SeeHomeOrders(HomeOrders* Order, int size){
 			cout << "Tipo de pago: " << Order[i].PaymentType << '\n';
 			cout << "Numero de la Orden: " << Order[i].CorrelativeNumber << '\n';
 			cout << "\n";
-			system("pause");
 			
 		}
 		else{
-			cout << "Aun no se ha ingresado ninguna orden!" << endl;
+			cout << "\nAun no se ha ingresado ninguna orden!" << endl;
 			return;
 		}					
 	}
@@ -446,11 +444,11 @@ void SeeRestaurantOrders(CustomInRestaurant* Restaurant, int size2){
 			cout << "Tipo de pago: " << Restaurant[i].PaymentType << '\n';
 			cout << "Numero de la Orden: " << Restaurant[i].CorrelativeNumber << '\n';
 			cout << "\n";
-			system("pause");
+		
 			
 		}
 		else{
-			cout << "Aun no se ha ingresado ninguna orden!" << endl;
+			cout << "\nAun no se ha ingresado ninguna orden!" << endl;
 			return;
 		}					
 	}
