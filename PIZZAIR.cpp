@@ -145,7 +145,7 @@ void OrderHomeDelivery(HomeOrders* Order, int size){
 	
      for(int i = 0; i < size; i++){
         // Solicitar datos al usuario
-        cout << "\nNombre del Cliente: ";
+        cout << "\nNombre del Cliente "<< i + 1 <<": ";
         getline(cin, Order[i].name);
         cout << "Direccion: \n";
         cout << "\tNo. Casa: ";
@@ -185,7 +185,7 @@ void OrderRestaurant(CustomInRestaurant* Restaurant, int size2){
 	
   for(int i = 0; i < size2; i++){
         // Solicitar datos al usuario
-        cout << "\nNombre del Cliente: ";
+        cout << "\nNombre del Cliente "<< i + 1 <<": ";
         getline(cin, Restaurant[i].name);
         cout << "Personas por mesa: ";
         getline(cin, Restaurant[i].PeoplePerTable);
