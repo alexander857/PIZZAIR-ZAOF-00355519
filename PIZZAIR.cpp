@@ -111,7 +111,7 @@ bool PizzaMenu(int &N){
 		cout << "5-Buscar un pedido a domicilio\n";
 		cout << "6-Buscar un encargo en restaurante\n";
 		cout << "7-Ver total de ventas\n";
-		cout << "8-Eliminar una pedido a domicilio\n";
+		cout << "8-Eliminar un pedido a domicilio\n";
 		cout << "9-Eliminar un encargo a restaurante\n";
 		cout << "U-Cambiar de usuario\n";
 		cout << "X-Salir\n";
