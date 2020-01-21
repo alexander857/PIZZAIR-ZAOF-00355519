@@ -61,8 +61,7 @@ int LogIn(); //funcion de inicio de sesion
 int main(){
 	//DECLARACION DE VARIABLES 
 	int N = 0, k = 0;
-	bool A;	
-		
+	bool A;			
 	
 	while(k == 0){
 		
@@ -422,8 +421,7 @@ void SeeHomeOrders(HomeOrders* Order, int size){
 			cout << "\nAun no se ha ingresado ninguna orden!" << endl;
 			return;
 		}					
-	}
-		
+	}		
 }
 
 //funcion para ver encargos a restaurante
@@ -444,13 +442,11 @@ void SeeRestaurantOrders(CustomInRestaurant* Restaurant, int size2){
 			cout << "Tipo de pago: " << Restaurant[i].PaymentType << '\n';
 			cout << "Numero de la Orden: " << Restaurant[i].CorrelativeNumber << '\n';
 			cout << "\n";
-		
-			
+					
 		}
 		else{
 			cout << "\nAun no se ha ingresado ninguna orden!" << endl;
 			return;
 		}					
-	}
-		
+	}		
 }
