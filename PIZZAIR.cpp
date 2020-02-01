@@ -537,6 +537,79 @@ void SeeDeliveryOrder(int i){
 
 }
 
+//ver ordenes a restaurante
+void SeeRestaurantOrder(int n){
+	
+
+	if(AnOrderRestaurantWasPlaced == false){
+		
+		cout << "\n\033[31mNO HAY NINGUNA ORDEN!\033[0m" << endl;
+		
+	}
+	else{
+		
+		if(n == atRestaurantOrder.size()){
+			
+			cout << "\nSE HAN MOSTRADO TODAS LAS ORDENES A RESTAURANTE!" << endl;
+
+		}
+		else{		
+				
+			cout << "\nORDEN " << atRestaurantOrder[n].RESTAURANT.idOderRestaurant << "\n" << endl;
+			cout << "Nombre del cliente: " << atRestaurantOrder[n].RESTAURANT.Restaurant.name << endl;
+			cout << "Personas por mesa: " << atRestaurantOrder[n].RESTAURANT.PeoplePerTable << endl;
+
+            //switch donde se muestran todos los platos y bebidas de la orden y cuantos de cada uno
+			cout << "\nEntrada: ";
+            switch(atRestaurantOrder[n].RESTAURANT.Restaurant.pStarter){
+                case garlicBread: cout << "Pan con ajo " << atRestaurantOrder[n].RESTAURANT.Restaurant.accountant.quantityStarter << " | ";
+            }
+            switch(atRestaurantOrder[n].RESTAURANT.Restaurant.pStarter2){
+                case pizzaRolls: cout << "Pizza rolls " << atRestaurantOrder[n].RESTAURANT.Restaurant.accountant.quantityStarter2 << " | ";
+            }
+            switch(atRestaurantOrder[n].RESTAURANT.Restaurant.pStarter3){
+                case cheeseSticks: cout << "Palitos de queso " << atRestaurantOrder[n].RESTAURANT.Restaurant.accountant.quantityStarter3 << endl; break;
+            }
+
+            cout << "\nPlato principal: ";
+            switch(atRestaurantOrder[n].RESTAURANT.Restaurant.pDish){
+                case pizza: cout << "Pizza " << atRestaurantOrder[n].RESTAURANT.Restaurant.accountant.quantityMainDish << " | ";
+            }
+            switch(atRestaurantOrder[n].RESTAURANT.Restaurant.pDish2){
+                case pasta: cout << "Pasta " << atRestaurantOrder[n].RESTAURANT.Restaurant.accountant.quantityMainDish2 << " | ";
+            }
+            switch(atRestaurantOrder[n].RESTAURANT.Restaurant.pDish3){
+                case lasagna: cout << "Lasagna " << atRestaurantOrder[n].RESTAURANT.Restaurant.accountant.quantityMainDish3 << endl; break;
+            }
+
+            cout << "\nBebida: ";
+            switch(atRestaurantOrder[n].RESTAURANT.Restaurant.pDrink){
+                case beer: cout << "Cerveza " << atRestaurantOrder[n].RESTAURANT.Restaurant.accountant.quantityDrink << " | ";
+            }
+            switch(atRestaurantOrder[n].RESTAURANT.Restaurant.pDrink2){
+                case soda: cout << "Soda " << atRestaurantOrder[n].RESTAURANT.Restaurant.accountant.quantityDrink2 << " | ";
+            }
+            switch(atRestaurantOrder[n].RESTAURANT.Restaurant.pDrink3){
+                case tea: cout << "Te helado " << atRestaurantOrder[n].RESTAURANT.Restaurant.accountant.quantityDrink3; break;
+            }
+
+            cout << "\n\nTipo de pago: ";
+            switch(atRestaurantOrder[n].RESTAURANT.Restaurant.pay){
+                case cash: cout << "Efectivo" << endl; break;
+                case card: cout << "Tarjeta" << endl; break;
+            }
+			cout << "Monto de la orden: $" << atRestaurantOrder[n].RESTAURANT.TotalamountRestaurant << endl;
+			
+			n++;
+			
+			SeeRestaurantOrder(n);
+			
+		}	
+		
+	}
+
+}
+
 //funcion que calcula el total de ventas
 void TotalSales(HomeOrders* Order, int size, CustomInRestaurant* Restaurant, int size2){
 	//declaracion de variables
