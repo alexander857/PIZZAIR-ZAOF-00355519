@@ -121,7 +121,7 @@ void WaitTimeDelibery(), WaitTimeRestaurant(), CancelOrder(), TotalSales();
 
 
 int main(){
-	
+
 	 LogIn();
 	 
 	 PizzaMenu();
@@ -222,44 +222,126 @@ bool LogIn(){
 	}while(k == 0);		
 }
 
-//funcion donde se piden las ordenes a domicilio
-void OrderHomeDelivery(HomeOrders* Order, int size){
-	
-     for(int i = 0; i < size; i++){
-        // Solicitar datos al usuario
-        cout << "\nNombre del Cliente "<< i + 1 <<": ";
-        getline(cin, Order[i].name);
-        cout << "Direccion: \n";
-        cout << "\tNo. Casa: ";
-        cin >> Order[i].Address.HouseNumber;
-        cin.ignore();
-        cout << "\tColonia: ";
-        getline(cin, Order[i].Address.Suburb);
-        cout << "\tMunicipio: ";
-        getline(cin, Order[i].Address.Municipality);
-        cout << "\tDepartamento: ";
-        getline(cin, Order[i].Address.State);
-        cout << "Telefono: ";
-        cin >> Order[i].phone;
-        cin.ignore();
-        cout << "Plato principal: ";
-        getline(cin, Order[i].MainDish);
-        cout << "Entrada: ";
-        getline(cin, Order[i].StarterPlate);
-        cout << "Bebida: ";
-        getline(cin, Order[i].drink);
-        cout << "Monto: $";
-        cin >> Order[i].amount;
-        cin.ignore();
-        cout << "Tipo de pago: ";
-        getline(cin, Order[i].PaymentType);
-        cout << "Numero de la Orden: ";
-        cin >> Order[i].CorrelativeNumber;
-        cin.ignore();
-        cout << "\n";
+//FUNCIONES PARA PEDIR LAS ORDENES
 
-   }
-         
+//funcion para ingresar una orden domicilio
+void AddOrder(){
+	//declaracion de variables
+	int option = 0;
+	
+	//ingresan los datos del cliente
+	ANORDER anorder;
+	
+	//igualando a cero los contadores, la variable de los montos y de los precios para que no agarren valores basura
+	anorder.HOME.TotalamountDelivery = 0;
+	anorder.HOME.delivery.price = 0;
+	anorder.HOME.delivery.accountant.quantityStarter = 0;
+	anorder.HOME.delivery.accountant.quantityStarter2 = 0;
+	anorder.HOME.delivery.accountant.quantityStarter3 = 0;
+	anorder.HOME.delivery.accountant.quantityMainDish = 0;
+	anorder.HOME.delivery.accountant.quantityMainDish2 = 0;
+	anorder.HOME.delivery.accountant.quantityMainDish3 = 0;
+	anorder.HOME.delivery.accountant.quantityDrink = 0;
+	anorder.HOME.delivery.accountant.quantityDrink2 = 0;
+	anorder.HOME.delivery.accountant.quantityDrink3 = 0;
+
+	cout << "\nNombre del cliente: "; getline(cin, anorder.HOME.delivery.name);
+	cout << "Direccion: \n";
+	cout << "\tNo.Casa: "; cin >> anorder.HOME.Address.HouseNumber; cin.ignore();
+	cout << "\tColonia: "; getline(cin, anorder.HOME.Address.Suburb);
+	cout << "\tMunicipio: "; getline(cin, anorder.HOME.Address.Municipality);
+	cout << "\tDepartamento: "; getline(cin, anorder.HOME.Address.State);
+	cout << "Telefono: "; getline(cin, anorder.HOME.phone);
+	
+	//INGRESANDO LA COMIDA Y BEBIDAS DE LA ORDEN A DOMICILIO
+    bool follow = true;
+    do{
+        int option = 0;
+	  	cout << "\nENTRADA:\n";
+		cout << "\n1-Pan con ajo | 2-Pizza rolls | 3-Palitos de queso | 4-Siguiente menu...\n";
+		cout << "Opcion: "; cin >> option;
+        switch(option){
+            case 1: anorder.HOME.delivery.pStarter = garlicBread; 
+            		anorder.HOME.delivery.price += 3.99; 
+					anorder.HOME.delivery.accountant.quantityStarter += 1; break;
+            case 2: anorder.HOME.delivery.pStarter2 = pizzaRolls; 
+					anorder.HOME.delivery.price += 4.99; 
+					anorder.HOME.delivery.accountant.quantityStarter2 += 1; break;
+            case 3: anorder.HOME.delivery.pStarter3 = cheeseSticks; 
+					anorder.HOME.delivery.price += 3.75; 
+					anorder.HOME.delivery.accountant.quantityStarter3 += 1; break;
+            case 4:follow = false; break;
+            default: cout << "Opcion erronea!" << endl; break;
+        }
+    }while(follow);
+	
+	follow = true;
+    do{
+        int option = 0;
+	  	cout << "\nPLATO PRINCIPAL:\n";
+		cout << "\n1-Pizza | 2-Pasta | 3-Lasagna | 4-Siguiente menu...\n";
+		cout << "Opcion: "; cin >> option;
+        switch(option){
+            case 1: anorder.HOME.delivery.pDish = pizza; 
+            		anorder.HOME.delivery.price += 13.99; 
+					anorder.HOME.delivery.accountant.quantityMainDish += 1; break;
+            case 2: anorder.HOME.delivery.pDish2 = pasta; 				
+					anorder.HOME.delivery.price += 5.55; 
+					anorder.HOME.delivery.accountant.quantityMainDish2 += 1; break;
+            case 3: anorder.HOME.delivery.pDish3 = lasagna; 
+					anorder.HOME.delivery.price += 6.25; 
+					anorder.HOME.delivery.accountant.quantityMainDish3 += 1; break;
+            case 4:follow = false; break;
+            default: cout << "Opcion erronea!" << endl; break;
+        }
+    }while(follow);
+
+	follow = true;
+    do{
+        int option = 0;
+	  	cout << "\nBEBIDA:\n";
+		cout << "\n1-Cerveza | 2-Soda | 3-Te helado | 4-Siguiente menu...\n";
+		cout << "Opcion: "; cin >> option;
+        switch(option){
+            case 1: anorder.HOME.delivery.pDrink = beer; 
+            		anorder.HOME.delivery.price += 1.99; 
+					anorder.HOME.delivery.accountant.quantityDrink += 1; break;
+            case 2: anorder.HOME.delivery.pDrink2 = soda; 				
+					anorder.HOME.delivery.price += 0.95; 
+					anorder.HOME.delivery.accountant.quantityDrink2 += 1; break;
+            case 3: anorder.HOME.delivery.pDrink3 = tea; 	
+					anorder.HOME.delivery.price += 1.15; 
+					anorder.HOME.delivery.accountant.quantityDrink3 += 1; break;
+            case 4:follow = false; break;
+            default: cout << "Opcion erronea!" << endl; break;
+        }
+    }while(follow);
+	
+	//guardando el monto total de la orden
+	anorder.HOME.TotalamountDelivery = anorder.HOME.delivery.price;
+
+    follow = true;
+    do{
+        int option = 0;
+	  	cout << "\nTipo de pago:\n";
+		cout << "\n1-Efectivo | 2-Tarjeta\n";
+		cout << "Opcion: "; cin >> option;
+        switch(option){
+            case 1: anorder.HOME.delivery.pay = cash; follow = false; break;
+            case 2: anorder.HOME.delivery.pay = card; follow = false; break;			
+            default: cout << "Opcion erronea!" << endl; break;
+        }
+    }while(follow);
+	
+    cout << "\nMonto total de la orden: $" << anorder.HOME.TotalamountDelivery << endl;
+
+	//numero correlativo de la orden
+	idDelivery++;
+	anorder.HOME.idOrderDelivery = idDelivery;
+	
+	//agregando a al vector
+	atDeliveryOrder.insert(atDeliveryOrder.end(), anorder);
+	AnOrderDeliveryWasPlaced = true;
 }
 
 //funcion donde se piden las encargos a restaurante
