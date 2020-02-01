@@ -728,68 +728,6 @@ void TotalSales(HomeOrders* Order, int size, CustomInRestaurant* Restaurant, int
 	
 }
 
-//funcion para borrar ordenes a domicilio
-void DeleteHomeOrders(HomeOrders* Order, int size, int &N){
-	
-	//declaracion de variables
-	string client;
-	
-	if(N == 1){
-		cout << "\nSOLO EL ADMINISTRADOR PUEDE HACER CAMBIOS EN LAS ORDENES!\n" << endl;
-		return;
-	}
-	else{
-		
-		cout << "\nIngrese el nombre del cliente que realizo la orden a eliminar: ";
-		getline(cin, client);
-		
-		//eliminando la orden del cliente ingresado
-		for(int i = 0; i < size; i++){
-			
-			if(client.compare(Order[i].name) == 0){
-				
-				Order[i].name = "Esta orden ya no esta disponible, ha sido eliminada!";
-				cout << "\nORDEN ELIMINADA!\n";
-				return;
-			}
-			
-		}
-		cout << "\nOrden no encontrada :( Quiza el nombre no esta registrado!" << endl;	
-		
-	}
-	
-}
-
-//funcion de eliminar encargos a restaurante
-void DeleteOrdersRestaurant(CustomInRestaurant* Restaurant, int size2, int &N){
-	//declaracion de variables
-	string client;
-	
-	if(N == 1){
-		cout << "\nSOLO EL ADMINISTRADOR PUEDE HACER CAMBIOS EN LAS ORDENES!\n" << endl;
-		return;
-	}
-	else{
-		
-		cout << "\nIngrese el nombre del cliente que realizo la orden a eliminar: ";
-		getline(cin, client);
-		
-		//eliminando la orden del cliente ingresado
-		for(int i = 0; i < size2; i++){
-			
-			if(client.compare(Restaurant[i].name) == 0){
-				
-				Restaurant[i].name = "Esta orden ya no esta disponible, ha sido eliminada!";
-				cout << "\nORDEN ELIMINADA!\n";
-				return;
-			}
-			
-		}
-		cout << "\nOrden no encontrada :( Quiza el nombre no esta registrado!" << endl;
-		
-	}		
-}
-
 //funcion para ver pedidos a domicilio
 void SeeHomeOrders(HomeOrders* Order, int size){
 		
