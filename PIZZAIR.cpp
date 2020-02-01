@@ -743,3 +743,78 @@ void TotalSales(){
 	totalSales = 0;
 	
 }
+
+//FUNCION PARA CANCELAR UNA ORDEN
+void CancelOrder(){
+	
+  //declaracion de variables
+    bool orderFound = false, follow = true; 	
+	string aName;
+	int option = 0;
+
+	if(isAdmin == false){
+		cout << "\n\033[31mSOLO EL ADMINISTRADOR PUEDE CANCELAR UNA ORDEN!!\033[0m" << endl;
+	}
+	else{
+
+		do{
+			cout << "\nSELECCIONE EL TIPO DE ORDEN A CANCELAR:\n\n";
+			cout << "1-Orden a domicilio | 2-Orden a restaurante | 3-Ninguna\n";
+			cout << "Opcion: "; cin >> option; cin.ignore();
+
+			switch(option){
+				case 1:
+					//cancelar orden a domicilio
+					if(AnOrderDeliveryWasPlaced == false) cout << "\n\033[31mNO HAY NINGUNA ORDEN A DOMICILIO PARA CANCELAR!\033[0m" << endl;
+					else{
+						cout << "\nNombre del cliente de la orden a cancelar: "; getline(cin, aName);
+
+						for(auto iter = atDeliveryOrder.begin(); iter != atDeliveryOrder.end(); ++iter){  
+							if(iter->HOME.delivery.name == aName){
+								orderFound = true;
+								iter = atDeliveryOrder.erase(iter);
+								cout << "\nLA ORDEN HA SIDO CANCELADA!.\n";
+							break;
+							}
+						}
+						if(orderFound == false){
+							cout << "\n\033[31mNo hay ninguna orden al nombre de: " << aName << "\033[0m" << endl;
+						}
+						//si ya no hay ordenes en el vector original, la bandera que indica que hay una orden se vuelve false
+						if(atDeliveryOrder.size() == 0){
+							AnOrderDeliveryWasPlaced = false;
+						}					
+					}	
+				break;
+				case 2:
+					//cancelar orden de restaurante
+					if(AnOrderRestaurantWasPlaced == false) cout << "\n\033[31mNO HAY NINGUNA ORDEN A RESTAURANTE PARA CANCELAR!\033[0m" << endl;	
+					else{
+						//se pide nombre del cliente al cual se cancelara la orden
+						cout << "\nNombre del cliente de la orden a cancelar: "; getline(cin, aName);
+						for(auto iter = atRestaurantOrder.begin(); iter != atRestaurantOrder.end(); ++iter){  
+
+							if(iter->RESTAURANT.Restaurant.name == aName){  
+								orderFound = true;                  
+								iter = atRestaurantOrder.erase(iter);
+								cout << "\nLA ORDEN HA SIDO CANCELADA!.\n";
+							break;
+							}
+						}
+						if(orderFound == false){
+							cout << "\n\033[31mNo hay ninguna orden al nombre de: " << aName << "\033[0m" << endl;
+						}
+						//si ya no hay ordenes en el vector original, la bandera que indica que hay una orden se vuelve false
+						if(atRestaurantOrder.size() == 0){
+							AnOrderRestaurantWasPlaced = false;
+						}					
+					}
+				break;
+				case 3: follow = false; break;
+				default: cout << "Opcion invalida!" << endl;
+			}
+		}while(follow);
+
+	}
+
+}
