@@ -94,19 +94,30 @@ struct AllOrders{
 	queue <AnOrder> printOrders; //cola auxiliar para guardar las ordenes cuando se van mostrando		
 };
 
+//vector de ordenes a domicilio
+vector<AnOrder> atDeliveryOrder; 
+//vector de ordenes a restaurante
+vector<AnOrder> atRestaurantOrder;
+//vector de ordenes a domicilio despachadas
+vector<AnOrder> DispatchHome;
+//vector de ordenes a restaurante despachadas
+vector<AnOrder> DispatchRestaurant;
+
+AllOrders allORDERS;
+
+//VAIABLES GLOBALES
+bool isAdmin = false, AnOrderDeliveryWasPlaced = false, AnOrderRestaurantWasPlaced = false;
+int idDelivery = 0, idRestaurant = 0;
+
+//pilas para almacenar el monto de las ordenes
+stack<float> amounts; //montos sin IVA
+stack<float> amountsIVA; //montos con IVA
+stack<float> Extra;  //para guardar los montos originales y no eliminarlos
+
 //PROTOTIPOS DE LAS FUNCIONES
-//funciones para pedir las ordenes
-void OrderHomeDelivery(HomeOrders* Order, int size), OrderRestaurant(CustomInRestaurant* Restaurant, int size2);
-//funciones para buscar las ordenes
-void SearchRestaurantOrders(CustomInRestaurant* Restaurant, int size2), LookForHomeDelivery(HomeOrders* Order, int size);
-//funcion que calcula las ventas totales
-void TotalSales(HomeOrders* Order, int size, CustomInRestaurant* Restaurant, int size2);
-//funciones para eliminar ordenes
-void DeleteHomeOrders(HomeOrders* Order, int size, int &N), DeleteOrdersRestaurant(CustomInRestaurant* Restaurant, int size2, int &N);
-//funciones para ver ordenes
-void SeeHomeOrders(HomeOrders* Order, int size), SeeRestaurantOrders(CustomInRestaurant* Restaurant, int size2);
-bool PizzaMenu(int &N); //menu principal
-int LogIn(); //funcion de inicio de sesion
+bool LogIn(), PizzaMenu(); 
+void AddOrder(), AddOrder(int option), SeeDeliveryOrder(int i), SeeRestaurantOrder(int n), DispatchDeliveryOrder(), DispatchRestauranOrder();
+void WaitTimeDelibery(), WaitTimeRestaurant(), CancelOrder(), TotalSales();
 
 
 int main(){
