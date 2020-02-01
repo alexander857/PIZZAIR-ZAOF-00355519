@@ -457,40 +457,6 @@ void AddOrder(int option){
 	
 }
 
-//funcion para buscar ordenes a domicilio
-void LookForHomeDelivery(HomeOrders* Order, int size){
-	//declaracion de variables
-	string client;
-	
-	cout << "\nIngrese el nombre del cliente: ";
-	getline(cin, client);
-	
-	//buscando la orden del cliente ingresado
-	for(int i = 0; i < size; i++){
-		
-		if(client.compare(Order[i].name) == 0){
-			
-			cout << "\nOrden del cliente ingresado:\n";
-			cout << "Nombre: " << Order[i].name << '\n';
-			cout << "Direccion:\n";
-			cout << "\tNo. Casa: " << Order[i].Address.HouseNumber << '\n';
-			cout << "\tColonia: " << Order[i].Address.Suburb << '\n';
-			cout << "\tMunicipio: " << Order[i].Address.Municipality << '\n';
-			cout << "\tDepartamento: " << Order[i].Address.State << '\n';
-			cout << "Telefono: " << Order[i].phone << '\n';
-			cout << "Plato Principal: " << Order[i].MainDish << '\n';
-			cout << "Entrada: " << Order[i].StarterPlate << '\n';
-			cout << "Bebida: " << Order[i].drink << '\n';
-			cout << "Monto: $" << Order[i].amount << '\n';
-			cout << "Tipo de pago: " << Order[i].PaymentType << '\n';
-			cout << "Numero de la Orden: " << Order[i].CorrelativeNumber << '\n';
-			cout << "\n";
-			return;
-		}
-	}
-	cout << "\nOrden no encontrada :( Quiza el nombre no esta registrado!" << endl;
-}
-
 //funcion de buscar las ordenes a restaurante
 void SearchRestaurantOrders(CustomInRestaurant* Restaurant, int size2){
 	//declaracion de variables
