@@ -344,32 +344,116 @@ void AddOrder(){
 	AnOrderDeliveryWasPlaced = true;
 }
 
-//funcion donde se piden las encargos a restaurante
-void OrderRestaurant(CustomInRestaurant* Restaurant, int size2){
+//funcion para ingresar una orden a restaurante
+void AddOrder(int option){
 	
-  for(int i = 0; i < size2; i++){
-        // Solicitar datos al usuario
-        cout << "\nNombre del Cliente "<< i + 1 <<": ";
-        getline(cin, Restaurant[i].name);
-        cout << "Personas por mesa: ";
-        getline(cin, Restaurant[i].PeoplePerTable);
-        cout << "Plato principal: ";
-        getline(cin, Restaurant[i].MainDish);      
-        cout << "Entrada: ";
-        getline(cin, Restaurant[i].StarterPlate);
-        cout << "Bebida: ";
-        getline(cin, Restaurant[i].drink);
-        cout << "Monto: $";
-        cin >> Restaurant[i].amount;
-        cin.ignore();
-        cout << "Tipo de pago: ";
-        getline(cin, Restaurant[i].PaymentType);
-        cout << "Numero de la Orden: ";
-        cin >> Restaurant[i].CorrelativeNumber;
-        cin.ignore();
-        cout << "\n";
+	//ingresan los datos del cliente
+	ANORDER anorder;
 
-   }
+	//igualando a cero los contadores, la variable de los montos y de los precios para que no agarren valores basura
+	anorder.RESTAURANT.TotalamountRestaurant = 0;
+	anorder.RESTAURANT.Restaurant.price = 0;
+	anorder.RESTAURANT.Restaurant.accountant.quantityStarter = 0;
+	anorder.RESTAURANT.Restaurant.accountant.quantityStarter2 = 0;
+	anorder.RESTAURANT.Restaurant.accountant.quantityStarter3 = 0;
+	anorder.RESTAURANT.Restaurant.accountant.quantityMainDish = 0;
+	anorder.RESTAURANT.Restaurant.accountant.quantityMainDish2 = 0;
+	anorder.RESTAURANT.Restaurant.accountant.quantityMainDish3 = 0;
+	anorder.RESTAURANT.Restaurant.accountant.quantityDrink = 0;
+	anorder.RESTAURANT.Restaurant.accountant.quantityDrink2 = 0;
+	anorder.RESTAURANT.Restaurant.accountant.quantityDrink3 = 0;
+	
+	cout << "\nNombre del cliente: "; getline(cin, anorder.RESTAURANT.Restaurant.name);
+	cout << "Personas por mesa: "; cin >> anorder.RESTAURANT.PeoplePerTable; cin.ignore();
+
+	//INGRESANDO LA COMIDA Y BEBIDAS DE LA ORDEN A RESTAURANTE
+    bool follow = true;
+    do{
+        int option = 0;
+	  	cout << "\nENTRADA:\n";
+		cout << "\n1-Pan con ajo | 2-Pizza rolls | 3-Palitos de queso | 4-Siguiente menu...\n";
+		cout << "Opcion: "; cin >> option;
+        switch(option){
+            case 1: anorder.RESTAURANT.Restaurant.pStarter = garlicBread; 
+            		anorder.RESTAURANT.Restaurant.price += 3.99; 
+					anorder.RESTAURANT.Restaurant.accountant.quantityStarter += 1; break;
+            case 2: anorder.RESTAURANT.Restaurant.pStarter2 = pizzaRolls; 
+					anorder.RESTAURANT.Restaurant.price += 4.99; 
+					anorder.RESTAURANT.Restaurant.accountant.quantityStarter2 += 1; break;
+            case 3: anorder.RESTAURANT.Restaurant.pStarter3 = cheeseSticks; 
+					anorder.RESTAURANT.Restaurant.price += 3.75; 
+					anorder.RESTAURANT.Restaurant.accountant.quantityStarter3 += 1; break;
+            case 4:follow = false; break;
+            default: cout << "Opcion erronea!" << endl; break;
+        }
+    }while(follow);
+	
+	follow = true;
+    do{
+        int option = 0;
+	  	cout << "\nPLATO PRINCIPAL:\n";
+		cout << "\n1-Pizza | 2-Pasta | 3-Lasagna | 4-Siguiente menu...\n";
+		cout << "Opcion: "; cin >> option;
+        switch(option){
+            case 1: anorder.RESTAURANT.Restaurant.pDish = pizza; 
+            		anorder.RESTAURANT.Restaurant.price += 13.99; 
+					anorder.RESTAURANT.Restaurant.accountant.quantityMainDish += 1; break;
+            case 2: anorder.RESTAURANT.Restaurant.pDish2 = pasta; 				
+					anorder.RESTAURANT.Restaurant.price += 5.55; 
+					anorder.RESTAURANT.Restaurant.accountant.quantityMainDish2 += 1; break;
+            case 3: anorder.RESTAURANT.Restaurant.pDish3 = lasagna; 
+					anorder.RESTAURANT.Restaurant.price += 6.25; 
+					anorder.RESTAURANT.Restaurant.accountant.quantityMainDish3 += 1; break;
+            case 4:follow = false; break;
+            default: cout << "Opcion erronea!" << endl; break;
+        }
+    }while(follow);
+	
+	follow = true;
+    do{
+        int option = 0;
+	  	cout << "\nBEBIDA:\n";
+		cout << "\n1-Cerveza | 2-Soda | 3-Te helado | 4-Siguiente menu...\n";
+		cout << "Opcion: "; cin >> option;
+        switch(option){
+            case 1: anorder.RESTAURANT.Restaurant.pDrink = beer; 
+            		anorder.RESTAURANT.Restaurant.price += 1.99; 
+					anorder.RESTAURANT.Restaurant.accountant.quantityDrink += 1; break;
+            case 2: anorder.RESTAURANT.Restaurant.pDrink2 = soda; 				
+					anorder.RESTAURANT.Restaurant.price += 0.95; 
+					anorder.RESTAURANT.Restaurant.accountant.quantityDrink2 += 1; break;
+            case 3: anorder.RESTAURANT.Restaurant.pDrink3 = tea; 	
+					anorder.RESTAURANT.Restaurant.price += 1.15; 
+					anorder.RESTAURANT.Restaurant.accountant.quantityDrink3 += 1; break;
+            case 4:follow = false; break;
+            default: cout << "Opcion erronea!" << endl; break;
+        }
+    }while(follow);
+	
+	anorder.RESTAURANT.TotalamountRestaurant = anorder.RESTAURANT.Restaurant.price;
+
+    follow = true;
+    do{
+        int option = 0;
+	  	cout << "\nTipo de pago:\n";
+		cout << "\n1-Efectivo | 2-Tarjeta\n";
+		cout << "Opcion: "; cin >> option;
+        switch(option){
+            case 1: anorder.RESTAURANT.Restaurant.pay = cash; follow = false; break;
+            case 2: anorder.RESTAURANT.Restaurant.pay = card; follow = false; break;			
+            default: cout << "Opcion erronea!" << endl; break;
+        }
+    }while(follow);
+	
+	cout << "\nMonto total de la orden: $" << anorder.RESTAURANT.TotalamountRestaurant << endl; 
+	
+	//numero correlativo de la orden
+	idRestaurant++;
+	anorder.RESTAURANT.idOderRestaurant = idRestaurant;
+	
+	//agregando al vector
+	atRestaurantOrder.insert(atRestaurantOrder.end(), anorder);
+	AnOrderRestaurantWasPlaced = true;
 	
 }
 
