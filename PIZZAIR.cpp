@@ -21,44 +21,77 @@ enum drink{beer, soda, tea};
 //enumeracion de tipo de pago
 enum paymentType{cash, card};
 
-//registros
+//REGISTROS
 
 //direccion del cliente
 struct CustomerAddress{
-
+	
+	string Suburb, Municipality, State;
 	int HouseNumber;
-	string Suburb;
-	string Municipality;
-	string State;
-
+	
 };
-//ordenes a domicilio
-struct HomeOrders{
+
+//contadores de entradas, platos principales y bebidas ingresadas
+struct counters{
+	int quantityStarter, quantityStarter2, quantityStarter3;
+	int quantityMainDish, quantityMainDish2, quantityMainDish3;
+	int quantityDrink, quantityDrink2, quantityDrink3;
+};
+
+//info que tienen en comun los dos tipos de pedidos
+struct mainData{
 	
 	string name;
+	starter pStarter;
+	starter pStarter2;
+	starter pStarter3;
+	mainDish pDish;
+	mainDish pDish2;
+	mainDish pDish3;
+	drink pDrink;	
+	drink pDrink2;
+	drink pDrink3;
+    paymentType pay;
+	float price;
+	counters accountant;
+};
+
+//pedidos a domicilio
+struct DeliveryOrders{	
+
 	CustomerAddress Address;
-	int phone;
-	string MainDish;
-	string StarterPlate;
-	string drink;
-	double amount;
-	string PaymentType;
-	int CorrelativeNumber;
-	
+	string phone;
+	mainData delivery;
+	int idOrderDelivery;
+	float TotalamountDelivery;
+		
 };
 
 //pedidos a restaurante
-struct CustomInRestaurant{
+struct RestaurantOrders{
 	
-	string name;
-	string PeoplePerTable;
-	string MainDish;
-	string StarterPlate;
-	string drink;
-	double amount;
-	string PaymentType;
-	int CorrelativeNumber;
+	int PeoplePerTable;
+	mainData Restaurant;
+	int idOderRestaurant;
+	float TotalamountRestaurant;
 	
+};
+
+//una orden
+struct AnOrder{
+	
+	DeliveryOrders HOME;
+	RestaurantOrders RESTAURANT;
+	
+};
+
+typedef struct AnOrder ANORDER;
+
+//pedir todas las ordenes
+struct AllOrders{
+	queue <AnOrder> AtHome; //cola de pedidos a domicilio
+	queue <AnOrder> AtRestaurant; //cola de pedidos a restaurante
+	queue <AnOrder> printOrders; //cola auxiliar para guardar las ordenes cuando se van mostrando		
 };
 
 //PROTOTIPOS DE LAS FUNCIONES
