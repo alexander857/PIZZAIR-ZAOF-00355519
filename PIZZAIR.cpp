@@ -457,6 +457,86 @@ void AddOrder(int option){
 	
 }
 
+//FUNCIONES PARA VER LAS ORDENES
+
+//ver ordenes a domicilio
+void SeeDeliveryOrder(int i){
+	
+
+	if(AnOrderDeliveryWasPlaced == false){
+		
+		cout << "\n\033[31mNO HAY NINGUNA ORDEN!\033[0m" << endl;
+		
+	}
+	else{
+		
+		if(i == atDeliveryOrder.size()){
+			
+			cout << "\nSE HAN MOSTRADO TODAS LAS ORDENES A DOMICILIO!" << endl;
+
+		}
+		else{		
+		
+			cout << "\nORDEN " << atDeliveryOrder[i].HOME.idOrderDelivery << "\n" << endl;
+			cout << "Nombre del cliente: " << atDeliveryOrder[i].HOME.delivery.name << endl;
+			cout << "Direccion: ";
+			cout << "No.Casa: " << atDeliveryOrder[i].HOME.Address.HouseNumber << ", ";
+			cout << atDeliveryOrder[i].HOME.Address.Suburb << ", ";
+			cout << atDeliveryOrder[i].HOME.Address.Municipality << ", ";
+			cout << atDeliveryOrder[i].HOME.Address.State << endl;
+			cout << "Telefono: " << atDeliveryOrder[i].HOME.phone << endl;
+
+            //switch donde se muestran los platos y bebidas ordenados y cuantos de cada uno
+ 			cout << "\nEntrada: ";
+            switch(atDeliveryOrder[i].HOME.delivery.pStarter){
+                case garlicBread: cout << "Pan con ajo " << atDeliveryOrder[i].HOME.delivery.accountant.quantityStarter << " | ";
+            }
+            switch(atDeliveryOrder[i].HOME.delivery.pStarter2){
+                case pizzaRolls: cout << "Pizza rolls " << atDeliveryOrder[i].HOME.delivery.accountant.quantityStarter2 << " | ";
+            }
+            switch(atDeliveryOrder[i].HOME.delivery.pStarter3){
+                case cheeseSticks: cout << "Palitos de queso " << atDeliveryOrder[i].HOME.delivery.accountant.quantityStarter3 << endl; break;
+            }
+             
+            cout << "\nPlato principal: ";
+            switch(atDeliveryOrder[i].HOME.delivery.pDish){
+                case pizza: cout << "Pizza " << atDeliveryOrder[i].HOME.delivery.accountant.quantityMainDish << " | ";
+            }
+            switch(atDeliveryOrder[i].HOME.delivery.pDish2){
+                case pasta: cout << "Pasta " << atDeliveryOrder[i].HOME.delivery.accountant.quantityMainDish2 << " | ";
+            }
+            switch(atDeliveryOrder[i].HOME.delivery.pDish3){
+                case lasagna: cout << "Lasagna " << atDeliveryOrder[i].HOME.delivery.accountant.quantityMainDish3 << endl; break;
+            }
+            
+            cout << "\nBebida: ";
+            switch( atDeliveryOrder[i].HOME.delivery.pDrink){
+                case beer: cout << "Cerveza " << atDeliveryOrder[i].HOME.delivery.accountant.quantityDrink << " | "; 
+            }
+            switch( atDeliveryOrder[i].HOME.delivery.pDrink2){
+                case soda: cout << "Soda " << atDeliveryOrder[i].HOME.delivery.accountant.quantityDrink2 << " | ";
+            }
+            switch( atDeliveryOrder[i].HOME.delivery.pDrink3){
+                case tea: cout << "Te helado " << atDeliveryOrder[i].HOME.delivery.accountant.quantityDrink3; break;
+            }
+            
+            cout << "\n\nTipo de pago: ";
+             switch( atDeliveryOrder[i].HOME.delivery.pay){
+                case cash: cout << "Efectivo" << endl; break;
+                case card: cout << "Tarjeta" << endl; break;
+            }
+			cout << "Monto de la orden: $" << atDeliveryOrder[i].HOME.TotalamountDelivery << endl;
+			
+			i++;
+		
+			SeeDeliveryOrder(i);
+			
+		}	
+		
+	}
+
+}
+
 //funcion que calcula el total de ventas
 void TotalSales(HomeOrders* Order, int size, CustomInRestaurant* Restaurant, int size2){
 	//declaracion de variables
