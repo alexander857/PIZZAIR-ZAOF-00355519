@@ -457,38 +457,6 @@ void AddOrder(int option){
 	
 }
 
-//funcion de buscar las ordenes a restaurante
-void SearchRestaurantOrders(CustomInRestaurant* Restaurant, int size2){
-	//declaracion de variables
-	string client;
-	
-	cout << "\nIngrese el nombre del cliente: ";
-	getline(cin, client);
-	
-	//buscando la orden del cliente ingresado
-	for(int i = 0; i < size2; i++){
-		
-		if(client.compare(Restaurant[i].name) == 0){
-			
-			cout << "\nOrden del cliente ingresado:\n";
-			cout << "Nombre: " << Restaurant[i].name << '\n';
-			cout << "Personas por mesa: " << Restaurant[i].PeoplePerTable << '\n';
-			cout << "Plato Principal: " << Restaurant[i].MainDish << '\n';
-			cout << "Entrada: " << Restaurant[i].StarterPlate << '\n';
-			cout << "Bebida: " << Restaurant[i].drink << '\n';
-			cout << "Monto: $" << Restaurant[i].amount << '\n';
-			cout << "Tipo de pago: " << Restaurant[i].PaymentType << '\n';
-			cout << "Numero de la Orden: " << Restaurant[i].CorrelativeNumber << '\n';
-			cout << "\n";
-			return;
-		}
-		
-	}
-	cout << "\nOrden no encontrada :( Quiza el nombre no esta registrado!" << endl;
-	
-	
-}
-
 //funcion que calcula el total de ventas
 void TotalSales(HomeOrders* Order, int size, CustomInRestaurant* Restaurant, int size2){
 	//declaracion de variables
