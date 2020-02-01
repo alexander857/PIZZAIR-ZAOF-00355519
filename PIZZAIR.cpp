@@ -1,7 +1,25 @@
 #include<iostream>
-#include<string.h>
+#include<string>
+#include<queue>
+#include<iomanip> //para la funcion redondear decimales
+#include<stack>
+#include <vector>
+#include <algorithm>
+
+//contraseña del sistema
+#define PASSWORD "delete"
+#define __Color_h__
 
 using namespace std;
+
+//ENUMERACIONES
+//enumeraciones de los menus
+enum starter{garlicBread, pizzaRolls, cheeseSticks};
+enum mainDish{pizza, pasta, lasagna};
+enum drink{beer, soda, tea};
+
+//enumeracion de tipo de pago
+enum paymentType{cash, card};
 
 //registros
 
