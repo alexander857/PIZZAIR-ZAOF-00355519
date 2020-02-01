@@ -190,6 +190,51 @@ bool PizzaMenu(){
 	
 }
 
+//funcion de inicio de sesion
+bool LogIn(){
+	//declaracion de variables
+	string key;
+	char option = 0;
+	int k = 0;
+	
+	do{
+		
+		//menu para elegir como se ingresara al sistema
+		cout << "\nSOLO PERSONAL AUTORIZADO!\n" << endl;
+		cout << "\n1.Iniciar sesion como Administrador\n";
+		cout << "2.Iniciar sesion como Empleado\n";
+		cout << "\nOpcion: "; cin >> option;
+		
+		switch(option){
+			
+			case '1':
+				
+				while(k == 0){
+					//se pide la contraseña
+					cout << "\nINGRESE LA CLAVE: "; cin >> key;				
+					
+					if(key.compare(PASSWORD) == 0){
+						
+						cout << "Ingresado como admin" << endl;
+						isAdmin = true;
+						k = 1;
+					}			
+				}
+				break;	
+				
+			case '2':
+				cout << "\nHa ingresado como Empleado" << endl;
+				isAdmin = false;
+				k = 1;
+				break;
+			default :
+				cout << "\nOPCION NO VALIDA!" << endl;
+				
+		}
+
+	}while(k == 0);		
+}
+
 //funcion donde se piden las ordenes a domicilio
 void OrderHomeDelivery(HomeOrders* Order, int size){
 	
@@ -256,37 +301,6 @@ void OrderRestaurant(CustomInRestaurant* Restaurant, int size2){
         cout << "\n";
 
    }
-	
-}
-
-//funcion de inicio de sesion
-int LogIn(){
-	//declaracion de variables
-	string password = "delete";
-	string key;
-	int option = 0, k = 0;
-	
-	while(k == 0){
-		
-		//menu para elegir como se ingresara al sistema
-		cout << "\nSOLO PERSONAL AUTORIZADO!\n" << endl;
-		cout << "\n1.Iniciar sesion como Administrador\n";
-		cout << "2.Iniciar sesion como Empleado\n";
-		cout << "\nOpcion: "; cin >> option;
-		
-		if(option == 1){
-			
-			while(k == 0){
-				//se pide la contraseña
-				cout << "Ingrese la clave: "; cin >> key;				
-				
-				if(key.compare(password) == 0) return 0;
-					
-			}	
-		}		
-		else if(option == 2) return 1;
-		
-	}	
 	
 }
 
