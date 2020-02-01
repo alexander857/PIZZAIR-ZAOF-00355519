@@ -121,23 +121,10 @@ void WaitTimeDelibery(), WaitTimeRestaurant(), CancelOrder(), TotalSales();
 
 
 int main(){
-	//DECLARACION DE VARIABLES 
-	int N = 0, k = 0;
-	bool A;			
 	
-	while(k == 0){
-		
-		N = LogIn(); //se llama funcion de inicio de sesion
-		
-		 
-		A = PizzaMenu(N); //se llama la funcion del menu principal
-		
-		//si A es false significa que el usuario en la funcion Pizza eligio salir, por lo tanto saldra del bucle while y termina el programa
-		if(A == false){
-			break;
-		}
-		
-	}			
+	 LogIn();
+	 
+	 PizzaMenu();
 	
 	return 0;
 }
