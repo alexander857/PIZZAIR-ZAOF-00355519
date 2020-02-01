@@ -143,62 +143,51 @@ int main(){
 }
 
 //menu principal del sistema de despacho
-bool PizzaMenu(int &N){
+bool PizzaMenu(){
 	//variables de la funcion
-	bool follow = true, Login = false;
-	
-	int size = 0, size2 = 0;
-	
-	HomeOrders *OrderList;
-	CustomInRestaurant *RestaurantList;		
-	
-	//se pide el numero de ordenes que se ingresaran
-	cout << "\nCantidad de ordenes a domicilio a recibir: "; cin >> size;
-	cout << "Cantidad de encargos a restaurante por recibir: "; cin >> size2;
-	
-	//reservando memoria
-	OrderList = new HomeOrders[size];
-	RestaurantList = new CustomInRestaurant[size2];
+	bool follow = true;	
 	
 	do{
-		char option;
-		//nosbre de la pizzaria
-		cout<<"\nPIZZAIR"<<endl;
+		int option = 0;
+		//nombre de la pizzeria
+		cout << "\nPIZZAIR" << endl;
 		
 		//menu de opciones
-		cout<<"\n1-Agregar 1 pedido a domicilio\n";
-		cout << "2-Agregar 1 encargo en restaurante\n";
-		cout << "3-Ver pedidos a domicilio\n";
-		cout << "4-Ver encargos a restaurante\n";
-		cout << "5-Buscar un pedido a domicilio\n";
-		cout << "6-Buscar un encargo en restaurante\n";
-		cout << "7-Ver total de ventas\n";
-		cout << "8-Eliminar un pedido a domicilio\n";
-		cout << "9-Eliminar un encargo a restaurante\n";
-		cout << "U-Cambiar de usuario\n";
-		cout << "X-Salir\n";
+		cout << "\n1-Agregar orden a domicilio\n";
+		cout << "2-Agregar orden en restaurante\n";
+		cout << "3-Ver ordenes a domicilio\n";
+		cout << "4-Ver ordenes en restaurante\n";
+		cout << "5-Despachar ordenes a domicilio\n";
+		cout << "6-Despachar ordenes en restaurante\n";
+		cout << "7-Ver tiempo promedio de espera domicilio\n";
+		cout << "8-Ver tiempo promedio de espera restaurante\n";
+		cout << "9-Calcelar orden (domicilio o restaurante, solo Admin)\n";
+		cout << "10-Calcular total de ventas\n";
+		cout << "11-Cambiar de usuario\n";
+		cout << "12-Salir\n";
 		cout << "\nOpcion: "; cin >> option;
 		cin.ignore();
 		
 		switch(option){
 			//funciones llamadas al menu
-			case '1': OrderHomeDelivery(OrderList, size); break;
-			case '2': OrderRestaurant(RestaurantList, size2); break;
-			case '3': SeeHomeOrders(OrderList, size); break;
-			case '4': SeeRestaurantOrders(RestaurantList, size2); break;
-			case '5': LookForHomeDelivery(OrderList, size); break;
-			case '6': SearchRestaurantOrders(RestaurantList, size2); break;
-			case '7': TotalSales(OrderList, size, RestaurantList, size2); break;
-			case '8': DeleteHomeOrders(OrderList, size, N); break;
-			case '9': DeleteOrdersRestaurant(RestaurantList, size2, N); break;
-			case 'u': N = LogIn(); break;
-			case 'x': follow = false;
+			case 1: AddOrder(); break;
+			case 2: AddOrder(0); break;
+			case 3: SeeDeliveryOrder(0); break;
+			case 4: SeeRestaurantOrder(0); break;
+			case 5: DispatchDeliveryOrder(); break;
+			case 6: DispatchRestauranOrder(); break;
+			case 7: break;
+			case 8: break;
+			case 9: CancelOrder(); break;
+			case 10: TotalSales(); break;
+			case 11: LogIn(); break;
+			case 12: follow = false; break;
+			default: cout << "\nOPCION NO VALIDA!\n"; break;
 			
 		}	
 		
 	}while(follow);
 	
-	return follow; //retorna true o false
 }
 
 //funcion donde se piden las ordenes a domicilio
