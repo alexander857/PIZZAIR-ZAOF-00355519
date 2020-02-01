@@ -703,27 +703,43 @@ void DispatchRestauranOrder(){
 	
 }
 
-//funcion que calcula el total de ventas
-void TotalSales(HomeOrders* Order, int size, CustomInRestaurant* Restaurant, int size2){
-	//declaracion de variables
-	double TotalH = 0, TotalR = 0, VTotal = 0;
+//FUNCION DEL TOTAL DE VENTAS
+//total de ventas solo ordenes despachadas
+void TotalSales(){
+	float AmountTop = 0, IVA = 0, AmountIVA = 0, totalSales = 0;
 	
-	//sumando las ventas a domicilio
-	for(int i = 0; i < size; i++){
+	while(!amounts.empty()){
 		
-		TotalH += Order[i].amount;
+		//se saca el primer monto de la pila
+		AmountTop = amounts.top();
+		
+		//se le saca el iva al monto
+		IVA = (AmountTop * 13) / 100;
+		
+		//se le agrega el iva
+		AmountIVA = AmountTop + IVA;
+		
+		//se guarda el valor con iva en la pila de montos con iva
+		amountsIVA.push(AmountIVA);
+		
+		//se guarda el valor original de la pila de montos sin iva en una pila temporal
+		Extra.push(amounts.top());
+		
+		//se elimina temporalmente el monto de la pila amounts
+		amounts.pop();
 		
 	}
-	//sumando las ventas a restaurante
-	for(int i = 0; i< size2; i++){
-		
-		TotalR += Restaurant[i].amount;
-		
+	//se vuelve a llenar la pila original amounts
+	while(!Extra.empty()){
+		amounts.push(Extra.top());
+		Extra.pop();
 	}
-	
-	//sumando las ventas a domicilio y las ventas a restaurante y tenemos el total
-	VTotal = TotalH + TotalR;
-	
-	cout << "\nVentas Totales: $" << VTotal << endl; 
+	//se suman los montos con iva
+	while(!amountsIVA.empty()){
+		totalSales += amountsIVA.top();
+		amountsIVA.pop();
+	}
+	cout << fixed << setprecision(2) << "\nVENTAS TOTALES: " << totalSales << endl;
+	totalSales = 0;
 	
 }
