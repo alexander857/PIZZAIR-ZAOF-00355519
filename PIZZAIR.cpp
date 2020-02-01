@@ -658,6 +658,51 @@ void DispatchDeliveryOrder(){
 	
 }
 
+//despachar ordenes a restaurante
+void DispatchRestauranOrder(){
+   //declaracion de variables
+	int i = 0, k = 0;
+    bool orderFound = false; 	
+	string aName;
+	
+	if(AnOrderRestaurantWasPlaced == false){
+		
+		cout << "\n\033[31mNO HAY NINGUNA ORDEN PARA DESPACHAR!\033[0m" << endl;
+		
+	}
+	else{
+        cout << "\nNombre del cliente a despachar: "; getline(cin, aName);
+
+        for(auto iter = atRestaurantOrder.begin(); iter != atRestaurantOrder.end(); ++iter){  
+
+            if(iter->RESTAURANT.Restaurant.name == aName){  
+                 if(k > 0){
+                    cout << "\nHay alguien antes de " << aName << ", despache primero a " << atRestaurantOrder[i].RESTAURANT.Restaurant.name << endl;
+                    orderFound = true;
+                    break;
+                }
+                orderFound = true;      
+                amounts.push(atRestaurantOrder[i].RESTAURANT.TotalamountRestaurant);	//guardando monto de la orden despachada en la pila de los montos
+                DispatchRestaurant.insert(DispatchRestaurant.end(), atRestaurantOrder[i]);
+                iter = atRestaurantOrder.erase(iter);
+                cout << "\nLA ORDEN HA SIDO DESPACHADA CON EXITO!.\n";
+            break;
+            }
+            else
+                k++;
+        }
+        if(orderFound == false){
+            cout << "\n\033[31mNo hay ninguna orden al nombre de: " << aName << "\033[0m" << endl;
+		}
+        //si ya no hay ordenes en el vector original, la bandera que indica que hay una orden se vuelve false
+        if(atRestaurantOrder.size() == 0){
+            AnOrderRestaurantWasPlaced = false;
+        }
+						
+	}
+	
+}
+
 //funcion que calcula el total de ventas
 void TotalSales(HomeOrders* Order, int size, CustomInRestaurant* Restaurant, int size2){
 	//declaracion de variables
