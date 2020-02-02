@@ -137,9 +137,10 @@ bool PizzaMenu(){
 	do{
 		int option = 0;
 		//nombre de la pizzeria
-		cout << "\nPIZZAIR" << endl;
+		cout << "\n\033[36mPIZZAIR\033[0m" << endl;
 		
 		//menu de opciones
+		
 		cout << "\n1-Agregar orden a domicilio\n";
 		cout << "2-Agregar orden en restaurante\n";
 		cout << "3-Ver ordenes a domicilio\n";
@@ -148,12 +149,13 @@ bool PizzaMenu(){
 		cout << "6-Despachar ordenes en restaurante\n";
 		cout << "7-Ver tiempo promedio de espera domicilio\n";
 		cout << "8-Ver tiempo promedio de espera restaurante\n";
-		cout << "9-Calcelar orden (domicilio o restaurante, solo Admin)\n";
+		cout << "9-Calcelar orden (domicilio o restaurante, \033[31msolo Admin\033[0m)\n";
 		cout << "10-Calcular total de ventas\n";
 		cout << "11-Cambiar de usuario\n";
 		cout << "12-Salir\n";
 		cout << "\nOpcion: "; cin >> option;
 		cin.ignore();
+		
 		
 		switch(option){
 			//funciones llamadas al menu
@@ -202,7 +204,7 @@ bool LogIn(){
 					
 					if(key.compare(PASSWORD) == 0){
 						
-						cout << "Ingresado como admin" << endl;
+						cout << "\n\033[33mHAS INICIADO SESION COMO ADMIN!\033[0m" << endl;
 						isAdmin = true;
 						k = 1;
 					}			
@@ -210,7 +212,7 @@ bool LogIn(){
 				break;	
 				
 			case '2':
-				cout << "\nHa ingresado como Empleado" << endl;
+				cout << "\n\033[33mHAS INICIADO SESION COMO EMPLEADO!\033[0m" << endl;
 				isAdmin = false;
 				k = 1;
 				break;
@@ -638,7 +640,7 @@ void DispatchDeliveryOrder(){
                 amounts.push(atDeliveryOrder[i].HOME.TotalamountDelivery);	//guardando monto de la orden despachada en la pila de los montos
                 DispatchHome.insert(DispatchHome.end(), atDeliveryOrder[i]);
                 iter = atDeliveryOrder.erase(iter);
-                cout << "\nLA ORDEN HA SIDO DESPACHADA CON EXITO!.\n";
+                cout << "\n\033[34mLA ORDEN HA SIDO DESPACHADA CON EXITO!.\033[0m\n";
             break;
             }
             else
@@ -685,7 +687,7 @@ void DispatchRestauranOrder(){
                 amounts.push(atRestaurantOrder[i].RESTAURANT.TotalamountRestaurant);	//guardando monto de la orden despachada en la pila de los montos
                 DispatchRestaurant.insert(DispatchRestaurant.end(), atRestaurantOrder[i]);
                 iter = atRestaurantOrder.erase(iter);
-                cout << "\nLA ORDEN HA SIDO DESPACHADA CON EXITO!.\n";
+                cout << "\n\033[34mLA ORDEN HA SIDO DESPACHADA CON EXITO!.\033[0m\n";
             break;
             }
             else
@@ -739,7 +741,7 @@ void TotalSales(){
 		totalSales += amountsIVA.top();
 		amountsIVA.pop();
 	}
-	cout << fixed << setprecision(2) << "\nVENTAS TOTALES: " << totalSales << endl;
+	cout << fixed << setprecision(2) << "\nVENTAS TOTALES: $" << totalSales << endl;
 	totalSales = 0;
 	
 }
