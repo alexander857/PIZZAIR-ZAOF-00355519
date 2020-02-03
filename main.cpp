@@ -11,7 +11,7 @@ using namespace std;
 enum mainDish{pizza, pasta, lasagna};
 enum drink{soda, tea};
 enum starter{garlicBread, pizzaRolls, cheeseSticks};
-enum pymentType{cash, card};
+enum paymentType{cash, card};
 
 //luego las estructuras
 struct address{
@@ -76,7 +76,7 @@ int main(){
         switch(option){
             //agregar ordenes a domicilio
             case 1:
-                addOrder(array);
+                addOrder(dArray);
             break;
             //agregar ordenes a restaurante
             case 2:
@@ -100,7 +100,7 @@ int main(){
 
 bool loginUser(){
 
-    string enterPass = " ";
+    string enterPass;
     char option;
     cout << "INICIO DE SESION" << endl;
     cout << "A-Administrador" << endl;
@@ -184,13 +184,13 @@ void addOrder(delivery* array){
         cin.ignore();
 
         if(aux == 1){
-            array[i].deliveryInfo.pDrink = Soda;
+            array[i].deliveryInfo.pDrink = soda;
         }
         else{
-            array[i].deliveryInfo.pDrink = Tea;
+            array[i].deliveryInfo.pDrink = tea;
         }
 
-        array[i].deliveryInfo.idOrder = ideOrder++;
+        array[i].deliveryInfo.idOrder = idOrder++;
 
         cout << "Tipo de pago" << endl;
         cout << "1- Efectivo" << endl;
@@ -250,13 +250,13 @@ void addOrder(houseOrder* array){
         cin.ignore();
 
         if(aux == 1){
-            array[i].houseInfo.pDrink = Soda;
+            array[i].houseInfo.pDrink = soda;
         }
         else{
-            array[i].houseInfo.pDrink = Tea;
+            array[i].houseInfo.pDrink = tea;
         }
 
-        array[i].houseInfo.idOrder = ideOrder++;
+        array[i].houseInfo.idOrder = idOrder++;
 
         cout << "Tipo de pago" << endl;
         cout << "1- Efectivo" << endl;

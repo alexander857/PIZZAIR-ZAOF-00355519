@@ -56,6 +56,7 @@ struct DeliveryOrders{
 	mainData delivery;
 	int idOrderDelivery;
 	float TotalamountDelivery;
+	int quantitiesD[9]; //para guardar las cantidades de entradas, platos y bebidas
 		
 };
 
@@ -66,6 +67,7 @@ struct RestaurantOrders{
 	mainData Restaurant;
 	int idOderRestaurant;
 	float TotalamountRestaurant;
+	int quantitiesR[9]; //para guardar las cantidades de entradas, platos y bebidas
 	
 };
 
@@ -104,13 +106,10 @@ int idDelivery = 0, idRestaurant = 0;
 //pila para almacenar el monto de las ordenes
 stack<float> amounts; //montos sin IVA
 
-//arreglos de cantidad de entradas, platos principales y bebidas
-int quantitiesD[9], queantitiesR[9];
-
 //PROTOTIPOS DE LAS FUNCIONES
 bool LogIn(), PizzaMenu(); 
 void AddOrder(), AddOrder(int option), SeeDeliveryOrder(int i), SeeRestaurantOrder(int n), DispatchDeliveryOrder(), DispatchRestauranOrder();
-void WaitTimeDelibery(), WaitTimeRestaurant(), CancelOrder(), TotalSales();
+void WaitTimeDelibery(int i), WaitTimeRestaurant(), CancelOrder(), TotalSales();
 
 
 int main(){
@@ -158,7 +157,7 @@ bool PizzaMenu(){
 			case 4: SeeRestaurantOrder(0); break;
 			case 5: DispatchDeliveryOrder(); break;
 			case 6: DispatchRestauranOrder(); break;
-			case 7: break;
+			case 7: WaitTimeDelibery(0); break;
 			case 8: break;
 			case 9: CancelOrder(); break;
 			case 10: TotalSales(); break;
@@ -227,9 +226,13 @@ void AddOrder(){
 	//ingresan los datos del cliente
 	ANORDER anorder;
 	
-	//igualando a cero los contadores, la variable de los montos y de los precios para que no agarren valores basura
+	//igualando a cero el arreglo contador, la variable de los montos y de los precios para que no agarren valores basura
 	anorder.HOME.TotalamountDelivery = 0;
 	anorder.HOME.delivery.price = 0;
+
+	for(int i = 0; i < 9; i++){
+		anorder.HOME.quantitiesD[i] = 0;
+	}
 
 	cout << "\nNombre del cliente: "; getline(cin, anorder.HOME.delivery.name);
 	cout << "Direccion: \n";
@@ -249,13 +252,13 @@ void AddOrder(){
         switch(option){
             case 1: anorder.HOME.delivery.pStarter = garlicBread; 
             		anorder.HOME.delivery.price += 3.99; 
-					quantitiesD[0] += 1; break;
+					anorder.HOME.quantitiesD[0] += 1; break;
             case 2: anorder.HOME.delivery.pStarter2 = pizzaRolls; 
 					anorder.HOME.delivery.price += 4.99; 
-					quantitiesD[1] += 1; break;
+					anorder.HOME.quantitiesD[1] += 1; break;
             case 3: anorder.HOME.delivery.pStarter3 = cheeseSticks; 
 					anorder.HOME.delivery.price += 3.75; 
-					quantitiesD[2] += 1; break;
+					anorder.HOME.quantitiesD[2] += 1; break;
             case 4:follow = false; break;
             default: cout << "Opcion erronea!" << endl; break;
         }
@@ -270,13 +273,13 @@ void AddOrder(){
         switch(option){
             case 1: anorder.HOME.delivery.pDish = pizza; 
             		anorder.HOME.delivery.price += 13.99; 
-					quantitiesD[3] += 1; break;
+					anorder.HOME.quantitiesD[3] += 1; break;
             case 2: anorder.HOME.delivery.pDish2 = pasta; 				
 					anorder.HOME.delivery.price += 5.55; 
-					quantitiesD[4] += 1; break;
+					anorder.HOME.quantitiesD[4] += 1; break;
             case 3: anorder.HOME.delivery.pDish3 = lasagna; 
 					anorder.HOME.delivery.price += 6.25; 
-					quantitiesD[5] += 1; break;
+					anorder.HOME.quantitiesD[5] += 1; break;
             case 4:follow = false; break;
             default: cout << "Opcion erronea!" << endl; break;
         }
@@ -291,13 +294,13 @@ void AddOrder(){
         switch(option){
             case 1: anorder.HOME.delivery.pDrink = beer; 
             		anorder.HOME.delivery.price += 1.99; 
-					quantitiesD[6] += 1; break;
+					anorder.HOME.quantitiesD[6] += 1; break;
             case 2: anorder.HOME.delivery.pDrink2 = soda; 				
 					anorder.HOME.delivery.price += 0.95; 
-					quantitiesD[7] += 1; break;
+					anorder.HOME.quantitiesD[7] += 1; break;
             case 3: anorder.HOME.delivery.pDrink3 = tea; 	
 					anorder.HOME.delivery.price += 1.15; 
-					quantitiesD[8] += 1; break;
+					anorder.HOME.quantitiesD[8] += 1; break;
             case 4:follow = false; break;
             default: cout << "Opcion erronea!" << endl; break;
         }
@@ -336,9 +339,13 @@ void AddOrder(int option){
 	//ingresan los datos del cliente
 	ANORDER anorder;
 
-	//igualando a cero los contadores, la variable de los montos y de los precios para que no agarren valores basura
+	//igualando a cero el arreglo contador, la variable de los montos y de los precios para que no agarren valores basura
 	anorder.RESTAURANT.TotalamountRestaurant = 0;
 	anorder.RESTAURANT.Restaurant.price = 0;
+
+	for(int i = 0; i < 9; i++){
+		anorder.RESTAURANT.quantitiesR[i] = 0;
+	}
 	
 	cout << "\nNombre del cliente: "; getline(cin, anorder.RESTAURANT.Restaurant.name);
 	cout << "Personas por mesa: "; cin >> anorder.RESTAURANT.PeoplePerTable; cin.ignore();
@@ -353,13 +360,13 @@ void AddOrder(int option){
         switch(option){
             case 1: anorder.RESTAURANT.Restaurant.pStarter = garlicBread; 
             		anorder.RESTAURANT.Restaurant.price += 3.99; 
-					queantitiesR[0] += 1; break;
+					anorder.RESTAURANT.quantitiesR[0] += 1; break;
             case 2: anorder.RESTAURANT.Restaurant.pStarter2 = pizzaRolls; 
 					anorder.RESTAURANT.Restaurant.price += 4.99; 
-					queantitiesR[1] += 1; break;
+					anorder.RESTAURANT.quantitiesR[1] += 1; break;
             case 3: anorder.RESTAURANT.Restaurant.pStarter3 = cheeseSticks; 
 					anorder.RESTAURANT.Restaurant.price += 3.75; 
-					queantitiesR[2] += 1; break;
+					anorder.RESTAURANT.quantitiesR[2] += 1; break;
             case 4:follow = false; break;
             default: cout << "Opcion erronea!" << endl; break;
         }
@@ -374,13 +381,13 @@ void AddOrder(int option){
         switch(option){
             case 1: anorder.RESTAURANT.Restaurant.pDish = pizza; 
             		anorder.RESTAURANT.Restaurant.price += 13.99; 
-					queantitiesR[3] += 1; break;
+					anorder.RESTAURANT.quantitiesR[3] += 1; break;
             case 2: anorder.RESTAURANT.Restaurant.pDish2 = pasta; 				
 					anorder.RESTAURANT.Restaurant.price += 5.55; 
-					queantitiesR[4] += 1; break;
+					anorder.RESTAURANT.quantitiesR[4] += 1; break;
             case 3: anorder.RESTAURANT.Restaurant.pDish3 = lasagna; 
 					anorder.RESTAURANT.Restaurant.price += 6.25; 
-					queantitiesR[5] += 1; break;
+					anorder.RESTAURANT.quantitiesR[5] += 1; break;
             case 4:follow = false; break;
             default: cout << "Opcion erronea!" << endl; break;
         }
@@ -395,13 +402,13 @@ void AddOrder(int option){
         switch(option){
             case 1: anorder.RESTAURANT.Restaurant.pDrink = beer; 
             		anorder.RESTAURANT.Restaurant.price += 1.99; 
-					queantitiesR[6] += 1; break;
+					anorder.RESTAURANT.quantitiesR[6] += 1; break;
             case 2: anorder.RESTAURANT.Restaurant.pDrink2 = soda; 				
 					anorder.RESTAURANT.Restaurant.price += 0.95; 
-					queantitiesR[7] += 1; break;
+					anorder.RESTAURANT.quantitiesR[7] += 1; break;
             case 3: anorder.RESTAURANT.Restaurant.pDrink3 = tea; 	
 					anorder.RESTAURANT.Restaurant.price += 1.15; 
-					queantitiesR[8] += 1; break;
+					anorder.RESTAURANT.quantitiesR[8] += 1; break;
             case 4:follow = false; break;
             default: cout << "Opcion erronea!" << endl; break;
         }
@@ -454,7 +461,7 @@ void SeeDeliveryOrder(int i){
 		}
 		else{		
 		
-			cout << "\nORDEN " << atDeliveryOrder[i].HOME.idOrderDelivery << "\n" << endl;
+			cout << "\n\033[34mORDEN " << atDeliveryOrder[i].HOME.idOrderDelivery << "\033[0m\n" << endl;
 			cout << "Nombre del cliente: " << atDeliveryOrder[i].HOME.delivery.name << endl;
 			cout << "Direccion: ";
 			cout << "No.Casa: " << atDeliveryOrder[i].HOME.Address.HouseNumber << ", ";
@@ -466,35 +473,35 @@ void SeeDeliveryOrder(int i){
             //switch donde se muestran los platos y bebidas ordenados y cuantos de cada uno
  			cout << "\nEntrada: ";
             switch(atDeliveryOrder[i].HOME.delivery.pStarter){
-                case garlicBread: cout << "Pan con ajo " << quantitiesD[0] << " | ";
+                case garlicBread: cout << "Pan con ajo " << atDeliveryOrder[i].HOME.quantitiesD[0] << " | ";
             }
             switch(atDeliveryOrder[i].HOME.delivery.pStarter2){
-                case pizzaRolls: cout << "Pizza rolls " << quantitiesD[1] << " | ";
+                case pizzaRolls: cout << "Pizza rolls " << atDeliveryOrder[i].HOME.quantitiesD[1] << " | ";
             }
             switch(atDeliveryOrder[i].HOME.delivery.pStarter3){
-                case cheeseSticks: cout << "Palitos de queso " << quantitiesD[2] << endl; break;
+                case cheeseSticks: cout << "Palitos de queso " << atDeliveryOrder[i].HOME.quantitiesD[2] << " | "; break;
             }
              
             cout << "\nPlato principal: ";
             switch(atDeliveryOrder[i].HOME.delivery.pDish){
-                case pizza: cout << "Pizza " << quantitiesD[3] << " | ";
+                case pizza: cout << "Pizza " << atDeliveryOrder[i].HOME.quantitiesD[3] << " | ";
             }
             switch(atDeliveryOrder[i].HOME.delivery.pDish2){
-                case pasta: cout << "Pasta " << quantitiesD[4] << " | ";
+                case pasta: cout << "Pasta " << atDeliveryOrder[i].HOME.quantitiesD[4] << " | ";
             }
             switch(atDeliveryOrder[i].HOME.delivery.pDish3){
-                case lasagna: cout << "Lasagna " << quantitiesD[5] << endl; break;
+                case lasagna: cout << "Lasagna " << atDeliveryOrder[i].HOME.quantitiesD[5] << " | "; break;
             }
             
             cout << "\nBebida: ";
             switch( atDeliveryOrder[i].HOME.delivery.pDrink){
-                case beer: cout << "Cerveza " << quantitiesD[6] << " | "; 
+                case beer: cout << "Cerveza " << atDeliveryOrder[i].HOME.quantitiesD[6] << " | "; 
             }
             switch( atDeliveryOrder[i].HOME.delivery.pDrink2){
-                case soda: cout << "Soda " << quantitiesD[7] << " | ";
+                case soda: cout << "Soda " << atDeliveryOrder[i].HOME.quantitiesD[7] << " | ";
             }
             switch( atDeliveryOrder[i].HOME.delivery.pDrink3){
-                case tea: cout << "Te helado " << quantitiesD[8]; break;
+                case tea: cout << "Te helado " << atDeliveryOrder[i].HOME.quantitiesD[8]; break;
             }
             
             cout << "\n\nTipo de pago: ";
@@ -532,42 +539,42 @@ void SeeRestaurantOrder(int n){
 		}
 		else{		
 				
-			cout << "\nORDEN " << atRestaurantOrder[n].RESTAURANT.idOderRestaurant << "\n" << endl;
+			cout << "\n\033[34mORDEN " << atRestaurantOrder[n].RESTAURANT.idOderRestaurant << "\033[m\n" << endl;
 			cout << "Nombre del cliente: " << atRestaurantOrder[n].RESTAURANT.Restaurant.name << endl;
 			cout << "Personas por mesa: " << atRestaurantOrder[n].RESTAURANT.PeoplePerTable << endl;
 
             //switch donde se muestran todos los platos y bebidas de la orden y cuantos de cada uno
 			cout << "\nEntrada: ";
             switch(atRestaurantOrder[n].RESTAURANT.Restaurant.pStarter){
-                case garlicBread: cout << "Pan con ajo " << queantitiesR[0] << " | ";
+                case garlicBread: cout << "Pan con ajo " << atRestaurantOrder[n].RESTAURANT.quantitiesR[0] << " | ";
             }
             switch(atRestaurantOrder[n].RESTAURANT.Restaurant.pStarter2){
-                case pizzaRolls: cout << "Pizza rolls " << queantitiesR[1] << " | ";
+                case pizzaRolls: cout << "Pizza rolls " << atRestaurantOrder[n].RESTAURANT.quantitiesR[1] << " | ";
             }
             switch(atRestaurantOrder[n].RESTAURANT.Restaurant.pStarter3){
-                case cheeseSticks: cout << "Palitos de queso " << queantitiesR[2] << endl; break;
+                case cheeseSticks: cout << "Palitos de queso " << atRestaurantOrder[n].RESTAURANT.quantitiesR[2] << " | "; break;
             }
 
             cout << "\nPlato principal: ";
             switch(atRestaurantOrder[n].RESTAURANT.Restaurant.pDish){
-                case pizza: cout << "Pizza " << queantitiesR[3] << " | ";
+                case pizza: cout << "Pizza " << atRestaurantOrder[n].RESTAURANT.quantitiesR[3] << " | ";
             }
             switch(atRestaurantOrder[n].RESTAURANT.Restaurant.pDish2){
-                case pasta: cout << "Pasta " << queantitiesR[4] << " | ";
+                case pasta: cout << "Pasta " << atRestaurantOrder[n].RESTAURANT.quantitiesR[4] << " | ";
             }
             switch(atRestaurantOrder[n].RESTAURANT.Restaurant.pDish3){
-                case lasagna: cout << "Lasagna " << queantitiesR[5] << endl; break;
+                case lasagna: cout << "Lasagna " << atRestaurantOrder[n].RESTAURANT.quantitiesR[5] << " | "; break;
             }
 
             cout << "\nBebida: ";
             switch(atRestaurantOrder[n].RESTAURANT.Restaurant.pDrink){
-                case beer: cout << "Cerveza " << queantitiesR[6] << " | ";
+                case beer: cout << "Cerveza " << atRestaurantOrder[n].RESTAURANT.quantitiesR[6] << " | ";
             }
             switch(atRestaurantOrder[n].RESTAURANT.Restaurant.pDrink2){
-                case soda: cout << "Soda " << queantitiesR[7] << " | ";
+                case soda: cout << "Soda " << atRestaurantOrder[n].RESTAURANT.quantitiesR[7] << " | ";
             }
             switch(atRestaurantOrder[n].RESTAURANT.Restaurant.pDrink3){
-                case tea: cout << "Te helado " << queantitiesR[8]; break;
+                case tea: cout << "Te helado " << atRestaurantOrder[n].RESTAURANT.quantitiesR[8]; break;
             }
 
             cout << "\n\nTipo de pago: ";
@@ -803,7 +810,43 @@ void CancelOrder(){
 //FUNCIONES DE TIEMPO DE ESPERA
 
 //funcion ver tiempo de espera a domicilio
-void WaitTimeDelibery(){
-	ANORDER anorder;
+void WaitTimeDelibery(int i){
+	//declaracion de variables
+	float TotalTime = 0, starterT = 0, maindishT = 0, drinkT = 0;
+
+	if(AnOrderDeliveryWasPlaced == false){
+		
+		cout << "\n\033[31mNO HAY NINGUNA ORDEN!\033[0m" << endl;
+		
+	}
+	else{
+		
+		if(i == 0) cout << endl; //para que haya un espacio en la primera iteracion
+
+		if(i == atDeliveryOrder.size()){
+			
+			cout << "\nSe ha mostrado el tiempo de espera de cada orden!" << endl;
+
+		}
+		else{
+			//sumando los totales de entradas, platos principales y bebidas de la orden		
+			starterT = (atDeliveryOrder[i].HOME.quantitiesD[0] + atDeliveryOrder[i].HOME.quantitiesD[1]+ atDeliveryOrder[i].HOME.quantitiesD[2]);
+			maindishT = (atDeliveryOrder[i].HOME.quantitiesD[3] + atDeliveryOrder[i].HOME.quantitiesD[4]+ atDeliveryOrder[i].HOME.quantitiesD[5]);
+			drinkT = (atDeliveryOrder[i].HOME.quantitiesD[6] + atDeliveryOrder[i].HOME.quantitiesD[7]+ atDeliveryOrder[i].HOME.quantitiesD[8]);
+
+			//tiempo total de espera de la orden
+			TotalTime = (starterT * 1.10 + maindishT * 1.5 + drinkT * 1.35) + 15;
+
+			cout << "ORDEN " << atDeliveryOrder[i].HOME.idOrderDelivery << " | ";
+			cout << "Cliente: " << atDeliveryOrder[i].HOME.delivery.name << " | ";
+			cout << "Monto de la orden: $" << atDeliveryOrder[i].HOME.TotalamountDelivery << " | ";
+			cout << "Tiempo de espera: " << fixed << setprecision(0) << "\033[34m" << TotalTime << " minutos\n\033[0m";
+			i++;
+		
+			WaitTimeDelibery(i);
+			
+		}	
+		
+	}
 
 }
