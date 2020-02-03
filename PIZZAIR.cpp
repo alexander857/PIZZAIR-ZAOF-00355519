@@ -109,7 +109,7 @@ stack<float> amounts; //montos sin IVA
 //PROTOTIPOS DE LAS FUNCIONES
 bool LogIn(), PizzaMenu(); 
 void AddOrder(), AddOrder(int option), SeeDeliveryOrder(int i), SeeRestaurantOrder(int n), DispatchDeliveryOrder(), DispatchRestauranOrder();
-void WaitTimeDelibery(int i), WaitTimeRestaurant(), CancelOrder(), TotalSales();
+void WaitTimeDelibery(int i), WaitTimeRestaurant(int i), CancelOrder(), TotalSales();
 
 
 int main(){
@@ -158,7 +158,7 @@ bool PizzaMenu(){
 			case 5: DispatchDeliveryOrder(); break;
 			case 6: DispatchRestauranOrder(); break;
 			case 7: WaitTimeDelibery(0); break;
-			case 8: break;
+			case 8: WaitTimeRestaurant(0); break;
 			case 9: CancelOrder(); break;
 			case 10: TotalSales(); break;
 			case 11: LogIn(); break;
@@ -809,7 +809,7 @@ void CancelOrder(){
 
 //FUNCIONES DE TIEMPO DE ESPERA
 
-//funcion ver tiempo de espera a domicilio
+//funcion ver tiempo de espera de ordenes a domicilio
 void WaitTimeDelibery(int i){
 	//declaracion de variables
 	float TotalTime = 0, starterT = 0, maindishT = 0, drinkT = 0;
@@ -825,7 +825,7 @@ void WaitTimeDelibery(int i){
 
 		if(i == atDeliveryOrder.size()){
 			
-			cout << "\nSe ha mostrado el tiempo de espera de cada orden!" << endl;
+			cout << "\nSe ha mostrado el tiempo de espera de cada orden a domicilio!" << endl;
 
 		}
 		else{
@@ -841,6 +841,7 @@ void WaitTimeDelibery(int i){
 			cout << "Cliente: " << atDeliveryOrder[i].HOME.delivery.name << " | ";
 			cout << "Monto de la orden: $" << atDeliveryOrder[i].HOME.TotalamountDelivery << " | ";
 			cout << "Tiempo de espera: " << fixed << setprecision(0) << "\033[34m" << TotalTime << " minutos\n\033[0m";
+			cout << fixed << setprecision(2); 
 			i++;
 		
 			WaitTimeDelibery(i);
@@ -849,4 +850,46 @@ void WaitTimeDelibery(int i){
 		
 	}
 
+}
+
+//funcion ver tiempo de espera de ordenes a restaurante
+void WaitTimeRestaurant(int i){
+	//declaracion de variables
+	float TotalTime = 0, starterT = 0, maindishT = 0, drinkT = 0;
+
+	if(AnOrderRestaurantWasPlaced == false){
+		
+		cout << "\n\033[31mNO HAY NINGUNA ORDEN!\033[0m" << endl;
+		
+	}
+	else{
+		
+		if(i == 0) cout << endl; //para que haya un espacio en la primera iteracion
+
+		if(i == atRestaurantOrder.size()){
+			
+			cout << "\nSe ha mostrado el tiempo de espera de cada orden a restaurante!" << endl;
+
+		}
+		else{
+			//sumando los totales de entradas, platos principales y bebidas de la orden		
+			starterT = (atRestaurantOrder[i].RESTAURANT.quantitiesR[0] + atRestaurantOrder[i].RESTAURANT.quantitiesR[1]+ atRestaurantOrder[i].RESTAURANT.quantitiesR[2]);
+			maindishT = (atRestaurantOrder[i].RESTAURANT.quantitiesR[3] + atRestaurantOrder[i].RESTAURANT.quantitiesR[4]+ atRestaurantOrder[i].RESTAURANT.quantitiesR[5]);
+			drinkT = (atRestaurantOrder[i].RESTAURANT.quantitiesR[6] + atRestaurantOrder[i].RESTAURANT.quantitiesR[7]+ atRestaurantOrder[i].RESTAURANT.quantitiesR[8]);
+
+			//tiempo total de espera de la orden
+			TotalTime = (starterT * 1.10 + maindishT * 1.5 + drinkT * 1.35) + 15;
+
+			cout << "ORDEN " << atRestaurantOrder[i].RESTAURANT.idOderRestaurant << " | ";
+			cout << "Cliente: " << atRestaurantOrder[i].RESTAURANT.Restaurant.name << " | ";
+			cout << "Monto de la orden: $" << atRestaurantOrder[i].RESTAURANT.TotalamountRestaurant << " | ";
+			cout << "Tiempo de espera: " << fixed << setprecision(0) << "\033[34m" << TotalTime << " minutos\n\033[0m";
+			cout << fixed << setprecision(2);
+			i++;
+		
+			WaitTimeRestaurant(i);
+			
+		}	
+		
+	}
 }
