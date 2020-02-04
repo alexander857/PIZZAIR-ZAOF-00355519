@@ -37,9 +37,13 @@ struct mainData{
 	string name;
 	starter pStarter[3];
 	mainDish pDish[3];
-	drink pDrink[3];	
+	drink pDrink[3];
+	vector<starter> pS;
+	vector<mainDish> pD;
+	vector<drink> pDr;	
     paymentType pay;
 	float price;
+	int id;
 };
 
 //pedidos a domicilio
@@ -83,7 +87,7 @@ vector<AnOrder> DispatchRestaurant;
 
 //VAIABLES GLOBALES
 bool isAdmin = false, AnOrderDeliveryWasPlaced = false, AnOrderRestaurantWasPlaced = false, requested = false;
-int idDelivery = 0, idRestaurant = 0;
+int id = 0;
 
 //pila para almacenar el monto de las ordenes
 stack<float> amounts; //montos sin IVA
@@ -227,7 +231,7 @@ void AddOrder(){
 	//INGRESANDO LA COMIDA Y BEBIDAS DE LA ORDEN A DOMICILIO
     bool follow = true;
     do{
-        int option = 0;
+    
 	  	cout << "\nENTRADA:\n";
 		cout << "\n1-Pan con ajo | 2-Pizza rolls | 3-Palitos de queso | 4-Siguiente menu...\n";
 		cout << "Opcion: "; cin >> option;
@@ -251,7 +255,7 @@ void AddOrder(){
 	
 	follow = true;
     do{
-        int option = 0;
+    
 	  	cout << "\nPLATO PRINCIPAL:\n";
 		cout << "\n1-Pizza | 2-Pasta | 3-Lasagna | 4-Siguiente menu...\n";
 		cout << "Opcion: "; cin >> option;
@@ -275,7 +279,7 @@ void AddOrder(){
 
 	follow = true;
     do{
-        int option = 0;
+
 	  	cout << "\nBEBIDA:\n";
 		cout << "\n1-Cerveza | 2-Soda | 3-Te helado | 4-Siguiente menu...\n";
 		cout << "Opcion: "; cin >> option;
@@ -304,7 +308,7 @@ void AddOrder(){
 	if(requested == true){
 
 		do{
-			int option = 0;
+
 			cout << "\nTipo de pago:\n";
 			cout << "\n1-Efectivo | 2-Tarjeta\n";
 			cout << "Opcion: "; cin >> option;
@@ -318,8 +322,8 @@ void AddOrder(){
 		cout << "\nMonto total de la orden: $" << anorder.HOME.TotalamountDelivery << endl;
 
 		//numero correlativo de la orden
-		idDelivery++;
-		anorder.HOME.idOrderDelivery = idDelivery;
+		id++;
+		anorder.HOME.delivery.id = id;
 		
 		//agregando a al vector
 		atDeliveryOrder.insert(atDeliveryOrder.end(), anorder);
@@ -349,7 +353,7 @@ void AddOrder(int option){
 	//INGRESANDO LA COMIDA Y BEBIDAS DE LA ORDEN A RESTAURANTE
     bool follow = true;
     do{
-        int option = 0;
+    
 	  	cout << "\nENTRADA:\n";
 		cout << "\n1-Pan con ajo | 2-Pizza rolls | 3-Palitos de queso | 4-Siguiente menu...\n";
 		cout << "Opcion: "; cin >> option;
@@ -373,7 +377,7 @@ void AddOrder(int option){
 	
 	follow = true;
     do{
-        int option = 0;
+    
 	  	cout << "\nPLATO PRINCIPAL:\n";
 		cout << "\n1-Pizza | 2-Pasta | 3-Lasagna | 4-Siguiente menu...\n";
 		cout << "Opcion: "; cin >> option;
@@ -397,7 +401,7 @@ void AddOrder(int option){
 	
 	follow = true;
     do{
-        int option = 0;
+    
 	  	cout << "\nBEBIDA:\n";
 		cout << "\n1-Cerveza | 2-Soda | 3-Te helado | 4-Siguiente menu...\n";
 		cout << "Opcion: "; cin >> option;
@@ -425,7 +429,7 @@ void AddOrder(int option){
 	if(requested == true){
 
 		do{
-			int option = 0;
+
 			cout << "\nTipo de pago:\n";
 			cout << "\n1-Efectivo | 2-Tarjeta\n";
 			cout << "Opcion: "; cin >> option;
@@ -439,8 +443,8 @@ void AddOrder(int option){
 		cout << "\nMonto total de la orden: $" << anorder.RESTAURANT.TotalamountRestaurant << endl;
 
 		//numero correlativo de la orden
-		idRestaurant++;
-		anorder.RESTAURANT.idOderRestaurant = idRestaurant;
+		id++;
+		anorder.RESTAURANT.Restaurant.id = id;
 		
 		//agregando al vector
 		atRestaurantOrder.insert(atRestaurantOrder.end(), anorder);
@@ -470,7 +474,7 @@ void SeeDeliveryOrder(int i){
 		}
 		else{		
 		
-			cout << "\n\033[34mORDEN " << atDeliveryOrder[i].HOME.idOrderDelivery << "\033[0m\n" << endl;
+			cout << "\n\033[34mORDEN " << atDeliveryOrder[i].HOME.delivery.id << "\033[0m\n" << endl;
 			cout << "Nombre del cliente: " << atDeliveryOrder[i].HOME.delivery.name << endl;
 			cout << "Direccion: ";
 			cout << "No.Casa: " << atDeliveryOrder[i].HOME.Address.HouseNumber << ", ";
@@ -548,7 +552,7 @@ void SeeRestaurantOrder(int n){
 		}
 		else{		
 				
-			cout << "\n\033[34mORDEN " << atRestaurantOrder[n].RESTAURANT.idOderRestaurant << "\033[m\n" << endl;
+			cout << "\n\033[34mORDEN " << atRestaurantOrder[n].RESTAURANT.Restaurant.id << "\033[m\n" << endl;
 			cout << "Nombre del cliente: " << atRestaurantOrder[n].RESTAURANT.Restaurant.name << endl;
 			cout << "Personas por mesa: " << atRestaurantOrder[n].RESTAURANT.PeoplePerTable << endl;
 
