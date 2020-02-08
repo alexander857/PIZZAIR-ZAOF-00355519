@@ -50,7 +50,7 @@ struct DeliveryOrders{
 	string phone;
 	mainData delivery;
 	int idOrderDelivery, quantitiesD[9]; //para guardar las cantidades de entradas, platos y bebidas
-	float TotalamountDelivery;
+	float TotalamountDelivery, timeD;
 		
 };
 
@@ -59,7 +59,7 @@ struct RestaurantOrders{
 	
 	int PeoplePerTable, idOderRestaurant, quantitiesR[9]; //para guardar las cantidades de entradas, platos y bebidas
 	mainData Restaurant;
-	float TotalamountRestaurant;
+	float TotalamountRestaurant, timeR;
 	
 };
 
@@ -91,8 +91,8 @@ stack<float> amounts; //montos sin IVA
 
 //PROTOTIPOS DE LAS FUNCIONES
 bool LogIn(), PizzaMenu(); 
-void AddOrder(), AddOrder(int option), SeeDeliveryOrder(int i), SeeRestaurantOrder(int n), DispatchDeliveryOrder(), DispatchRestauranOrder();
-void WaitTimeDelibery(int i, float TotalTimeOuts), WaitTimeRestaurant(int i, float TotalTimeOuts), CancelOrder(), TotalSales();
+void AddOrder(), AddOrder(int), SeeDeliveryOrder(int), SeeRestaurantOrder(int), DispatchDeliveryOrder(), DispatchRestauranOrder();
+void WaitTimeDelibery(int, float,float), WaitTimeRestaurant(int, float, float), CancelOrder(), TotalSales();
 
 
 int main(){
@@ -140,8 +140,8 @@ bool PizzaMenu(){
 			case 4: SeeRestaurantOrder(0); break;
 			case 5: DispatchDeliveryOrder(); break;
 			case 6: DispatchRestauranOrder(); break;
-			case 7: WaitTimeDelibery(0, 0); break;
-			case 8: WaitTimeRestaurant(0, 0); break;
+			case 7: WaitTimeDelibery(0, 0, 0); break;
+			case 8: WaitTimeRestaurant(0, 0, 0); break;
 			case 9: CancelOrder(); break;
 			case 10: TotalSales(); break;
 			case 11: LogIn(); break;
@@ -534,7 +534,9 @@ void SeeDeliveryOrder(int i){
                 case card: cout << "Tarjeta" << endl; break;
             }
 			cout << "Monto de la orden: $" << atDeliveryOrder[i].HOME.TotalamountDelivery << endl;
-			
+			cout << "Tiempo de espera de la orden: " << fixed << setprecision(0) << atDeliveryOrder[i].HOME.timeD << " minutos" << endl;
+			cout << fixed << setprecision(2);
+
 			i++;
 		
 			SeeDeliveryOrder(i);
@@ -607,6 +609,8 @@ void SeeRestaurantOrder(int n){
                 case card: cout << "Tarjeta" << endl; break;
             }
 			cout << "Monto de la orden: $" << atRestaurantOrder[n].RESTAURANT.TotalamountRestaurant << endl;
+			cout << "Tiempo de espera de la orden: " << fixed << setprecision(0) << atRestaurantOrder[n].RESTAURANT.timeR << " minutos" << endl;
+			cout << fixed << setprecision(2);
 			
 			n++;
 			
@@ -834,9 +838,9 @@ void CancelOrder(){
 //FUNCIONES DE TIEMPO DE ESPERA
 
 //funcion ver tiempo de espera de ordenes a domicilio
-void WaitTimeDelibery(int i, float TotalTimeOuts){
+void WaitTimeDelibery(int i, float TotalTimeOuts, float TotalTime){
 	//declaracion de variables
-	float TotalTime = 0, starterT = 0, maindishT = 0, drinkT = 0;
+	float starterT = 0, maindishT = 0, drinkT = 0;
 
 	if(AnOrderDeliveryWasPlaced == false){
 		
@@ -862,6 +866,7 @@ void WaitTimeDelibery(int i, float TotalTimeOuts){
 
 			//tiempo total de espera de la orden
 			TotalTime = (starterT * 1.10 + maindishT * 1.5 + drinkT * 1.35) + 15;
+			atDeliveryOrder[i].HOME.timeD = TotalTime;
 
 			cout << "ORDEN " << atDeliveryOrder[i].HOME.delivery.id << " | ";
 			cout << "Cliente: " << atDeliveryOrder[i].HOME.delivery.name << " | ";
@@ -871,7 +876,7 @@ void WaitTimeDelibery(int i, float TotalTimeOuts){
 			cout << fixed << setprecision(2); 
 			i++;
 		
-			WaitTimeDelibery(i, TotalTimeOuts);
+			WaitTimeDelibery(i, TotalTimeOuts, TotalTime);
 			
 		}	
 		
@@ -880,9 +885,9 @@ void WaitTimeDelibery(int i, float TotalTimeOuts){
 }
 
 //funcion ver tiempo de espera de ordenes a restaurante
-void WaitTimeRestaurant(int i, float TotalTimeOuts){
+void WaitTimeRestaurant(int i, float TotalTimeOuts, float TotalTime){
 	//declaracion de variables
-	float TotalTime = 0, starterT = 0, maindishT = 0, drinkT = 0;
+	float starterT = 0, maindishT = 0, drinkT = 0;
 
 	if(AnOrderRestaurantWasPlaced == false){
 		
@@ -907,6 +912,7 @@ void WaitTimeRestaurant(int i, float TotalTimeOuts){
 
 			//tiempo total de espera de la orden
 			TotalTime = (starterT * 1.10 + maindishT * 1.5 + drinkT * 1.35);
+			atRestaurantOrder[i].RESTAURANT.timeR = TotalTime;
 
 			cout << "ORDEN " << atRestaurantOrder[i].RESTAURANT.Restaurant.id << " | ";
 			cout << "Cliente: " << atRestaurantOrder[i].RESTAURANT.Restaurant.name << " | ";
@@ -916,7 +922,7 @@ void WaitTimeRestaurant(int i, float TotalTimeOuts){
 			cout << fixed << setprecision(2);
 			i++;
 		
-			WaitTimeRestaurant(i, TotalTimeOuts);
+			WaitTimeRestaurant(i, TotalTimeOuts, TotalTime);
 			
 		}	
 		
