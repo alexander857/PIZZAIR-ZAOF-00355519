@@ -8,7 +8,7 @@
 
 //contraseña del sistema
 #define PASSWORD "delete"
-#define __Color_h__
+#define __Color_h__ //cambia color de las letras
 
 using namespace std;
 
