@@ -109,7 +109,7 @@ bool PizzaMenu(){
 	do{
 		int option = 0;
 		//nombre de la pizzeria
-		cout << "\n\033[36mPIZZAIR\033[0m" << endl;
+		cout << "\n\033[36mMENU PRINCIPAL PIZZAIR\033[0m" << endl;
 		
 		//menu de opciones
 		
@@ -143,7 +143,7 @@ bool PizzaMenu(){
 			case 10: TotalSales(); break; 
 			case 11: LogIn(); break;
 			case 12: follow = false; break;
-			default: cout << "\nOPCION NO VALIDA!\n"; break;
+			default: cout << "\n\033[31mOPCION NO VALIDA!\033[0m\n"; break;
 			
 		}	
 		
@@ -176,7 +176,7 @@ bool LogIn(){
 					
 					if(key.compare(PASSWORD) == 0){
 						
-						cout << "\n\033[33mHAS INICIADO SESION COMO ADMIN!\033[0m" << endl;
+						cout << "\n\033[33mHAS INICIADO SESION COMO ADMINISTRADOR!\033[0m" << endl;
 						isAdmin = true;
 						k = 1;
 					}			
@@ -189,7 +189,7 @@ bool LogIn(){
 				k = 1;
 				break;
 			default :
-				cout << "\nOPCION NO VALIDA!" << endl;
+				cout << "\n\033[31mOPCION NO VALIDA!\033[0m" << endl;
 				
 		}
 
@@ -504,7 +504,7 @@ void SeeDeliveryOrder(int i){
 			cout << "Telefono: " << atDeliveryOrder[i].HOME.phone << endl;
 
             //switch donde se muestran los platos y bebidas ordenados y cuantos de cada uno
- 			cout << "\nEntrada: ";
+ 			cout << "\n\033[32mEntrada: \033[0m";
              for(int j = 0; j < 3; j++){
 
                 switch(atDeliveryOrder[i].HOME.delivery.pStarter[j]){
@@ -515,7 +515,7 @@ void SeeDeliveryOrder(int i){
 
              }
              
-            cout << "\nPlato principal: ";
+            cout << "\n\033[35mPlato principal: \033[0m";
             for(int j = 0; j < 3; j++){
 
                 switch(atDeliveryOrder[i].HOME.delivery.pDish[j]){ 
@@ -526,7 +526,7 @@ void SeeDeliveryOrder(int i){
 
             }
             
-            cout << "\nBebida: ";
+            cout << "\n\033[36mBebida: \033[0m";
             for(int j = 0; j < 3; j++){
 
                 switch( atDeliveryOrder[i].HOME.delivery.pDrink[j]){
@@ -579,7 +579,7 @@ void SeeRestaurantOrder(int n){
 			cout << "Personas por mesa: " << atRestaurantOrder[n].RESTAURANT.PeoplePerTable << endl;
 
             //switch donde se muestran todos los platos y bebidas de la orden y cuantos de cada uno
-			cout << "\nEntrada: ";
+			cout << "\n\033[32mEntrada: \033[0m";
             for(int i = 0; i < 3; i++){
 
                 switch(atRestaurantOrder[n].RESTAURANT.Restaurant.pStarter[i]){
@@ -590,7 +590,7 @@ void SeeRestaurantOrder(int n){
 
             }
 
-            cout << "\nPlato principal: ";
+            cout << "\n\033[35mPlato principal: \033[0m";
             for(int i = 0; i < 3; i++){
 
                 switch(atRestaurantOrder[n].RESTAURANT.Restaurant.pDish[i]){
@@ -601,7 +601,7 @@ void SeeRestaurantOrder(int n){
 
             }
 
-            cout << "\nBebida: ";
+            cout << "\n\033[36mBebida: \033[0m";
             for(int i = 0; i < 3; i++){
 
                 switch(atRestaurantOrder[n].RESTAURANT.Restaurant.pDrink[i]){
@@ -813,7 +813,7 @@ void CancelOrder(){
 					}
 				break;
 				case 3: follow = false; break;
-				default: cout << "Opcion invalida!" << endl;
+				default: cout << "\n\033[31mOpcion invalida!\033[0m" << endl;
 			}
 		}while(follow);
 
