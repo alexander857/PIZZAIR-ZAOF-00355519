@@ -86,9 +86,6 @@ vector<AnOrder> DispatchRestaurant;
 bool isAdmin = false, AnOrderDeliveryWasPlaced = false, AnOrderRestaurantWasPlaced = false, requested = false;
 int id = 0, contEPB = 0;
 
-//pila para almacenar el monto de las ordenes
-stack<float> amounts; //montos sin IVA
-
 //PROTOTIPOS DE LAS FUNCIONES
 bool LogIn(), PizzaMenu(); 
 void AddOrder(), AddOrder(int), SeeDeliveryOrder(int), SeeRestaurantOrder(int), DispatchDeliveryOrder(), DispatchRestauranOrder();
@@ -143,7 +140,7 @@ bool PizzaMenu(){
 			case 7: WaitTimeDelibery(0, 0); break;
 			case 8: WaitTimeRestaurant(0, 0); break;
 			case 9: CancelOrder(); break;
-			case 10: TotalSales(); break;
+			case 10: TotalSales(); break; 
 			case 11: LogIn(); break;
 			case 12: follow = false; break;
 			default: cout << "\nOPCION NO VALIDA!\n"; break;
@@ -659,7 +656,6 @@ void DispatchDeliveryOrder(){
                     break;
                 }
                 orderFound = true; //verifica que la orden se encontro y se despacha
-                amounts.push(atDeliveryOrder[i].HOME.TotalamountDelivery);	//guardando monto de la orden despachada en la pila de los montos
                 DispatchHome.insert(DispatchHome.end(), atDeliveryOrder[i]);
                 iter = atDeliveryOrder.erase(iter);
                 cout << "\n\033[34mLA ORDEN HA SIDO DESPACHADA CON EXITO!.\033[0m\n";
@@ -706,7 +702,6 @@ void DispatchRestauranOrder(){
                     break;
                 }
                 orderFound = true; //verifica que se encontro la orden y se despacha 
-                amounts.push(atRestaurantOrder[i].RESTAURANT.TotalamountRestaurant);	//guardando monto de la orden despachada en la pila de los montos
                 DispatchRestaurant.insert(DispatchRestaurant.end(), atRestaurantOrder[i]);
                 iter = atRestaurantOrder.erase(iter);
                 cout << "\n\033[34mLA ORDEN HA SIDO DESPACHADA CON EXITO!.\033[0m\n";
@@ -730,47 +725,25 @@ void DispatchRestauranOrder(){
 //FUNCION DEL TOTAL DE VENTAS
 //total de ventas solo ordenes despachadas
 void TotalSales(){
-	//declaracion de variables
-	stack<float> amountsIVA; //montos con IVA
-	stack<float> Extra;  //para guardar los montos originales y no eliminarlos
+    //declaracion de variables
+    float IVA = 0, amountIVAD = 0, amountIVAR = 0;
 
-	float AmountTop = 0, IVA = 0, AmountIVA = 0, totalSales = 0;
-	
-	while(!amounts.empty()){
-		
-		//se saca el primer monto de la pila
-		AmountTop = amounts.top();
-		
-		//se le saca el iva al monto
-		IVA = (AmountTop * 13) / 100;
-		
-		//se le agrega el iva
-		AmountIVA = AmountTop + IVA;
-		
-		//se guarda el valor con iva en la pila de montos con iva
-		amountsIVA.push(AmountIVA);
-		
-		//se guarda el valor original de la pila de montos sin iva en una pila temporal
-		Extra.push(amounts.top());
-		
-		//se elimina temporalmente el monto de la pila amounts
-		amounts.pop();
-		
-	}
-	//se vuelve a llenar la pila original amounts
-	while(!Extra.empty()){
-		amounts.push(Extra.top());
-		Extra.pop();
-	}
-	//se suman los montos con iva
-	while(!amountsIVA.empty()){
-		totalSales += amountsIVA.top();
-		amountsIVA.pop();
-	}
-	cout << fixed << setprecision(2) << "\nVENTAS TOTALES: $" << totalSales << endl;
-	totalSales = 0; //se vuelve de nuevo a 0 la varibale para que este lista si se vuelve a llamar la funcion de nuevo
-	
+    //sacando montos con iva de ordenes a domicilio
+    for(int i = 0; i < DispatchHome.size(); i++){
+        IVA = (DispatchHome[i].HOME.TotalamountDelivery * 13) / 100; //se saca el iva al monto
+        amountIVAD += DispatchHome[i].HOME.TotalamountDelivery + IVA; //se le agrega el iva al monto
+    }
+
+    //sacando montos con iva de ordenes a restaurante
+    for(int i = 0; i < DispatchRestaurant.size(); i++){
+        IVA = (DispatchRestaurant[i].RESTAURANT.TotalamountRestaurant * 13) / 100;//se saca el iva del monto
+        amountIVAR += DispatchRestaurant[i].RESTAURANT.TotalamountRestaurant + IVA; //se le agrega el iva al monto
+    }
+    //se muestra el total de las ventas
+    cout << "\nTOTAL DE VENTAS: $" << fixed << setprecision(2) << amountIVAD + amountIVAR << endl; 
+
 }
+
 
 //FUNCION PARA CANCELAR UNA ORDEN
 void CancelOrder(){
