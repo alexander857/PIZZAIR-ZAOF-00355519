@@ -1,10 +1,7 @@
 #include<iostream>
 #include<string>
-#include<queue>
 #include<iomanip> //para la funcion redondear decimales
-#include<stack>
 #include <vector>
-#include <algorithm>
 
 //contraseña del sistema
 #define PASSWORD "delete"
@@ -13,7 +10,7 @@
 using namespace std;
 
 //ENUMERACIONES
-//enumeraciones de los menus
+//enumeraciones de los menus de comida
 enum starter{garlicBread, pizzaRolls, cheeseSticks};
 enum mainDish{pizza, pasta, lasagna};
 enum drink{beer, soda, tea};
@@ -28,19 +25,19 @@ struct CustomerAddress{
 	
 	string Suburb, Municipality, State;
 	int HouseNumber;
-	
+
 };
 
 //info que tienen en comun los dos tipos de pedidos
 struct mainData{
 	
 	string name;
-    starter pStarter[3];
-    mainDish pDish[3];
-    drink pDrink[3];	
+    starter pStarter[3]; //donde se guardan las opciones de entradas
+    mainDish pDish[3];   //donde se guardan las opciones de platos principales
+    drink pDrink[3];	  //donde se guardan las opciones de bebidas
     paymentType pay;
 	float price;
-	int id, quantitiesSPD[3], quantities[9];
+	int id, quantitiesSPD[3], quantities[9]; //cantidad de entradas platos y bebidas
 };
 
 //pedidos a domicilio
@@ -49,7 +46,6 @@ struct DeliveryOrders{
 	CustomerAddress Address;
 	string phone;
 	mainData delivery;
-	int idOrderDelivery, quantitiesD[9]; //para guardar las cantidades de entradas, platos y bebidas
 	float TotalamountDelivery, timeD;
 		
 };
@@ -57,7 +53,7 @@ struct DeliveryOrders{
 //pedidos a restaurante
 struct RestaurantOrders{
 	
-	int PeoplePerTable, idOderRestaurant, quantitiesR[9]; //para guardar las cantidades de entradas, platos y bebidas
+	int PeoplePerTable;
 	mainData Restaurant;
 	float TotalamountRestaurant, timeR;
 	
@@ -71,7 +67,7 @@ struct AnOrder{
 	
 };
 
-typedef struct AnOrder ANORDER;
+typedef struct AnOrder ANORDER; //variable para acceder a los registros
 
 //vector de ordenes a domicilio
 vector<AnOrder> atDeliveryOrder; 
@@ -84,7 +80,7 @@ vector<AnOrder> DispatchRestaurant;
 
 //VAIABLES GLOBALES
 bool isAdmin = false, AnOrderDeliveryWasPlaced = false, AnOrderRestaurantWasPlaced = false, requested = false;
-int id = 0, contEPB = 0;
+int id = 0;
 
 //PROTOTIPOS DE LAS FUNCIONES
 bool LogIn(), PizzaMenu(); 
@@ -121,7 +117,7 @@ bool PizzaMenu(){
 		cout << "6-Despachar ordenes en restaurante\n";
 		cout << "7-Ver tiempo promedio de espera domicilio\n";
 		cout << "8-Ver tiempo promedio de espera restaurante\n";
-		cout << "9-Calcelar orden (domicilio o restaurante, \033[31msolo Admin\033[0m)\n";
+		cout << "9-Cancelar orden (domicilio o restaurante, \033[31msolo Admin\033[0m)\n";
 		cout << "10-Calcular total de ventas\n";
 		cout << "11-Cambiar de usuario\n";
 		cout << "12-Salir\n";
@@ -131,17 +127,17 @@ bool PizzaMenu(){
 		
 		switch(option){
 			//funciones llamadas al menu
-			case 1: AddOrder(); break;
-			case 2: AddOrder(0); break;
-			case 3: SeeDeliveryOrder(0); break;
-			case 4: SeeRestaurantOrder(0); break;
-			case 5: DispatchDeliveryOrder(); break;
-			case 6: DispatchRestauranOrder(); break;
-			case 7: WaitTimeDelibery(0, 0); break;
-			case 8: WaitTimeRestaurant(0, 0); break;
-			case 9: CancelOrder(); break;
-			case 10: TotalSales(); break; 
-			case 11: LogIn(); break;
+			case 1: AddOrder(); break;      //pedir orden a domicilio
+			case 2: AddOrder(0); break;		//pedir orden a restaurante
+			case 3: SeeDeliveryOrder(0); break;   //ver las ordenes a domicilio
+			case 4: SeeRestaurantOrder(0); break;  //ver las ordenes a restaurante
+			case 5: DispatchDeliveryOrder(); break;  //despachar ordenes a domicilio
+			case 6: DispatchRestauranOrder(); break;  //despachar ordenes a restaurante
+			case 7: WaitTimeDelibery(0, 0); break;   //tiempo de espera de las ordenes a domicilio
+			case 8: WaitTimeRestaurant(0, 0); break; //tiempo de espera de las ordenes a restaurante
+			case 9: CancelOrder(); break;  //cancelar una orden
+			case 10: TotalSales(); break;   //ver total de las ventas
+			case 11: LogIn(); break;      //cambiar de usuario
 			case 12: follow = false; break;
 			default: cout << "\n\033[31mOPCION NO VALIDA!\033[0m\n"; break;
 			
@@ -174,10 +170,10 @@ bool LogIn(){
 					//se pide la contraseña
 					cout << "\nINGRESE LA CLAVE: "; cin >> key;				
 					
-					if(key.compare(PASSWORD) == 0){
+					if(key.compare(PASSWORD) == 0){ //se verifica si la clave es correcta
 						
 						cout << "\n\033[33mHAS INICIADO SESION COMO ADMINISTRADOR!\033[0m" << endl;
-						isAdmin = true;
+						isAdmin = true; //verifica que se inicio sesion como admin
 						k = 1;
 					}			
 				}
@@ -185,7 +181,7 @@ bool LogIn(){
 				
 			case '2':
 				cout << "\n\033[33mHAS INICIADO SESION COMO EMPLEADO!\033[0m" << endl;
-				isAdmin = false;
+				isAdmin = false; //si se inicia sesion como empleado se vuelve falsa
 				k = 1;
 				break;
 			default :
@@ -514,7 +510,7 @@ void SeeDeliveryOrder(int i){
                 }
 
              }
-             
+            //se muestran los platos principales de la orden 
             cout << "\n\033[35mPlato principal: \033[0m";
             for(int j = 0; j < 3; j++){
 
@@ -525,7 +521,7 @@ void SeeDeliveryOrder(int i){
                 }
 
             }
-            
+            //se muestran las bebidas de la orden
             cout << "\n\033[36mBebida: \033[0m";
             for(int j = 0; j < 3; j++){
 
@@ -536,7 +532,7 @@ void SeeDeliveryOrder(int i){
                 }
 
             }
-            
+            //se muestra el tipo de pago de la orden
             cout << "\n\nTipo de pago: ";
              switch( atDeliveryOrder[i].HOME.delivery.pay){
                 case cash: cout << "Efectivo" << endl; break;
@@ -589,7 +585,7 @@ void SeeRestaurantOrder(int n){
                 }
 
             }
-
+			//se muestran los platos principales de la orden
             cout << "\n\033[35mPlato principal: \033[0m";
             for(int i = 0; i < 3; i++){
 
@@ -600,7 +596,7 @@ void SeeRestaurantOrder(int n){
                 }
 
             }
-
+			//se muestran las bebidas seleccionadas en la orden
             cout << "\n\033[36mBebida: \033[0m";
             for(int i = 0; i < 3; i++){
 
@@ -611,7 +607,7 @@ void SeeRestaurantOrder(int n){
                 }
 
             }
-
+			//se muestra el tipo de pago
             cout << "\n\nTipo de pago: ";
             switch(atRestaurantOrder[n].RESTAURANT.Restaurant.pay){
                 case cash: cout << "Efectivo" << endl; break;
@@ -826,7 +822,7 @@ void CancelOrder(){
 //funcion ver tiempo de espera de ordenes a domicilio
 void WaitTimeDelibery(int i, float TotalTimeOuts){
 	//declaracion de variables
-	float TotalTime = 0, starterT = 0, maindishT = 0, drinkT = 0;
+	float TotalTime = 0;
 
 	if(AnOrderDeliveryWasPlaced == false){ //si no hay ninguna orden
 		
@@ -837,7 +833,7 @@ void WaitTimeDelibery(int i, float TotalTimeOuts){
 		
 		if(i == 0) cout << endl; //para que haya un espacio en la primera iteracion
 
-		if(i == atDeliveryOrder.size()){
+		if(i == atDeliveryOrder.size()){ //caso base de la recursion
 			
 			cout << "\033[34mTotal del tiempo de espera: " << fixed << setprecision(0) << TotalTimeOuts << " minutos\033[0m" << endl;
 			cout << fixed << setprecision(2);
@@ -868,7 +864,7 @@ void WaitTimeDelibery(int i, float TotalTimeOuts){
 //funcion ver tiempo de espera de ordenes a restaurante
 void WaitTimeRestaurant(int i, float TotalTimeOuts){
 	//declaracion de variables
-	float TotalTime = 0, starterT = 0, maindishT = 0, drinkT = 0;
+	float TotalTime = 0;
 
 	if(AnOrderRestaurantWasPlaced == false){ //si no hay ordenes
 		
@@ -879,7 +875,7 @@ void WaitTimeRestaurant(int i, float TotalTimeOuts){
 		
 		if(i == 0) cout << endl; //para que haya un espacio en la primera iteracion
 
-		if(i == atRestaurantOrder.size()){
+		if(i == atRestaurantOrder.size()){ //caso base de la recursion
 			cout << "\033[34mTotal del tiempo de espera: " << fixed << setprecision(0) << TotalTimeOuts << " minutos\033[0m" << endl;
 			cout << fixed << setprecision(2);
 			cout << "\nSe ha mostrado el tiempo de espera de cada orden a restaurante!" << endl;
